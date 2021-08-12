@@ -1,12 +1,14 @@
 ﻿using System;
 
-namespace Models
-
-public class Topics
+namespace REST.Models
 {
-	public Topics()
-	{
-		public int TopicId { get; set; }
-		public string TopicName { get; set; }
-	}
+
+  public class Topics
+  {
+    public int TopicId { get; set; }
+    public string TopicName { get; set; }
+    public Topics()
+    {
+    }
+  }
 }

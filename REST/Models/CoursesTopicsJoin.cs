@@ -1,15 +1,17 @@
 ﻿using System;
 
-namespace Models
-
-public class CoursesTopicsJoin
+namespace REST.Models
 {
-	public CoursesTopicsJoin()
-	{
-		public int JoinId { get; set; }
-		public int CourseId { get; set; }
-		public int TopicId { get; set; }
-	}
+
+  public class CoursesTopicsJoin
+  {
+    public int JoinId { get; set; }
+    public int CourseId { get; set; }
+    public int TopicId { get; set; }
+    public CoursesTopicsJoin()
+    {
+    }
+  }
 }
 
 
