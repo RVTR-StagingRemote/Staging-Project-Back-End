@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,9 +32,13 @@ namespace REST
         {
             services.AddControllers();
 
-            services.AddDbContext<BatchesDBContext>(opts => opts.UseNpgsql(Configuration.GetConnectionString("batchesDB")));
+            services.AddDbContext<BatchesDBContext>(opt => opt.UseInMemoryDatabase(databaseName: "TestDatabase"));
+
+            // TODO use when psql database is good to use
+            // services.AddDbContext<BatchesDBContext>(opts => opts.UseNpgsql(Configuration.GetConnectionString("batchesDB")));
 
             services.AddSingleton(_ => Configuration);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Client_Portal", Version = "v1" });
