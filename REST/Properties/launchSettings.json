@@ -26,5 +26,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
+  },
+  "ConnectionStrings": {
+    "batchesDB": "Host=chunee.db.elephantsql.com;Port=5432;Database=fuscqkyo;Username=fuscqkyo;Password=h44EoNlnqesNQ9k_v_YNXuJsiXWqZCC3;"
   }
 }
