@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace REST.Models
 {
 
   public class Clients
   {
+    [Key]
     public int ClientId { get; set; }
     public string Name { get; set; }
     public string Address { get; set; }
