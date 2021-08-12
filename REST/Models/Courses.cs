@@ -1,13 +1,16 @@
 ﻿using System;
 
-namespace Models
-
-public class Courses
+namespace REST.Models
 {
-	public Courses()
-	{
-		public int CourseId { get; set; }
-		public string CourseName { get; set; }
-		public string Description { get; set; }
-	}
+
+  public class Courses
+  {
+    public int CourseId { get; set; }
+    public string CourseName { get; set; }
+    public string Description { get; set; }
+    public Courses()
+    {
+
+    }
+  }
 }
