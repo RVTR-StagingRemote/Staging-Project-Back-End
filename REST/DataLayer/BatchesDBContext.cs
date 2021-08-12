@@ -19,8 +19,31 @@ namespace REST.DataLayer
     public BatchesDBContext(DbContextOptions options, IConfiguration config) : base(options)
     {
       this.config = config;
+      
+      // currently needed for databse seeding
+      Database.EnsureCreated();
     }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-              => optionsBuilder.UseNpgsql(config.GetConnectionString("batchesDB"));
+
+    // TODO:  May not be neceassary, remove later if that's the case
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //           => optionsBuilder.UseNpgsql("Host=chunee.db.elephantsql.com;Port=5432;Database=fuscqkyo;Username=fuscqkyo;Password=h44EoNlnqesNQ9k_v_YNXuJsiXWqZCC3;");
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+      modelBuilder.Entity<Courses>().HasData(
+        new Courses
+        {
+          CourseId = 1,
+          CourseName = ".Net",
+          Description = ".Net Fullstack Course"
+        },
+            new Courses
+            {
+              CourseId = 2,
+              CourseName = "Java",
+              Description = "Java Fullstack Course"
+            }
+      );
+    }
   }
 }
