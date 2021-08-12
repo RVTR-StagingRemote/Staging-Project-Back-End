@@ -1,13 +1,15 @@
 ﻿using System;
 
-namespace Models
-
-public class Orders
+namespace REST.Models
 {
-	public Orders()
-	{
-		public int OrderId { get; set; }
-		public int ClientId { get; set; }
-	}
-}
 
+  public class Orders
+  {
+    public int OrderId { get; set; }
+    public int ClientId { get; set; }
+    public Orders()
+    {
+    }
+  }
+
+}
