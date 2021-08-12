@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using REST.DataLayer;
 
 namespace REST
 {
@@ -28,7 +29,9 @@ namespace REST
         {
             services.AddControllers();
 
-            // services.AddDbContext<{{Add Context Here}}>(opts => opts.UseNpgsql(Configuration.GetConnectionString("batchesDB")));
+            services.AddDbContext<BatchesDBContext>(opts => opts.UseNpgsql(Configuration.GetConnectionString("batchesDB")));
+
+            services.AddSingleton(_ => Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
