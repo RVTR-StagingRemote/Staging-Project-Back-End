@@ -6,14 +6,22 @@ namespace REST.Models
   ///<summary>
   ///This class handles information and functionality for a Course
   ///</summary>.
-  ///<param name="CourseId"></param>
-  ///<param name="CourseName"></param>
-  ///<param name="Description"></param>
   public class Courses
   {
-   [Key]
+    /// <summary>
+    /// Id used to target the course entity
+    /// </summary>
+    [Key]
     public int CourseId { get; set; }
+
+    /// <summary>
+    /// name for the course entity
+    /// </summary>
     public string CourseName { get; set; }
+
+    /// <summary>
+    /// description of the course entity
+    /// </summary>
     public string Description { get; set; }
     public Courses()
     {
