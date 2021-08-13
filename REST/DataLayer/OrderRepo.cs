@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace REST.DataLayer
 {
-   public class OrderRepo:ICourseRepo
+   public class OrderRepo:IOrderRepo
     {
         private readonly BatchesDBContext _context;
         public OrderRepo(BatchesDBContext context)
