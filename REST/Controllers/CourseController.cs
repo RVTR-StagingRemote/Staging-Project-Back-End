@@ -19,7 +19,8 @@ namespace REST.Controllers
     {
       _context = context;
     }
-
+    
+    //Get all courses and return them in a List
     [HttpGet]
     public IActionResult Courses()
     {
@@ -27,6 +28,7 @@ namespace REST.Controllers
       return Ok(courses);
     }
 
+    //Get a single course by its CourseID
     [HttpGet("{id}")]
     public IActionResult Course(int id)
     {
@@ -34,6 +36,7 @@ namespace REST.Controllers
       return Ok(course);
     }
 
+    //Create a single course based on data given
     [HttpPost]
     public IActionResult CreateCourse(Courses course)
     {
@@ -48,6 +51,7 @@ namespace REST.Controllers
       return Ok("Course added!");
     }
 
+    //Update a single course based on data given
     [HttpPut]
     public IActionResult Update(Courses course)
     {
@@ -55,6 +59,7 @@ namespace REST.Controllers
       throw new NotImplementedException();
     }
 
+    //Delete a single course based on ID
     [HttpDelete]
     public IActionResult DeleteCourse(int id)
     {
