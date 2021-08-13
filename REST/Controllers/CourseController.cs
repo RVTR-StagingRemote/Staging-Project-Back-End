@@ -13,20 +13,20 @@ namespace REST.Controllers
   [Route("[controller]")]
   public class CourseController : ControllerBase
   {
-    private BatchesDBContext _context;
+    private ICourseRepo _courseRepo;
 
-    public CourseController(BatchesDBContext context)
+    public CourseController(ICourseRepo courseRepo)
     {
-      _context = context;
+      _courseRepo = courseRepo;
     }
     
     ///<summary>
     ///Returns all courses as a List
     ///</summary>
     [HttpGet]
-    public IActionResult Courses()
+    public async Task<IActionResult> Courses()
     {
-      var courses = _context.Courses.ToList();
+      var courses = await _courseRepo.GetCourses();
       return Ok(courses);
     }
 
@@ -35,10 +35,13 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="id"></param>
     [HttpGet("{id}")]
-    public IActionResult Course(int id)
+    public async Task<IActionResult> Course(int id)
     {
-      var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
-      return Ok(course);
+      // var course = _courseRepo.Courses.FirstOrDefault(c => c.CourseId == id);
+      // return Ok(course);
+
+       // TODO implement similar logic as above
+      throw new NotImplementedException();
     }
 
     ///<summary>
@@ -46,15 +49,15 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="course"></param>
     [HttpPost]
-    public IActionResult CreateCourse(Courses course)
+    public async Task<IActionResult> CreateCourse(Courses course)
     {
       var newCourse = new Courses {
         CourseName = course.CourseName,
         Description = course.Description
       };
 
-      _context.Courses.Add(newCourse);
-      _context.SaveChanges();
+      // TODO: Add error handling in case of failed Db exchanges
+      await _courseRepo.AddCourse(course);
 
       return Ok("Course added!");
     }
@@ -64,7 +67,7 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="course"></param>
     [HttpPut]
-    public IActionResult Update(Courses course)
+    public async Task<IActionResult> Update(Courses course)
     {
       // TODO implement
       throw new NotImplementedException();
@@ -75,7 +78,7 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="id"></param>
     [HttpDelete]
-    public IActionResult DeleteCourse(int id)
+    public async Task<IActionResult> DeleteCourse(int id)
     {
       // TODO implement
       throw new NotImplementedException();
