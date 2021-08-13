@@ -3,6 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace REST.Models
 {
+  ///<summary>
+  ///This class handles the relationship between courses and their topics
+  ///</summary>.
+  ///<param name="JoinId"></param>
+  ///<param name="CourseId"></param>
+  ///<param name="TopicId"></param>
   public class CoursesTopicsJoin
   {
     [Key]

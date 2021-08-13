@@ -3,7 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace REST.Models
 {
-
+  ///<summary>
+  ///This class handles the information of an order
+  ///</summary>.
+  ///<param name="DetailsId"></param>
+  ///<param name="CourseId"></param>
+  ///<param name="OrderId"></param>
+  ///<param name="AssociateCount"></param>
+  ///<param name="DateNeeded"></param>
   public class OrderDetails
   {
    [Key]
