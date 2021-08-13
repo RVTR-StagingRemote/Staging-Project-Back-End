@@ -49,6 +49,9 @@ namespace REST
 
             services.AddSingleton(_ => Configuration);
 
+            services.AddScoped<ICourseRepo, CourseRepo>();
+            services.AddScoped<IOrderRepo, OrderRepo>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Client_Portal", Version = "v1" });

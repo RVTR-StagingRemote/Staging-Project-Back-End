@@ -14,31 +14,35 @@ namespace REST.Controllers
   [Route("[controller]")]
   public class CourseController : ControllerBase
   {
-    private BatchesDBContext _context;
     private readonly ICourseBL _courseBL;
 
     public CourseController(ICourseBL courseBL)
     {
             _courseBL = courseBL;
+     
     }
     
     ///<summary>
     ///Returns all courses as a List
     ///</summary>
     [HttpGet]
+
     public async  Task <IActionResult> Courses()
     {
       return  Ok(await _courseBL.GetCourses());
-    }
+      }
+
 
     ///<summary>
     ///Returns a single course based on an ID
     ///</summary>
     ///<param name="id"></param>
     [HttpGet("{id}")]
-    public IActionResult Course(int id)
+    public async Task<IActionResult> Course(int id)
     {
-            throw new  NotImplementedException();
+
+      throw new NotImplementedException();
+
     }
 
     ///<summary>
@@ -49,8 +53,8 @@ namespace REST.Controllers
     public async Task<IActionResult> CreateCourse(Courses course)
     {
       
-
       return Created("api",await _courseBL.AddCourse(course));
+
     }
 
     ///<summary>
@@ -58,7 +62,7 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="course"></param>
     [HttpPut]
-    public IActionResult Update(Courses course)
+    public async Task<IActionResult> Update(Courses course)
     {
       // TODO implement
       throw new NotImplementedException();
@@ -69,7 +73,7 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="id"></param>
     [HttpDelete]
-    public IActionResult DeleteCourse(int id)
+    public async Task<IActionResult> DeleteCourse(int id)
     {
       // TODO implement
       throw new NotImplementedException();
