@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using REST.BusinessLayer;
 using REST.DataLayer;
 using REST.Models;
 
@@ -14,20 +15,20 @@ namespace REST.Controllers
   public class CourseController : ControllerBase
   {
     private BatchesDBContext _context;
+    private readonly ICourseBL _courseBL;
 
-    public CourseController(BatchesDBContext context)
+    public CourseController(ICourseBL courseBL)
     {
-      _context = context;
+            _courseBL = courseBL;
     }
     
     ///<summary>
     ///Returns all courses as a List
     ///</summary>
     [HttpGet]
-    public IActionResult Courses()
+    public async  Task <IActionResult> Courses()
     {
-      var courses = _context.Courses.ToList();
-      return Ok(courses);
+      return  Ok(await _courseBL.GetCourses());
     }
 
     ///<summary>
@@ -37,8 +38,7 @@ namespace REST.Controllers
     [HttpGet("{id}")]
     public IActionResult Course(int id)
     {
-      var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
-      return Ok(course);
+            throw new  NotImplementedException();
     }
 
     ///<summary>
@@ -46,17 +46,11 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="course"></param>
     [HttpPost]
-    public IActionResult CreateCourse(Courses course)
+    public async Task<IActionResult> CreateCourse(Courses course)
     {
-      var newCourse = new Courses {
-        CourseName = course.CourseName,
-        Description = course.Description
-      };
+      
 
-      _context.Courses.Add(newCourse);
-      _context.SaveChanges();
-
-      return Ok("Course added!");
+      return Created("api",await _courseBL.AddCourse(course));
     }
 
     ///<summary>

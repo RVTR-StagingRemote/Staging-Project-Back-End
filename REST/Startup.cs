@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using REST.DataLayer;
 using Microsoft.OpenApi.Models;
+using REST.BusinessLayer;
 
 namespace REST
 {
@@ -30,6 +31,16 @@ namespace REST
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<ICourseRepo, CourseRepo>();
+            services.AddScoped<IClientRepo, ClientRepo>();
+            services.AddScoped<ITopicRepo, TopicRepo>();
+            services.AddScoped<IOrderRepo, OrderRepo>();
+
+            services.AddScoped<ICourseBL, CourseBL>();
+            services.AddScoped<IClientBL, ClientBL>();
+            services.AddScoped<IOrderBL, OrderBL>();
+            services.AddScoped<ITopicBL, TopicBL>();
+
 
             //services.AddDbContext<BatchesDBContext>(opt => opt.UseInMemoryDatabase(databaseName: "TestDatabase"));
 
