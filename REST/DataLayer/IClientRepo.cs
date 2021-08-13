@@ -20,12 +20,5 @@ namespace REST.DataLayer
         /// </summary>
         /// <returns></returns>
         public Task<List<Clients>> GetClients();
-
-        /// <summary>
-        /// add new course in the database
-        /// </summary>
-        /// <param name="course"></param>
-        /// <returns>Courses</returns>
-       
     }
 }
