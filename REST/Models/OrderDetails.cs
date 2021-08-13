@@ -6,7 +6,7 @@ namespace REST.Models
 
   public class OrderDetails
   {
-    [Key]
+   [Key]
     public int DetailsId { get; set; }
     public int CourseId { get; set; }
     public int OrderId { get; set; }

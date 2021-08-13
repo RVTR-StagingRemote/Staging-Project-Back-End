@@ -13,37 +13,38 @@ namespace REST.DataLayer
     public DbSet<Orders> Orders { get; set; }
     public DbSet<Topics> Topics { get; set; }
 
-    private readonly IConfiguration config;
+
+        public BatchesDBContext(){}
 
 
-    public BatchesDBContext(DbContextOptions options, IConfiguration config) : base(options)
+        public BatchesDBContext(DbContextOptions options) : base(options)
     {
-      this.config = config;
-      
-      // currently needed for databse seeding
-      Database.EnsureCreated();
+ 
     }
 
-    // TODO:  May not be neceassary, remove later if that's the case
-    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //           => optionsBuilder.UseNpgsql("Host=chunee.db.elephantsql.com;Port=5432;Database=fuscqkyo;Username=fuscqkyo;Password=h44EoNlnqesNQ9k_v_YNXuJsiXWqZCC3;");
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-      modelBuilder.Entity<Courses>().HasData(
-        new Courses
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-          CourseId = 1,
-          CourseName = ".Net",
-          Description = ".Net Fullstack Course"
-        },
-            new Courses
-            {
-              CourseId = 2,
-              CourseName = "Java",
-              Description = "Java Fullstack Course"
-            }
-      );
-    }
-  }
+         /*   modelBuilder.Entity<Clients>()
+              .HasKey(cl => cl.ClientId);
+
+            modelBuilder.Entity<Courses>()
+             .HasKey(c => c.CourseId);
+
+            modelBuilder.Entity<Orders>()
+            .HasKey(o=> o.OrderId);
+
+            modelBuilder.Entity<OrderDetails>()
+           .HasKey(od => od.DetailsId);
+
+            modelBuilder.Entity<Topics>()
+           .HasKey(t => t.TopicId);
+
+            modelBuilder.Entity<CoursesTopicsJoin>()
+          .HasKey(ctj => ctj.JoinId);*/
+
+
+        }
+
+
+        }
 }
