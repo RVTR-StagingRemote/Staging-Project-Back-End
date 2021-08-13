@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using REST.BusinessLayer;
 using REST.DataLayer;
 using REST.Models;
 
@@ -13,22 +14,24 @@ namespace REST.Controllers
   [Route("[controller]")]
   public class CourseController : ControllerBase
   {
-    private ICourseRepo _courseRepo;
+    private readonly ICourseBL _courseBL;
 
-    public CourseController(ICourseRepo courseRepo)
+    public CourseController(ICourseBL courseBL)
     {
-      _courseRepo = courseRepo;
+            _courseBL = courseBL;
+     
     }
     
     ///<summary>
     ///Returns all courses as a List
     ///</summary>
     [HttpGet]
-    public async Task<IActionResult> Courses()
+
+    public async  Task <IActionResult> Courses()
     {
-      var courses = await _courseRepo.GetCourses();
-      return Ok(courses);
-    }
+      return  Ok(await _courseBL.GetCourses());
+      }
+
 
     ///<summary>
     ///Returns a single course based on an ID
@@ -37,11 +40,9 @@ namespace REST.Controllers
     [HttpGet("{id}")]
     public async Task<IActionResult> Course(int id)
     {
-      // var course = _courseRepo.Courses.FirstOrDefault(c => c.CourseId == id);
-      // return Ok(course);
 
-       // TODO implement similar logic as above
       throw new NotImplementedException();
+
     }
 
     ///<summary>
@@ -51,15 +52,9 @@ namespace REST.Controllers
     [HttpPost]
     public async Task<IActionResult> CreateCourse(Courses course)
     {
-      var newCourse = new Courses {
-        CourseName = course.CourseName,
-        Description = course.Description
-      };
+      
+      return Created("api",await _courseBL.AddCourse(course));
 
-      // TODO: Add error handling in case of failed Db exchanges
-      await _courseRepo.AddCourse(course);
-
-      return Ok("Course added!");
     }
 
     ///<summary>
