@@ -1,0 +1,25 @@
+defaults:
+  run:
+    working-directory: Staging-Project-Back-End
+    
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: dotnet restore .
+      - run: dotnet build .
+
+  test:
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: dotnet test .
+      - run: dotnet test .
+
+on: 
+  push:
+    branches:
+      - main
