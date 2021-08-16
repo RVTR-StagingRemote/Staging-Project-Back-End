@@ -1,8 +1,5 @@
 
 name: CI
-defaults:
-  run:
-    working-directory: Staging-Project-Back-End
 on:  
   push:
     branches: [ main ]
