@@ -22,4 +22,4 @@ jobs:
 on: 
   push:
     branches:
-      - GithubActions
+      - main
