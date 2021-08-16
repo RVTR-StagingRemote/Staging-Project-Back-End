@@ -27,5 +27,15 @@ namespace REST.DataLayer
             await _context.SaveChangesAsync();
             return course;
         }
+
+        public async Task<Courses> FindCourseById(int CourseId)
+        {
+            return await _context.Courses.FindAsync(CourseId);
+        }
+
+        public async  Task<Courses> FindCourseByName(string CourseName)
+        {
+            return await _context.Courses.FindAsync(CourseName);
+        }
     }
 }
