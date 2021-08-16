@@ -30,12 +30,15 @@ namespace REST.DataLayer
 
         public async Task<Courses> FindCourseById(int CourseId)
         {
-            return await _context.Courses.FindAsync(CourseId);
+            return await _context.Courses.FirstOrDefaultAsync(c=>c.CourseId==CourseId);
         }
 
         public async  Task<Courses> FindCourseByName(string CourseName)
         {
-            return await _context.Courses.FindAsync(CourseName);
+
+            
+            return await _context.Courses.FirstOrDefaultAsync(c => c.CourseName == CourseName);
+                
         }
     }
 }

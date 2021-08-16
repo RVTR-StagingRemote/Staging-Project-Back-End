@@ -19,5 +19,17 @@ namespace REST.BusinessLayer
         /// </summary>
         /// <returns></returns>
         Task<List<Courses>> GetCourses();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CourseID"></param>
+        /// <returns></returns>
+        Task<Courses> FindCourseById(int CourseID);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CourseName"></param>
+        /// <returns></returns>
+        Task<Courses> FindCourseByName(string CourseName);
     }
 }
