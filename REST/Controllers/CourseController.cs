@@ -37,10 +37,10 @@ namespace REST.Controllers
     ///Returns a single course based on an ID
     ///</summary>
     ///<param name="id"></param>
-    [HttpGet("FindCourseById/{id}")]
+    [HttpGet("FindCourseById/{CourseId}")]
     public async Task<IActionResult> FindCourseById(int CourseId)
     {
-
+      
             return Ok(await _courseBL.FindCourseById(CourseId));               
 
     }
