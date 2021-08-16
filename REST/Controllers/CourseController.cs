@@ -37,18 +37,28 @@ namespace REST.Controllers
     ///Returns a single course based on an ID
     ///</summary>
     ///<param name="id"></param>
-    [HttpGet("{id}")]
-    public async Task<IActionResult> Course(int id)
+    [HttpGet("FindCourseById/{id}")]
+    public async Task<IActionResult> FindCourseById(int CourseId)
     {
 
-      throw new NotImplementedException();
+            return Ok(await _courseBL.FindCourseById(CourseId));               
 
     }
 
-    ///<summary>
-    ///Creates a new course based on the course object given
-    ///</summary>
-    ///<param name="course"></param>
+   [HttpGet("FindCourseByName/{CourseName}")]
+   public async Task<IActionResult> FindCourseByName(string CourseName)
+        {
+
+            return Ok(await _courseBL.FindCourseByName(CourseName));
+
+
+        }
+
+        ///<summary>
+        ///Creates a new course based on the course object given
+        ///</summary>
+        ///<param name="course"></param>
+        
     [HttpPost]
     public async Task<IActionResult> CreateCourse(Courses course)
     {

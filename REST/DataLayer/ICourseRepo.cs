@@ -18,10 +18,17 @@ namespace REST.DataLayer
         public Task<List<Courses>> GetCourses();
 
         /// <summary>
-        /// add new topic in the database
+        /// find course by CourseId
         /// </summary>
-        /// <param name="topics"></param>
-        /// <returns>Topics object</returns>
-       
+        /// <param name="CourseId"></param>
+        /// <returns>Courses object</returns>
+        public Task<Courses> FindCourseById(int CourseId);
+        /// <summary>
+        /// get course by it's name
+        /// </summary>
+        /// <param name="CourseName"></param>
+        /// <returns></returns>
+        public Task<Courses> FindCourseByName(string CourseName);
+
     }
 }
