@@ -1,4 +1,6 @@
 using System;
+using Moq;
+using REST.DataLayer;
 using Xunit;
 
 namespace Testing
@@ -8,7 +10,7 @@ namespace Testing
         [Fact]
         public void GetReturnsCourses()
         {
-            var mockRepo = new Mock<ICourseRepository>();
+            var mockRepo = new Mock<ICourseRepo>();
         }
     }
 }
