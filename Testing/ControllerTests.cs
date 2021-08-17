@@ -13,16 +13,30 @@ namespace Testing
 {
     public class ControllerTests
     {
-        [Fact]
-        public void GetReturnsCourses()
+        Mock<ICourseBL> mockRepo;
+        public ControllerTests()
         {
-            var mockRepo = new Mock<ICourseBL>();
+            mockRepo = new Mock<ICourseBL>();
+        }
+        [Fact]
+        public void GetCoursesReturnsOkObjectResult()
+        {
             mockRepo.Setup(x => x.GetCourses()).ReturnsAsync(new List<Courses>());
-
             var controller = new CourseController(mockRepo.Object);
+
             var response = controller.Courses();
             var result = response.Result;
-            
+
+            Assert.IsType<OkObjectResult>(result);
+        }
+        [Fact]
+        public void FindCourseByIdReturnsOk()
+        {
+            mockRepo.Setup(x => x.FindCourseById(1)).ReturnsAsync(new Courses(){CourseId = 1,Description = "Test Course",CourseName = "Test"});
+            var controller = new CourseController(mockRepo.Object);
+
+            var response = controller.FindCourseById(1);
+            var result = response.Result;
 
             Assert.IsType<OkObjectResult>(result);
         }
