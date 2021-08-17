@@ -46,7 +46,7 @@ namespace Testing
         [Fact]
         public void FindCourseByNameReturnsOk()
         {
-            mockRepo.Setup(x => x.FindCourseByName("Test")).ReturnsAsync(new Courses(){CourseId = 1,Description = "Test Course",CourseName = "Test"});
+            mockRepo.Setup(x => x.FindCourseByName(It.IsAny<string>())).ReturnsAsync(new Courses(){CourseId = 1,Description = "Test Course",CourseName = "Test"});
             var controller = new CourseController(mockRepo.Object);
 
             var response = controller.FindCourseByName("Test");
