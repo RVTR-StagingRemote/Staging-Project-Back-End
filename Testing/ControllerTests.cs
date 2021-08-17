@@ -20,13 +20,11 @@ namespace Testing
             mockRepo.Setup(x => x.GetCourses()).ReturnsAsync(new List<Courses>());
 
             var controller = new CourseController(mockRepo.Object);
-            var result = controller.Courses();
-
-            Assert.NotNull(result);
-            Assert.IsType<Task<IActionResult>>(result);
-            
+            var response = controller.Courses();
+            var result = response.Result;
             
 
+            Assert.IsType<OkObjectResult>(result);
         }
     }
 }
