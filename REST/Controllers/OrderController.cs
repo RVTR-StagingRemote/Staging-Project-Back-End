@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using REST.BusinessLayer;
 using REST.DataLayer;
 using REST.Models;
 
@@ -13,21 +14,19 @@ namespace REST.Controllers
   [Route("[controller]")]
   public class OrderController : ControllerBase
   {
-    private BatchesDBContext _context;
-
-    public OrderController(BatchesDBContext context)
+    private readonly IOrderBL _orderBL;
+    public OrderController(IOrderBL orderBL)
     {
-      _context = context;
+      _orderBL = orderBL;
     }
     
     ///<summary>
     ///Returns all orders as a List
     ///</summary>
     [HttpGet]
-    public IActionResult Orders()
-    {
-      var orders = _context.Orders.ToList();
-      return Ok(orders);
+    public async Task<IActionResult> Orders()
+    {      
+      return Ok(await _orderBL.GetOrders());
     }
 
     ///<summary>
@@ -37,8 +36,8 @@ namespace REST.Controllers
     [HttpGet("{id}")]
     public IActionResult Order(int id)
     {
-      var order = _context.Orders.FirstOrDefault(c => c.OrderId == id);
-      return Ok(order);
+      // TODO implement
+      throw new NotImplementedException();
     }
 
     ///<summary>
@@ -46,16 +45,9 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="order"></param>
     [HttpPost]
-    public IActionResult CreateOrder(Orders order)
+    public async Task<IActionResult> CreateOrder(Clients c,OrderDetails od)
     {
-      var newOrder = new Orders {
-        ClientId = order.ClientId
-      };
-
-      _context.Orders.Add(newOrder);
-      _context.SaveChanges();
-
-      return Ok("Order added!");
+      return Created("api", await _orderBL.PlaceOrder(c,od));
     }
 
     ///<summary>
