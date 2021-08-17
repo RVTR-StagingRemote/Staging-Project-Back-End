@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using REST.DataLayer;
 using Microsoft.OpenApi.Models;
+using REST.BusinessLayer;
 
 namespace REST
 {
@@ -30,6 +31,16 @@ namespace REST
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<ICourseRepo, CourseRepo>();
+            services.AddScoped<IClientRepo, ClientRepo>();
+            services.AddScoped<ITopicRepo, TopicRepo>();
+            services.AddScoped<IOrderRepo, OrderRepo>();
+
+            services.AddScoped<ICourseBL, CourseBL>();
+            services.AddScoped<IClientBL, ClientBL>();
+            services.AddScoped<IOrderBL, OrderBL>();
+            services.AddScoped<ITopicBL, TopicBL>();
+
 
             //services.AddDbContext<BatchesDBContext>(opt => opt.UseInMemoryDatabase(databaseName: "TestDatabase"));
 
@@ -37,6 +48,9 @@ namespace REST
             services.AddDbContext<BatchesDBContext>(opts => opts.UseNpgsql(Configuration.GetConnectionString("batchesDB")));
 
             services.AddSingleton(_ => Configuration);
+
+            services.AddScoped<ICourseRepo, CourseRepo>();
+            services.AddScoped<IOrderRepo, OrderRepo>();
 
             services.AddSwaggerGen(c =>
             {
@@ -53,6 +67,9 @@ namespace REST
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Client_Portal v1"));
             }
+
+            // TODO: for security, make sure this is more defined later on
+            app.UseCors(opts => opts.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

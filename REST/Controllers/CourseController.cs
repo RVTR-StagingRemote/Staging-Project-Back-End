@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using REST.BusinessLayer;
 using REST.DataLayer;
 using REST.Models;
 
@@ -13,50 +14,57 @@ namespace REST.Controllers
   [Route("[controller]")]
   public class CourseController : ControllerBase
   {
-    private BatchesDBContext _context;
+    private readonly ICourseBL _courseBL;
 
-    public CourseController(BatchesDBContext context)
+    public CourseController(ICourseBL courseBL)
     {
-      _context = context;
+            _courseBL = courseBL;
+     
     }
     
     ///<summary>
     ///Returns all courses as a List
     ///</summary>
     [HttpGet]
-    public IActionResult Courses()
+
+    public async  Task <IActionResult> Courses()
     {
-      var courses = _context.Courses.ToList();
-      return Ok(courses);
-    }
+      return  Ok(await _courseBL.GetCourses());
+      }
+
 
     ///<summary>
     ///Returns a single course based on an ID
     ///</summary>
     ///<param name="id"></param>
-    [HttpGet("{id}")]
-    public IActionResult Course(int id)
+    [HttpGet("FindCourseById/{CourseId}")]
+    public async Task<IActionResult> FindCourseById(int CourseId)
     {
-      var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
-      return Ok(course);
+
+            return Ok(await _courseBL.FindCourseById(CourseId));               
+
     }
 
-    ///<summary>
-    ///Creates a new course based on the course object given
-    ///</summary>
-    ///<param name="course"></param>
+   [HttpGet("FindCourseByName/{CourseName}")]
+   public async Task<IActionResult> FindCourseByName(string CourseName)
+        {
+
+            return Ok(await _courseBL.FindCourseByName(CourseName));
+
+
+        }
+
+        ///<summary>
+        ///Creates a new course based on the course object given
+        ///</summary>
+        ///<param name="course"></param>
+        
     [HttpPost]
-    public IActionResult CreateCourse(Courses course)
+    public async Task<IActionResult> CreateCourse(Courses course)
     {
-      var newCourse = new Courses {
-        CourseName = course.CourseName,
-        Description = course.Description
-      };
+      
+      return Created("api",await _courseBL.AddCourse(course));
 
-      _context.Courses.Add(newCourse);
-      _context.SaveChanges();
-
-      return Ok("Course added!");
     }
 
     ///<summary>
@@ -64,7 +72,7 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="course"></param>
     [HttpPut]
-    public IActionResult Update(Courses course)
+    public async Task<IActionResult> Update(Courses course)
     {
       // TODO implement
       throw new NotImplementedException();
@@ -75,7 +83,7 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="id"></param>
     [HttpDelete]
-    public IActionResult DeleteCourse(int id)
+    public async Task<IActionResult> DeleteCourse(int id)
     {
       // TODO implement
       throw new NotImplementedException();
