@@ -43,11 +43,12 @@ namespace REST.Controllers
     ///<summary>
     ///Creates a new order based on the order object given
     ///</summary>
-    ///<param name="order"></param>
+    ///<param name="clients"></param>
+    ///<param name="orderDetails"></param>
     [HttpPost]
-    public async Task<IActionResult> CreateOrder(Clients c,OrderDetails od)
+    public async Task<IActionResult> CreateOrder(Clients clients,OrderDetails orderDetails)
     {
-      return Created("api", await _orderBL.PlaceOrder(c,od));
+      return Created("api", await _orderBL.PlaceOrder(clients,orderDetails));
     }
 
     ///<summary>
