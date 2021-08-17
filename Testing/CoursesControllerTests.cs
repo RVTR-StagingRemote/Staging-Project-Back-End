@@ -11,10 +11,10 @@ using Xunit;
 
 namespace Testing
 {
-    public class ControllerTests
+    public class CoursesControllerTests
     {
         Mock<ICourseBL> mockRepo;
-        public ControllerTests()
+        public CoursesControllerTests()
         {
             mockRepo = new Mock<ICourseBL>();
         }
