@@ -20,5 +20,9 @@ namespace REST.DataLayer
         /// </summary>
         /// <returns></returns>
         public Task<List<Clients>> GetClients();
+
+        public Task<Clients> GetClientsById(int Id);
+
+        
     }
 }

@@ -16,14 +16,23 @@ namespace REST.DataLayer
         }
 
 
-        public Task<Orders> PlaceOrder(Clients client, OrderDetails orderDetails)
+        public async Task<Orders> PlaceOrder(Orders order)
         {
-            throw new NotImplementedException();
+            //order.OrderDetails = OrderItems;
+            await  _context.Orders.AddAsync(order);
+            await  _context.SaveChangesAsync();
+
+            return order;
         }
 
         public async Task<List<Orders>> GetAOrders()
         {
             return await _context.Orders.AsNoTracking().Select(order => order).ToListAsync();
+        }
+
+        public async Task<Orders> GetAOrdersById(int Id)
+        {
+            return await _context.Orders.AsNoTracking().Include(o=>o.OrderDetails).SingleOrDefaultAsync(o=>o.OrderId==Id);
         }
 
 

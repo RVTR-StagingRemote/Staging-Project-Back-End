@@ -34,11 +34,14 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="id"></param>
     [HttpGet("{id}")]
-    public IActionResult Order(int id)
+    public async Task<IActionResult> Order(int id)
     {
-      // TODO implement
-      throw new NotImplementedException();
-    }
+            // TODO implement
+            Orders order = await _orderBL.GetAOrdersById(id);
+
+            if (order == null) return NotFound();
+            return Ok(order);
+        }
 
     ///<summary>
     ///Creates a new order based on the order object given
@@ -46,9 +49,9 @@ namespace REST.Controllers
     ///<param name="clients"></param>
     ///<param name="orderDetails"></param>
     [HttpPost]
-    public async Task<IActionResult> CreateOrder(Clients clients,OrderDetails orderDetails)
+    public async Task<IActionResult> CreateOrder(Orders order)
     {
-      return Created("api", await _orderBL.PlaceOrder(clients,orderDetails));
+      return Created("api", await _orderBL.PlaceOrder(order));
     }
 
     ///<summary>
@@ -67,11 +70,13 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="id"></param>
     [HttpDelete]
-    public IActionResult DeleteOrder(int id)
+    public async Task <IActionResult> DeleteOrder(int Id)
     {
-      // TODO implement
-      throw new NotImplementedException();
-    }
+            // TODO implement
+            
+
+            throw new NotImplementedException();
+        }
 
   }
 }

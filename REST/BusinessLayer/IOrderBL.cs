@@ -11,14 +11,16 @@ namespace REST.BusinessLayer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="c"></param>
-        /// <param name="od"></param>
+        /// <param name="ClientId"></param>
+        /// <param name="OrderItems"></param>
         /// <returns></returns>
-        Task<Orders> PlaceOrder(Clients c, OrderDetails od);
+        Task<Orders> PlaceOrder(Orders order);
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         Task<List<Orders>> GetOrders();
+
+         Task<Orders> GetAOrdersById(int Id);
     }
 }

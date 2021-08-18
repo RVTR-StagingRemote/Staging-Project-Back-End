@@ -8,21 +8,27 @@ namespace REST.DataLayer
 {
    public interface IOrderRepo
     {
-      
-       
+
+
 
         /// <summary>
         /// place order for a given costumer
         /// </summary>
         /// <param name="client"></param>
-        /// <param name="orderDetails"></param>
+        /// <param name="OrderItems"></param>
         /// <returns>Orders object</returns>
-        public Task<Orders> PlaceOrder(Clients client, OrderDetails orderDetails);
+        public Task<Orders> PlaceOrder(Orders order);
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns>list of orders</returns>
         public Task<List<Orders>> GetAOrders();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public Task<Orders> GetAOrdersById(int Id);
     }
 }

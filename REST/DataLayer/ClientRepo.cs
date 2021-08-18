@@ -28,6 +28,9 @@ namespace REST.DataLayer
             return await _context.Clients.AsNoTracking().Select(cl => cl).ToListAsync();
         }
 
-
+        public Task<Clients> GetClientsById(int Id)
+        {
+            return _context.Clients.FirstOrDefaultAsync(c=>c.ClientId==Id);
+        }
     }
 }
