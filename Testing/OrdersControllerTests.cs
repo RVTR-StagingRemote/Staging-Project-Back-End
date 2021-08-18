@@ -33,10 +33,10 @@ namespace Testing
         [Fact]
         public void CreateOrderReturnsCreatedResult()
         {
-            mockRepo.Setup(x => x.PlaceOrder(It.IsAny<Clients>(),It.IsAny<OrderDetails>())).ReturnsAsync(new Orders());
+            mockRepo.Setup(x => x.PlaceOrder(It.IsAny<Orders>())).ReturnsAsync(new Orders());
             var controller = new OrderController(mockRepo.Object);
 
-            var response = controller.CreateOrder(new Clients(),new OrderDetails());
+            var response = controller.CreateOrder(new Orders());
             var result = response.Result;
 
             Assert.IsType<CreatedResult>(result);
