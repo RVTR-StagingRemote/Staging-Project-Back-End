@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace REST.Models
@@ -43,7 +44,9 @@ namespace REST.Models
     /// Email of the Client entity
     /// </summary>
     public string Email { get; set; }
-    public Clients()
+
+    public ICollection<Orders>?  Orders { get; set; }
+        public Clients()
     {
 
     }

@@ -19,6 +19,12 @@ namespace REST.BusinessLayer
         /// </summary>
         /// <returns></returns>
         Task<List<Clients>> GetClients();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public Task<Clients> GetClientsById(int Id);
 
     }
 
