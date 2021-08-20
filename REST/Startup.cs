@@ -61,6 +61,8 @@ namespace REST
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            Stripe.StripeConfiguration.ApiKey = "sk_test_51JPsbPLwtPYhS8YtUvEDttDcmfwwcdglHCSs9nyfNJIbgVdzY1HVeTDUOefYYbiUBiaQM1zwWOj1vHqHFYPwjFtV00nuyv4l8A";
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
