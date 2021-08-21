@@ -29,5 +29,13 @@ namespace REST.DataLayer
         {
             return await _context.Topics.AsNoTracking().Select(tp => tp).ToListAsync();
         }
+
+        public async Task<Topics> UpdateTopics(Topics t)
+        {
+             _context.Topics.Update(t);
+            _context.SaveChangesAsync();
+
+            return t;
+        }
     }
 }

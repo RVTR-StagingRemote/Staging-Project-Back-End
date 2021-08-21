@@ -21,11 +21,18 @@ namespace REST.DataLayer
         /// <returns></returns>
         public Task<List<Clients>> GetClients();
 
-     /// <summary>
-     /// 
-     /// </summary>
-     /// <param name="client"></param>
-     /// <returns></returns>
+         /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="client"></param>
+         /// <returns></returns>
         public Task<Clients> UpdateClients(Clients client);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<Clients> GetClientsById(int id);
     }
 }

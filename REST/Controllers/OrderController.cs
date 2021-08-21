@@ -34,7 +34,7 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="id"></param>
     [HttpGet("{id}")]
-    public async Task<IActionResult> Order(int id)
+    public async Task<IActionResult> GetAOrdersById(int id)
     {
             // TODO implement
             Orders order = await _orderBL.GetAOrdersById(id);
@@ -59,10 +59,13 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="order"></param>
     [HttpPut]
-    public IActionResult Update(Orders order)
+    public async Task< IActionResult> UpdateOrder(Orders order)
     {
-      // TODO implement
-      throw new NotImplementedException();
+            // TODO implement
+
+            await _orderBL.UpdateOrders(order);
+
+            return NoContent();
     }
 
     ///<summary>

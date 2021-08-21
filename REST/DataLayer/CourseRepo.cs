@@ -40,5 +40,13 @@ namespace REST.DataLayer
             return await _context.Courses.FirstOrDefaultAsync(c => c.CourseName == CourseName);
                 
         }
+
+        public async  Task<Courses> UpdateCourses(Courses course)
+        {
+            _context.Courses.Update(course);
+            _context.SaveChangesAsync();
+
+            return course;
+        }
     }
 }

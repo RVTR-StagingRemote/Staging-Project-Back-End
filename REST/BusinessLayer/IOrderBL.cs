@@ -20,7 +20,17 @@ namespace REST.BusinessLayer
         /// </summary>
         /// <returns></returns>
         Task<List<Orders>> GetOrders();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
          Task<Orders> GetAOrdersById(int Id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        public Task<Orders> UpdateOrders(Orders order);
     }
 }

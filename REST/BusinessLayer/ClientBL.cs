@@ -29,5 +29,10 @@ namespace REST.BusinessLayer
             return await _clientRepo.GetClientsById(Id);
             
         }
+
+        public async Task<Clients> UpdateClients(Clients client)
+        {
+            return await _clientRepo.UpdateClients(client);
+        }
     }
 }

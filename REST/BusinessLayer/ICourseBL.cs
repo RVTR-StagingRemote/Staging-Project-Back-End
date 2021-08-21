@@ -31,5 +31,11 @@ namespace REST.BusinessLayer
         /// <param name="CourseName"></param>
         /// <returns></returns>
         Task<Courses> FindCourseByName(string CourseName);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns></returns>
+        public Task<Courses> UpdateCourses(Courses course);
     }
 }

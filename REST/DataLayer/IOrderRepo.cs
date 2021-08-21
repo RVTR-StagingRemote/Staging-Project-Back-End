@@ -12,11 +12,10 @@ namespace REST.DataLayer
 
 
         /// <summary>
-        /// place order for a given costumer
+        /// place an order for a given customer
         /// </summary>
-        /// <param name="client"></param>
-        /// <param name="OrderItems"></param>
-        /// <returns>Orders object</returns>
+        /// <param name="order"></param>
+        /// <returns> Orders object</returns>
         public Task<Orders> PlaceOrder(Orders order);
 
         /// <summary>

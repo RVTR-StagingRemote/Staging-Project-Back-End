@@ -42,5 +42,10 @@ namespace REST.BusinessLayer
         {
             return await _orderRepo.GetAOrdersById(Id);
         }
+
+        public async Task<Orders>UpdateOrders(Orders order)
+        {
+            return await _orderRepo.UpdateOrders(order);
+        }
     }
 }

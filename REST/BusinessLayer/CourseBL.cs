@@ -34,5 +34,10 @@ namespace REST.BusinessLayer
         {
             return await _courserepo.GetCourses();
         }
+
+        public async Task<Courses> UpdateCourses(Courses course)
+        {
+            return await _courserepo.UpdateCourses(course);
+        }
     }
 }

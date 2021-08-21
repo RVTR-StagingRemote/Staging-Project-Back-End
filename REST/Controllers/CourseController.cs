@@ -72,10 +72,11 @@ namespace REST.Controllers
     ///</summary>
     ///<param name="course"></param>
     [HttpPut]
-    public async Task<IActionResult> Update(Courses course)
+    public async Task<IActionResult> UpdateCourse(Courses course)
     {
-      // TODO implement
-      throw new NotImplementedException();
+        Courses CourseUpdated= await _courseBL.UpdateCourses(course);
+            if (CourseUpdated == null) return BadRequest();
+        return NoContent();
     }
 
     ///<summary>

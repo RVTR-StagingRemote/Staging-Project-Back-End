@@ -18,9 +18,9 @@ namespace REST.Controllers
         public ClientController(IClientBL clientBL) { _clientBL = clientBL; }
         // GET: api/<ClientController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetClients()
         {
-            return new string[] { "value1", "value2" };
+            return  Ok(await  _clientBL.GetClients());
         }
 
         // GET api/<ClientController>/5
@@ -32,16 +32,25 @@ namespace REST.Controllers
 
         // POST api/<ClientController>
         [HttpPost()]
-        public async  Task<IActionResult> Post([FromBody] Clients client)
+        public async  Task<IActionResult> Post( Clients client)
         {
        
             return Created("api/AddClient",await _clientBL.AddClient(client));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
         // PUT api/<ClientController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<IActionResult> Update( [FromBody] Clients client)
         {
+            await _clientBL.UpdateClients(client);
+            return NoContent();
         }
 
         // DELETE api/<ClientController>/5
