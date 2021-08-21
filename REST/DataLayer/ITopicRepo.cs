@@ -21,12 +21,7 @@ namespace REST.DataLayer
         /// <returns>topics list</returns>
        public Task<List<Topics>> GetTopics();
 
-        /// <summary>
-        /// place order for a given costumer
-        /// </summary>
-        /// <param name="client"></param>
-        /// <param name="orderDetails"></param>
-        /// <returns>Orders object</returns>
-       
+        public Task<Topics> UpdateTopics(Topics t);
+
     }
 }

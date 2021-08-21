@@ -16,13 +16,9 @@ namespace REST.DataLayer
         }
 
 
-        public async Task<Orders> PlaceOrder(Orders order)
+        public Task<Orders> PlaceOrder(Clients client, OrderDetails orderDetails)
         {
-            //order.OrderDetails = OrderItems;
-            await  _context.Orders.AddAsync(order);
-            await  _context.SaveChangesAsync();
-
-            return order;
+            throw new NotImplementedException();
         }
 
         public async Task<List<Orders>> GetAOrders()
@@ -30,12 +26,19 @@ namespace REST.DataLayer
             return await _context.Orders.AsNoTracking().Select(order => order).ToListAsync();
         }
 
-        public async Task<Orders> GetAOrdersById(int Id)
+        public Task<Orders> PlaceOrder(Orders order)
         {
-            return await _context.Orders.AsNoTracking().Include(o=>o.OrderDetails).SingleOrDefaultAsync(o=>o.OrderId==Id);
+            throw new NotImplementedException();
         }
 
+        public Task<Orders> GetAOrdersById(int Id)
+        {
+            throw new NotImplementedException();
+        }
 
-
+        public Task<Orders> UpdateOrders(Orders order)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -30,5 +30,11 @@ namespace REST.DataLayer
         /// <param name="Id"></param>
         /// <returns></returns>
         public Task<Orders> GetAOrdersById(int Id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        public Task<Orders> UpdateOrders( Orders order);
     }
 }

@@ -30,5 +30,12 @@ namespace REST.DataLayer
         /// <returns></returns>
         public Task<Courses> FindCourseByName(string CourseName);
 
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="course"></param>
+       /// <returns></returns>
+        public Task<Courses> UpdateCourses(Courses course);
+
     }
 }
