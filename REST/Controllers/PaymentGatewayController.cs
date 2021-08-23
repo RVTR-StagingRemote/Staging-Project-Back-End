@@ -31,8 +31,7 @@ namespace Rest.Controllers
       var paymentIntents = new PaymentIntentService();
       var paymentIntent = paymentIntents.Create(new PaymentIntentCreateOptions
       {
-        // Amount = CalculateOrderAmount(request.CoursesToBuy),
-        Amount = request.Price, // TODO: Temporary solution, please remove when a pricing system is implemented
+        Amount = CalculateOrderAmount(request.CoursesToBuy),
         Currency = "usd",
         PaymentMethodTypes = new List<string> {
           "card",
@@ -62,7 +61,8 @@ namespace Rest.Controllers
       // Replace this constant with a calculation of the order's amount
       // Calculate the order total on the server to prevent
       // people from directly manipulating the amount on the client
-      return 20000;
+      int pricePerCourse = 2000; // Placeholder cost per course, 2000 is equal to $20 usd
+      return pricePerCourse*coursesToBuy.Length;
     }
   }
 }
