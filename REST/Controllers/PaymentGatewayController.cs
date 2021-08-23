@@ -61,8 +61,8 @@ namespace Rest.Controllers
       // Replace this constant with a calculation of the order's amount
       // Calculate the order total on the server to prevent
       // people from directly manipulating the amount on the client
-      // Placeholder amount per course that can be changed
-      return 2000*coursesToBuy.Length;
+      int pricePerCourse = 2000; // Placeholder cost per course, 2000 is equal to $20 usd
+      return pricePerCourse*coursesToBuy.Length;
     }
   }
 }
