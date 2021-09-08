@@ -33,6 +33,8 @@ namespace REST.BusinessLayer
         /// <returns></returns>
         public Task<Clients> UpdateClients(Clients client);
 
+        public Task<Clients> DeleteClientById(int ClientId);
+
     }
 
 }

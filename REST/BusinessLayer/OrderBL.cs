@@ -35,17 +35,22 @@ namespace REST.BusinessLayer
 
         public async Task<List<Orders>> GetOrders()
         {
-            return await _orderRepo.GetOrders();
+            return await _orderRepo.GetAOrders();
         }
 
-        public async Task<Orders> GetOrdersById(int Id)
+        public async Task<Orders> GetAOrdersById(int Id)
         {
-            return await _orderRepo.GetOrdersById(Id);
+            return await _orderRepo.GetAOrdersById(Id);
         }
 
         public async Task<Orders>UpdateOrders(Orders order)
         {
             return await _orderRepo.UpdateOrders(order);
+        }
+
+        public async Task<Orders> DeleteOrderById(int OrderId)
+        {
+            return await _orderRepo.DeleteOrderById(OrderId);
         }
     }
 }

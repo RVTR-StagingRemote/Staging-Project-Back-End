@@ -37,5 +37,12 @@ namespace REST.BusinessLayer
         /// <param name="course"></param>
         /// <returns></returns>
         public Task<Courses> UpdateCourses(Courses course);
+
+        /// <summary>
+        /// delete a course via its id
+        /// </summary>
+        /// <param name="CourseId"></param>
+        /// <returns></returns>
+        public Task<Courses> DeleteCourseById(int CourseId);
     }
 }

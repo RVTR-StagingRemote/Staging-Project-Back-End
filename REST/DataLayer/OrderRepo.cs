@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace REST.DataLayer
 {
-    public class OrderRepo : IOrderRepo
+   public class OrderRepo:IOrderRepo
     {
         private readonly BatchesDBContext _context;
         public OrderRepo(BatchesDBContext context)
@@ -15,7 +15,7 @@ namespace REST.DataLayer
             _context = context;
         }
 
-        public async Task<List<Orders>> GetOrders()
+        public async Task<List<Orders>> GetAOrders()
         {
             return await _context.Orders.AsNoTracking().Select(order => order).ToListAsync();
         }
@@ -28,7 +28,7 @@ namespace REST.DataLayer
             return order;
         }
 
-        public async Task<Orders> GetOrdersById(int Id)
+        public async Task<Orders> GetAOrdersById(int Id)
         {
             return await _context.Orders.AsNoTracking().Include(o => o.OrderDetails).SingleOrDefaultAsync(o => o.OrderId == Id);
         }
@@ -37,6 +37,17 @@ namespace REST.DataLayer
         {
             _context.Orders.Update(order);
             await _context.SaveChangesAsync();
+            return order;
+        }
+
+        public async Task<Orders> DeleteOrderById(int OrderId)
+        {
+            Orders order = await _context.Orders.FirstOrDefaultAsync(o => o.OrderId == OrderId);
+            OrderDetails orderDetails = _context.OrderDetails.FirstOrDefault(o => o.DetailsId== OrderId);
+            _context.OrderDetails.Remove(orderDetails);
+            _context.Orders.Remove(order);
+            await _context.SaveChangesAsync();
+
             return order;
         }
     }
