@@ -12,7 +12,7 @@ namespace REST.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientController : ControllerBase      
+    public class ClientController : ControllerBase
     {
         private readonly IClientBL _clientBL;
         public ClientController(IClientBL clientBL) { _clientBL = clientBL; }
@@ -20,7 +20,7 @@ namespace REST.Controllers
         [HttpGet]
         public async Task<IActionResult> GetClients()
         {
-            return  Ok(await  _clientBL.GetClients());
+            return Ok(await _clientBL.GetClients());
         }
 
         // GET api/<ClientController>/5
@@ -32,10 +32,10 @@ namespace REST.Controllers
 
         // POST api/<ClientController>
         [HttpPost()]
-        public async  Task<IActionResult> Post( Clients client)
+        public async Task<IActionResult> Post(Clients client)
         {
-       
-            return Created("api/AddClient",await _clientBL.AddClient(client));
+
+            return Created("api/AddClient", await _clientBL.AddClient(client));
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace REST.Controllers
         //[HttpPut("{id}")]
         //public void Put(int id, [FromBody] string value)
         [HttpPut]
-        public async Task<IActionResult> Update( [FromBody] Clients client)
+        public async Task<IActionResult> Update([FromBody] Clients client)
         {
             await _clientBL.UpdateClients(client);
             return NoContent();
