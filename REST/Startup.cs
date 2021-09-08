@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using REST.DataLayer;
 using Microsoft.OpenApi.Models;
 using REST.BusinessLayer;
+using FluentValidation.AspNetCore;
 
 namespace REST
 {
@@ -31,6 +32,7 @@ namespace REST
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            
             services.AddScoped<ICourseRepo, CourseRepo>();
             services.AddScoped<IClientRepo, ClientRepo>();
             services.AddScoped<ITopicRepo, TopicRepo>();
@@ -51,6 +53,12 @@ namespace REST
 
             services.AddScoped<ICourseRepo, CourseRepo>();
             services.AddScoped<IOrderRepo, OrderRepo>();
+
+            services.AddFluentValidation(cfg => 
+            {
+                cfg.DisableDataAnnotationsValidation = true;
+                cfg.RegisterValidatorsFromAssemblyContaining<Startup>();
+            });
 
             services.AddSwaggerGen(c =>
             {

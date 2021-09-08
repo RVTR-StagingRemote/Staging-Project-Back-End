@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using FluentValidation;
 
 namespace REST.Models
 {
@@ -49,6 +50,19 @@ namespace REST.Models
         public Clients()
     {
 
+    }
+  }
+
+  public class ClientsValidator : AbstractValidator<Clients>
+  {
+    public ClientsValidator()
+    {
+      RuleFor(c => c.Name)
+        .Length(5, 10).WithMessage("Must be inbetween 5 and 10 characters")
+        .NotEqual("tyler").WithMessage("No Tylers allowed");
+
+      RuleFor(c => c.Email)
+        .EmailAddress().WithMessage("Not a valid email address");
     }
   }
 }
