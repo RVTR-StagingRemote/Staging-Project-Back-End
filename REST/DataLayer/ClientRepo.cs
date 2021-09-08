@@ -40,5 +40,14 @@ namespace REST.DataLayer
             return client;
 
         }
+
+        public async Task<Clients> DeleteClientById(int ClientId)
+        {
+            Clients client = await _context.Clients.FirstOrDefaultAsync(c => c.ClientId == ClientId);
+            _context.Clients.Remove(client);
+            await _context.SaveChangesAsync();
+
+            return client;
+        }
     }
 }

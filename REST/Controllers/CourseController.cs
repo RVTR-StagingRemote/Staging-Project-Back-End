@@ -83,11 +83,11 @@ namespace REST.Controllers
         ///Delete a course based on a given ID
         ///</summary>
         ///<param name="id"></param>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCourse(int id)
         {
-            // TODO implement
-            throw new NotImplementedException();
+            return Ok(await _courseBL.DeleteCourseById(id));
+
         }
 
     }
