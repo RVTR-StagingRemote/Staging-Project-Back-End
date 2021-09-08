@@ -25,7 +25,7 @@ namespace Testing
             mockRepo.Setup(x => x.GetOrders()).ReturnsAsync(new List<Orders>());
             var controller = new OrderController(mockRepo.Object);
 
-            var response = controller.Orders();
+            var response = controller.GetOrders();
             var result = response.Result;
 
             Assert.IsType<OkObjectResult>(result);
