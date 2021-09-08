@@ -32,5 +32,7 @@ namespace REST.BusinessLayer
         /// <param name="order"></param>
         /// <returns></returns>
         public Task<Orders> UpdateOrders(Orders order);
+
+        public Task<Orders> DeleteOrderById(int OrderId);
     }
 }

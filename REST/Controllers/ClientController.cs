@@ -55,8 +55,9 @@ namespace REST.Controllers
 
         // DELETE api/<ClientController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            return Ok(await _clientBL.DeleteClientById(id));
         }
     }
 }

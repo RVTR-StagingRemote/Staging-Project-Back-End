@@ -48,5 +48,14 @@ namespace REST.DataLayer
 
             return course;
         }
+
+        public async Task<Courses> DeleteCourseById(int CourseId)
+        {
+            Courses course = await _context.Courses.FirstOrDefaultAsync(c => c.CourseId == CourseId);
+            _context.Courses.Remove(course);
+            await _context.SaveChangesAsync();
+
+            return course;
+        }
     }
 }
