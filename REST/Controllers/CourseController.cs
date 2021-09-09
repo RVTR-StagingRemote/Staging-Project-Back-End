@@ -40,16 +40,22 @@ namespace REST.Controllers
         [HttpGet("FindCourseById/{CourseId}")]
         public async Task<IActionResult> FindCourseById(int CourseId)
         {
-
-            return Ok(await _courseBL.FindCourseById(CourseId));
+            Courses course = await _courseBL.FindCourseById(CourseId);
+            if(course == null) return NotFound();
+            return Ok(course);
 
         }
-
+        /// <summary>
+        /// Returns a single course by its name
+        /// </summary>
+        /// <param name="CourseName"></param>
+        /// <returns></returns>
         [HttpGet("FindCourseByName/{CourseName}")]
         public async Task<IActionResult> FindCourseByName(string CourseName)
         {
-
-            return Ok(await _courseBL.FindCourseByName(CourseName));
+            Courses course = await _courseBL.FindCourseByName(CourseName);
+            if (course == null) return NotFound();
+            return Ok(course);
 
 
         }
@@ -58,7 +64,6 @@ namespace REST.Controllers
         ///Creates a new course based on the course object given
         ///</summary>
         ///<param name="course"></param>
-
         [HttpPost]
         public async Task<IActionResult> CreateCourse(Courses course)
         {
@@ -74,8 +79,8 @@ namespace REST.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateCourse(Courses course)
         {
-            Courses CourseUpdated = await _courseBL.UpdateCourses(course);
-            if (CourseUpdated == null) return BadRequest();
+            Courses courseToUpdate = await _courseBL.UpdateCourses(course);
+            if (courseToUpdate == null) return BadRequest();
             return NoContent();
         }
 
@@ -86,7 +91,9 @@ namespace REST.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCourse(int id)
         {
-            return Ok(await _courseBL.DeleteCourseById(id));
+            Courses course = await _courseBL.DeleteCourseById(id);
+            if(course == null) return NotFound();
+            return Ok(course);
 
         }
 

@@ -35,18 +35,26 @@ namespace REST.DataLayer
 
         public async Task<Orders> UpdateOrders(Orders order)
         {
-            _context.Orders.Update(order);
-            await _context.SaveChangesAsync();
-            return order;
+            Orders orderToUpdate = await _context.Orders.FirstOrDefaultAsync(o => o.OrderId == order.OrderId);
+            if (orderToUpdate != null)
+            {
+                _context.Orders.Update(orderToUpdate);
+                await _context.SaveChangesAsync();
+            }
+
+            return orderToUpdate;
         }
 
         public async Task<Orders> DeleteOrderById(int OrderId)
         {
             Orders order = await _context.Orders.FirstOrDefaultAsync(o => o.OrderId == OrderId);
             OrderDetails orderDetails = _context.OrderDetails.FirstOrDefault(o => o.DetailsId == OrderId);
-            _context.OrderDetails.Remove(orderDetails);
-            _context.Orders.Remove(order);
-            await _context.SaveChangesAsync();
+            if(order != null)
+            {
+                _context.OrderDetails.Remove(orderDetails);
+                _context.Orders.Remove(order);
+                await _context.SaveChangesAsync();
+            }
 
             return order;
         }
