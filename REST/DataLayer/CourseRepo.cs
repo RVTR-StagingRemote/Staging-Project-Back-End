@@ -44,7 +44,7 @@ namespace REST.DataLayer
         public async Task<Courses> UpdateCourses(Courses course)
         {
             _context.Courses.Update(course);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return course;
         }
@@ -52,8 +52,11 @@ namespace REST.DataLayer
         public async Task<Courses> DeleteCourseById(int CourseId)
         {
             Courses course = await _context.Courses.FirstOrDefaultAsync(c => c.CourseId == CourseId);
-            _context.Courses.Remove(course);
-            await _context.SaveChangesAsync();
+            if (course != null)
+            {
+                _context.Courses.Remove(course);
+                await _context.SaveChangesAsync();
+            }
 
             return course;
         }

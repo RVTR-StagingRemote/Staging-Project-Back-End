@@ -15,7 +15,12 @@ namespace REST.Controllers
     public class ClientController : ControllerBase
     {
         private readonly IClientBL _clientBL;
-        public ClientController(IClientBL clientBL) { _clientBL = clientBL; }
+
+        public ClientController(IClientBL clientBL) 
+        {
+            _clientBL = clientBL; 
+        }
+
         // GET: api/<ClientController>
         [HttpGet]
         public async Task<IActionResult> GetClients()
@@ -27,7 +32,9 @@ namespace REST.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetClient(int id)
         {
-            return Ok(await _clientBL.GetClientsById(id));
+            Clients client = await _clientBL.GetClientsById(id);
+            if (client == null) return NotFound();
+            return Ok(client);
         }
 
         // POST api/<ClientController>
@@ -38,14 +45,8 @@ namespace REST.Controllers
             return Created("api/AddClient", await _clientBL.AddClient(client));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns></returns>
+
         // PUT api/<ClientController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] Clients client)
         {
@@ -57,7 +58,9 @@ namespace REST.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            return Ok(await _clientBL.DeleteClientById(id));
+            Clients client = await _clientBL.DeleteClientById(id);
+            if(client == null) return NotFound();
+            return Ok();
         }
     }
 }
