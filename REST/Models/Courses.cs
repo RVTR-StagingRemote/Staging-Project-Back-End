@@ -45,7 +45,6 @@ namespace REST.Models
             RuleFor(c => c.Description)
                 .Length(2, 50)
                 .WithMessage("Must be in between 2 and 50 characters");
-
         }
     }
 }
