@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 using FluentValidation;
 
 namespace REST.Models
@@ -58,11 +59,30 @@ namespace REST.Models
     public ClientsValidator()
     {
       RuleFor(c => c.Name)
-        .Length(5, 10).WithMessage("Must be inbetween 5 and 10 characters")
-        .NotEqual("tyler").WithMessage("No Tylers allowed");
-
+        .Length(2, 50)
+        .WithMessage("Must be inbetween 2 and 50 characters");
       RuleFor(c => c.Email)
-        .EmailAddress().WithMessage("Not a valid email address");
+        .EmailAddress()
+        .WithMessage("Not a valid email address");
+      RuleFor(c => c.Address) 
+        .Length(2, 50)
+        .WithMessage("Must be inbetween 2 and 50 characters");
+      RuleFor(c => c.StateProvince)
+        .Length(2, 50)
+        .WithMessage("Must be inbetween 2 and 50 characters");
+      RuleFor(c => c.Country)
+        .NotNull()
+        .Length(2, 50)
+        .WithMessage("Must be inbetween 2 and 50 characters");
+      
+      RuleFor(c => c.Phone)
+        .Must(IsValidPhoneNumber)
+        .WithMessage("Not a valid phone number");
+    }
+
+    private bool IsValidPhoneNumber(string Phone)
+    {
+      return Regex.Match(Phone, @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$").Success;
     }
   }
 }
