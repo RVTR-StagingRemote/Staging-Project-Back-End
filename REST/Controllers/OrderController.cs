@@ -59,7 +59,8 @@ namespace REST.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateOrder(Orders order)
         {
-            await _orderBL.UpdateOrders(order);
+            Orders orderToUpdate = await _orderBL.UpdateOrders(order);
+            if (orderToUpdate == null) return NotFound();
             return NoContent();
         }
 

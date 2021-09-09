@@ -50,7 +50,8 @@ namespace REST.Controllers
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] Clients client)
         {
-            await _clientBL.UpdateClients(client);
+            Clients clientToUpdate = await _clientBL.UpdateClients(client);
+            if (clientToUpdate == null) return NotFound();
             return NoContent();
         }
 

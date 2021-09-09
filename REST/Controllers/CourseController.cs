@@ -79,7 +79,8 @@ namespace REST.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateCourse(Courses course)
         {
-            await _courseBL.UpdateCourses(course);
+            Courses courseToUpdate = await _courseBL.UpdateCourses(course);
+            if (courseToUpdate == null) return NotFound();
             return NoContent();
         }
 
