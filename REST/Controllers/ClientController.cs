@@ -51,7 +51,7 @@ namespace REST.Controllers
         public async Task<IActionResult> Update([FromBody] Clients client)
         {
             Clients clientToUpdate = await _clientBL.UpdateClients(client);
-            if (clientToUpdate == null) return NotFound();
+            if (clientToUpdate == null) return BadRequest();
             return NoContent();
         }
 

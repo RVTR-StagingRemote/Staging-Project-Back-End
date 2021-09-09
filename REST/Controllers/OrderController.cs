@@ -60,7 +60,7 @@ namespace REST.Controllers
         public async Task<IActionResult> UpdateOrder(Orders order)
         {
             Orders orderToUpdate = await _orderBL.UpdateOrders(order);
-            if (orderToUpdate == null) return NotFound();
+            if (orderToUpdate == null) return BadRequest();
             return NoContent();
         }
 

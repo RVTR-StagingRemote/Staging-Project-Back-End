@@ -80,7 +80,7 @@ namespace REST.Controllers
         public async Task<IActionResult> UpdateCourse(Courses course)
         {
             Courses courseToUpdate = await _courseBL.UpdateCourses(course);
-            if (courseToUpdate == null) return NotFound();
+            if (courseToUpdate == null) return BadRequest();
             return NoContent();
         }
 
