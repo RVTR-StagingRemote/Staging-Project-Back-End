@@ -72,13 +72,10 @@ namespace REST.Controllers
         ///Delete a order based on a given ID
         ///</summary>
         ///<param name="id"></param>
-        [HttpDelete]
-        public async Task<IActionResult> DeleteOrder(int Id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteOrder(int id)
         {
-            // TODO implement
-
-
-            throw new NotImplementedException();
+            return Ok(await _orderBL.DeleteOrderById(id));
         }
 
     }

@@ -39,5 +39,10 @@ namespace REST.BusinessLayer
         {
             return await _courserepo.UpdateCourses(course);
         }
+
+        public async Task<Courses> DeleteCourseById(int CourseId)
+        {
+            return await _courserepo.DeleteCourseById(CourseId);
+        }
     }
 }
