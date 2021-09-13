@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace REST.DataLayer
 {
-   public class ClientRepo:IClientRepo
+    public class ClientRepo : IClientRepo
     {
         private readonly BatchesDBContext _context;
         public ClientRepo(BatchesDBContext context)
@@ -30,15 +30,32 @@ namespace REST.DataLayer
 
         public Task<Clients> GetClientsById(int Id)
         {
-            return _context.Clients.FirstOrDefaultAsync(c=>c.ClientId==Id);
+            return _context.Clients.FirstOrDefaultAsync(c => c.ClientId == Id);
         }
 
-        public async  Task<Clients> UpdateClients(Clients client)
+        public async Task<Clients> UpdateClients(Clients client)
         {
-            _context.Clients.Update(client);
-           await _context.SaveChangesAsync();
+            Clients clientToUpdate = await _context.Clients.FirstOrDefaultAsync(c => c.ClientId == client.ClientId);
+            if (clientToUpdate != null)
+            {
+                _context.Clients.Update(clientToUpdate);
+                await _context.SaveChangesAsync();
+            }
+
+            return clientToUpdate;
+
+        }
+
+        public async Task<Clients> DeleteClientById(int ClientId)
+        {
+            Clients client = await _context.Clients.FirstOrDefaultAsync(c => c.ClientId == ClientId);
+            if(client != null)
+            {
+                _context.Clients.Remove(client);
+                await _context.SaveChangesAsync();
+            }
+
             return client;
-            
         }
     }
 }

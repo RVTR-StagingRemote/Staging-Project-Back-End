@@ -37,5 +37,7 @@ namespace REST.DataLayer
        /// <returns></returns>
         public Task<Courses> UpdateCourses(Courses course);
 
+        public Task<Courses> DeleteCourseById(int CourseId);
+
     }
 }

@@ -13,7 +13,7 @@ namespace Testing
     public class DataLayerTest
     {
         private readonly Microsoft.EntityFrameworkCore.DbContextOptions<BatchesDBContext> options;
-            
+
 
         public DataLayerTest()
         {
@@ -23,11 +23,11 @@ namespace Testing
         }
 
         [Fact]
-        public void AddCourseShoudSucced()
+        public void AddCourseShouldSucceed()
         {
             using (var context = new BatchesDBContext(options))
             {
-                 ICourseRepo repo=new CourseRepo(context);
+                ICourseRepo repo = new CourseRepo(context);
                 Courses c = new Courses();
                 c.CourseName = "Rubby";
                 c.Description = "Intro to Rubby";
@@ -42,11 +42,11 @@ namespace Testing
             }
 
         }
-              
+
 
 
         [Fact]
-        public void AddClientShoudSucced()
+        public void AddClientShouldSucceed()
         {
             using (var context = new BatchesDBContext(options))
             {
@@ -72,13 +72,14 @@ namespace Testing
 
         private void Seed()
         {
-            using (var context=new BatchesDBContext(options))
+            using (var context = new BatchesDBContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
                 context.Clients.AddRange(
-                    new Clients {
+                    new Clients
+                    {
                         Name = "Client1",
                         Address = "4512 CA",
                         StateProvince = "California",
@@ -97,22 +98,23 @@ namespace Testing
                      }
 
 
-                    ) ;
+                    );
 
-               context.Courses.AddRange(
-                      new Courses{
-                     
-                      CourseName="java",
-                      Description="Intro to java"
-                    },
+                context.Courses.AddRange(
                        new Courses
                        {
 
-                           CourseName = "Python",
-                           Description = "Intro to Ptyhon"
-                       }
+                           CourseName = "java",
+                           Description = "Intro to java"
+                       },
+                        new Courses
+                        {
 
-                    );
+                            CourseName = "Python",
+                            Description = "Intro to Ptyhon"
+                        }
+
+                     );
 
                 context.SaveChanges();
 

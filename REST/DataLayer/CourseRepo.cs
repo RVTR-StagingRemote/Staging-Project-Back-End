@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace REST.DataLayer
 {
-   public class CourseRepo:ICourseRepo
+    public class CourseRepo : ICourseRepo
     {
         private readonly BatchesDBContext _context;
         public CourseRepo(BatchesDBContext context)
@@ -30,21 +30,37 @@ namespace REST.DataLayer
 
         public async Task<Courses> FindCourseById(int CourseId)
         {
-            return await _context.Courses.FirstOrDefaultAsync(c=>c.CourseId==CourseId);
+            return await _context.Courses.FirstOrDefaultAsync(c => c.CourseId == CourseId);
         }
 
-        public async  Task<Courses> FindCourseByName(string CourseName)
+        public async Task<Courses> FindCourseByName(string CourseName)
         {
 
-            
+
             return await _context.Courses.FirstOrDefaultAsync(c => c.CourseName == CourseName);
-                
+
         }
 
-        public async  Task<Courses> UpdateCourses(Courses course)
+        public async Task<Courses> UpdateCourses(Courses course)
         {
-            _context.Courses.Update(course);
-            _context.SaveChangesAsync();
+            Courses courseToUpdate = await _context.Courses.FirstOrDefaultAsync(c => c.CourseId == course.CourseId);
+            if(courseToUpdate != null)
+            {
+                _context.Courses.Update(courseToUpdate);
+                await _context.SaveChangesAsync();
+            }
+
+            return courseToUpdate;
+        }
+
+        public async Task<Courses> DeleteCourseById(int CourseId)
+        {
+            Courses course = await _context.Courses.FirstOrDefaultAsync(c => c.CourseId == CourseId);
+            if(course != null)
+            {
+                _context.Courses.Remove(course);
+                await _context.SaveChangesAsync();
+            }
 
             return course;
         }

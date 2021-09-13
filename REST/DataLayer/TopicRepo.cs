@@ -10,16 +10,17 @@ namespace REST.DataLayer
     public class TopicRepo : ITopicRepo
     {
         private readonly BatchesDBContext _context;
-        public TopicRepo(BatchesDBContext context) {
+        public TopicRepo(BatchesDBContext context)
+        {
             _context = context;
         }
-       
 
 
-        public async  Task<Topics> AddTopic(Topics topics)
+
+        public async Task<Topics> AddTopic(Topics topics)
         {
             await _context.Topics.AddAsync(topics);
-           await  _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return topics;
         }
 
@@ -37,7 +38,7 @@ namespace REST.DataLayer
 
         public async Task<Topics> UpdateTopics(Topics t)
         {
-             _context.Topics.Update(t);
+            _context.Topics.Update(t);
             _context.SaveChangesAsync();
 
             return t;

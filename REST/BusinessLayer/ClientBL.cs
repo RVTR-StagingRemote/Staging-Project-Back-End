@@ -34,5 +34,10 @@ namespace REST.BusinessLayer
         {
             return await _clientRepo.UpdateClients(client);
         }
+
+        public async Task<Clients> DeleteClientById(int ClientId)
+        {
+            return await _clientRepo.DeleteClientById(ClientId);
+        }
     }
 }

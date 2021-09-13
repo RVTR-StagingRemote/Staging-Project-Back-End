@@ -12,51 +12,56 @@ namespace REST.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientController : ControllerBase      
+    public class ClientController : ControllerBase
     {
         private readonly IClientBL _clientBL;
-        public ClientController(IClientBL clientBL) { _clientBL = clientBL; }
+
+        public ClientController(IClientBL clientBL) 
+        {
+            _clientBL = clientBL; 
+        }
+
         // GET: api/<ClientController>
         [HttpGet]
         public async Task<IActionResult> GetClients()
         {
-            return  Ok(await  _clientBL.GetClients());
+            return Ok(await _clientBL.GetClients());
         }
 
         // GET api/<ClientController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetClient(int id)
         {
-            return Ok(await _clientBL.GetClientsById(id));
+            Clients client = await _clientBL.GetClientsById(id);
+            if (client == null) return NotFound();
+            return Ok(client);
         }
 
         // POST api/<ClientController>
         [HttpPost()]
-        public async  Task<IActionResult> Post( Clients client)
+        public async Task<IActionResult> Post(Clients client)
         {
-       
-            return Created("api/AddClient",await _clientBL.AddClient(client));
+
+            return Created("api/AddClient", await _clientBL.AddClient(client));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns></returns>
+
         // PUT api/<ClientController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
         [HttpPut]
-        public async Task<IActionResult> Update( [FromBody] Clients client)
+        public async Task<IActionResult> Update([FromBody] Clients client)
         {
-            await _clientBL.UpdateClients(client);
+            Clients clientToUpdate = await _clientBL.UpdateClients(client);
+            if (clientToUpdate == null) return BadRequest();
             return NoContent();
         }
 
         // DELETE api/<ClientController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            Clients client = await _clientBL.DeleteClientById(id);
+            if(client == null) return NotFound();
+            return Ok();
         }
     }
 }
