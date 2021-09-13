@@ -19,5 +19,11 @@ namespace REST.BusinessLayer
         /// </summary>
         /// <returns></returns>
         Task<List<Topics>> GetTopics();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public Task<Topics> GetTopicsById(int Id);
     }
 }
