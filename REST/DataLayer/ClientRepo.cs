@@ -35,10 +35,27 @@ namespace REST.DataLayer
 
         public async Task<Clients> UpdateClients(Clients client)
         {
-            _context.Clients.Update(client);
-            await _context.SaveChangesAsync();
-            return client;
+            Clients clientToUpdate = await _context.Clients.FirstOrDefaultAsync(c => c.ClientId == client.ClientId);
+            if (clientToUpdate != null)
+            {
+                _context.Clients.Update(clientToUpdate);
+                await _context.SaveChangesAsync();
+            }
 
+            return clientToUpdate;
+
+        }
+
+        public async Task<Clients> DeleteClientById(int ClientId)
+        {
+            Clients client = await _context.Clients.FirstOrDefaultAsync(c => c.ClientId == ClientId);
+            if(client != null)
+            {
+                _context.Clients.Remove(client);
+                await _context.SaveChangesAsync();
+            }
+
+            return client;
         }
     }
 }

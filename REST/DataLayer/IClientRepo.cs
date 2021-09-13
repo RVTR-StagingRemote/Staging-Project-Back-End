@@ -34,5 +34,7 @@ namespace REST.DataLayer
         /// <param name="id"></param>
         /// <returns></returns>
         Task<Clients> GetClientsById(int id);
+
+        public Task<Clients> DeleteClientById(int ClientId);
     }
 }
