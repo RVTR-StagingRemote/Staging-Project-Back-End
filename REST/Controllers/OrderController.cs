@@ -36,10 +36,8 @@ namespace REST.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrdersById(int id)
         {
-            // TODO implement
             Orders order = await _orderBL.GetOrdersById(id);
-
-            if (order == null) return NotFound();
+            if(order == null) return NotFound();
             return Ok(order);
         }
 
@@ -61,10 +59,8 @@ namespace REST.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateOrder(Orders order)
         {
-            // TODO implement
-
-            await _orderBL.UpdateOrders(order);
-
+            Orders orderToUpdate = await _orderBL.UpdateOrders(order);
+            if (orderToUpdate == null) return BadRequest();
             return NoContent();
         }
 
@@ -75,7 +71,9 @@ namespace REST.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
-            return Ok(await _orderBL.DeleteOrderById(id));
+            Orders order = await _orderBL.DeleteOrderById(id);
+            if(order == null) return NotFound();
+            return Ok(order);
         }
 
     }
