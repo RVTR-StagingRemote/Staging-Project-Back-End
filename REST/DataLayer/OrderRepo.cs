@@ -58,5 +58,11 @@ namespace REST.DataLayer
 
             return order;
         }
+
+        public async Task<List<Orders>> GetOrdersByClientId(int ClientId)
+        {
+            return await _context.Orders.AsNoTracking().Include(o => o.OrderDetails).Select(order => order).Where(o => o.ClientId == ClientId).ToListAsync();
+        }
+
     }
 }

@@ -34,5 +34,7 @@ namespace REST.BusinessLayer
         public Task<Orders> UpdateOrders(Orders order);
 
         public Task<Orders> DeleteOrderById(int OrderId);
+
+        public Task<List<Orders>> GetOrdersByClientId(int ClientId);
     }
 }

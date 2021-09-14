@@ -42,6 +42,18 @@ namespace REST.Controllers
         }
 
         ///<summary>
+        ///Returns a orders from a specific based on a client ID
+        ///</summary>
+        ///<param name="id"></param>
+        [HttpGet("GetOrdersByClientId/{ClientId}")]
+        public async Task<IActionResult> GetOrdersByClientId(int ClientId)
+        {
+            List<Orders> order = await _orderBL.GetOrdersByClientId(ClientId);
+            if (order.Count() == 0) return NotFound();
+            return Ok(order);
+        }
+
+        ///<summary>
         ///Creates a new order based on the order object given
         ///</summary>
         ///<param name="clients"></param>
