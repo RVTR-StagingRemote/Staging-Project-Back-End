@@ -52,5 +52,10 @@ namespace REST.BusinessLayer
         {
             return await _orderRepo.DeleteOrderById(OrderId);
         }
+
+        public async Task<List<Orders>> GetOrdersByClientId(int ClientId)
+        {
+            return await _orderRepo.GetOrdersByClientId(ClientId);
+        }
     }
 }
