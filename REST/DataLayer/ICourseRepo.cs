@@ -36,8 +36,14 @@ namespace REST.DataLayer
        /// <param name="course"></param>
        /// <returns></returns>
         public Task<Courses> UpdateCourses(Courses course);
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CourseId"></param>
+        /// <returns></returns>
         public Task<Courses> DeleteCourseById(int CourseId);
+
+        public Task<Courses> getCourseByTag(Topics t);
 
     }
 }
