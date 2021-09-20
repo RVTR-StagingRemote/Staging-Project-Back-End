@@ -43,7 +43,7 @@ namespace Testing
 
         }
 
-
+/*
 
         [Fact]
         public void AddClientShouldSucceed()
@@ -68,7 +68,7 @@ namespace Testing
                 Assert.Equal("Client3", result.Name);
             }
 
-        }
+        }*/
 
         private void Seed()
         {
@@ -77,7 +77,7 @@ namespace Testing
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
-                context.Clients.AddRange(
+               /* context.Clients.AddRange(
                     new Clients
                     {
                         Name = "Client1",
@@ -98,7 +98,7 @@ namespace Testing
                      }
 
 
-                    );
+                    );*/
 
                 context.Courses.AddRange(
                        new Courses
