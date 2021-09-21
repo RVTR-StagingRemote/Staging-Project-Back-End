@@ -24,5 +24,15 @@ namespace REST.BusinessLayer
         {
             return await _topicRepo.GetTopics();
         }
+
+        public  async Task<Topics> GetTopicsById(int Id)
+        {
+            return await _topicRepo.GetTopicsById(Id);
+        }
+
+        public async Task<Topics>UpdateTopic(Topics t)
+        {
+            return await _topicRepo.UpdateTopics(t);
+        }
     }
 }

@@ -64,5 +64,10 @@ namespace REST.DataLayer
 
             return course;
         }
+
+        public Task<Courses> getCourseByTag(Topics t)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

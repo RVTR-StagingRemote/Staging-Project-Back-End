@@ -31,6 +31,11 @@ namespace REST.DataLayer
             return await _context.Topics.AsNoTracking().Select(tp => tp).ToListAsync();
         }
 
+        public Task<Topics> GetTopicsById(int Id)
+        {
+            return _context.Topics.FirstOrDefaultAsync(c => c.TopicId == Id);
+        }
+
         public async Task<Topics> UpdateTopics(Topics t)
         {
             _context.Topics.Update(t);

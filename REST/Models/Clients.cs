@@ -46,8 +46,13 @@ namespace REST.Models
     /// Email of the Client entity
     /// </summary>
     public string Email { get; set; }
-
+    /// <summary>
+    /// 
+    /// </summary>
     public ICollection<Orders>?  Orders { get; set; }
+    public int StateId { get; set; }
+
+    public State State { get; set; }
         public Clients()
     {
 
