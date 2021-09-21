@@ -29,10 +29,10 @@ namespace REST.Models
         public EmployeeValidator()
         {
             RuleFor(e => e.FullName)
-                .NotNull()
-                .WithMessage("Must include a name.");
+                .Length(2, 50)
+                .WithMessage("Must be inbetween 2 and 50 characters");
             RuleFor(e => e.DOB)
-                .GreaterThan(DateTime.Now)
+                .LessThan(DateTime.Now)
                 .WithMessage("Cannot be a future date.");
             RuleFor(e => e.DOB)
                 .NotNull()
