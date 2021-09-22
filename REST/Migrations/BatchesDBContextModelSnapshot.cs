@@ -41,10 +41,15 @@ namespace REST.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("text");
 
+                    b.Property<int?>("StateId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("StateProvince")
                         .HasColumnType("text");
 
                     b.HasKey("ClientId");
+
+                    b.HasIndex("StateId");
 
                     b.ToTable("Clients");
                 });
@@ -83,6 +88,66 @@ namespace REST.Migrations
                     b.HasKey("JoinId");
 
                     b.ToTable("CoursesTopicsJoins");
+                });
+
+            modelBuilder.Entity("REST.Models.Employee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("DOB")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Degree")
+                        .HasColumnType("text");
+
+                    b.Property<string>("EmployeeType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("text");
+
+                    b.Property<int>("StateId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StateId");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("REST.Models.EmployeeSkills", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int?>("CoursesTopicsJoinJoinId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("EmplyeeId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("TopicsJoinId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CoursesTopicsJoinJoinId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("EmployeeSkills");
                 });
 
             modelBuilder.Entity("REST.Models.OrderDetails", b =>
@@ -137,6 +202,24 @@ namespace REST.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("REST.Models.State", b =>
+                {
+                    b.Property<int>("StateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("StateId");
+
+                    b.ToTable("State");
+                });
+
             modelBuilder.Entity("REST.Models.Topics", b =>
                 {
                     b.Property<int>("TopicId")
@@ -150,6 +233,65 @@ namespace REST.Migrations
                     b.HasKey("TopicId");
 
                     b.ToTable("Topics");
+                });
+
+            modelBuilder.Entity("REST.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("REST.Models.Clients", b =>
+                {
+                    b.HasOne("REST.Models.State", "State")
+                        .WithMany()
+                        .HasForeignKey("StateId");
+
+                    b.Navigation("State");
+                });
+
+            modelBuilder.Entity("REST.Models.Employee", b =>
+                {
+                    b.HasOne("REST.Models.State", "State")
+                        .WithMany()
+                        .HasForeignKey("StateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("State");
+                });
+
+            modelBuilder.Entity("REST.Models.EmployeeSkills", b =>
+                {
+                    b.HasOne("REST.Models.CoursesTopicsJoin", "CoursesTopicsJoin")
+                        .WithMany()
+                        .HasForeignKey("CoursesTopicsJoinJoinId");
+
+                    b.HasOne("REST.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId");
+
+                    b.Navigation("CoursesTopicsJoin");
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("REST.Models.OrderDetails", b =>

@@ -50,7 +50,7 @@ namespace REST.Models
     /// 
     /// </summary>
     public ICollection<Orders>?  Orders { get; set; }
-    public int StateId { get; set; }
+    public int? StateId { get; set; }
 
     public State State { get; set; }
         public Clients()
