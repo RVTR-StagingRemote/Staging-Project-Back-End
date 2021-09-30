@@ -39,9 +39,20 @@ namespace REST.DataLayer
         public async Task<Topics> UpdateTopics(Topics t)
         {
             _context.Topics.Update(t);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return t;
+        }
+
+        public async Task<Topics> DeleteTopicById(int Id)
+        {
+            Topics topic = await _context.Topics.FirstOrDefaultAsync(t => t.TopicId == Id);
+            if (topic != null)
+            {
+                _context.Topics.Remove(topic);
+                await _context.SaveChangesAsync();
+            }
+            return topic;
         }
     }
 }

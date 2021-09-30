@@ -25,5 +25,6 @@ namespace REST.BusinessLayer
         /// <param name="Id"></param>
         /// <returns></returns>
         public Task<Topics> GetTopicsById(int Id);
+        public Task<Topics> DeleteTopicById(int Id);
     }
 }

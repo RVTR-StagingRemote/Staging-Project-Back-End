@@ -26,5 +26,9 @@ namespace REST.BusinessLayer
         Task<List<User>> GetUsers();
 
         Task<User> Update(User u);
+
+        Task<User> FindUserById(int id);
+        Task<User> DeleteUserById(int id);
+
     }
 }

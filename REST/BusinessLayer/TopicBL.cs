@@ -34,5 +34,10 @@ namespace REST.BusinessLayer
         {
             return await _topicRepo.UpdateTopics(t);
         }
+
+        public async Task<Topics>DeleteTopicById(int Id)
+        {
+            return await _topicRepo.DeleteTopicById(Id);
+        }
     }
 }

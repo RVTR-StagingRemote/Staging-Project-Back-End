@@ -12,7 +12,7 @@ namespace REST.DataLayer
         private readonly BatchesDBContext _context;
         public UserRepo(BatchesDBContext context)
         {
-            this._context = context;
+            _context = context;
 
         }
 
@@ -38,6 +38,22 @@ namespace REST.DataLayer
              _context.Users.Update(u);
             await _context.SaveChangesAsync();
             return u;
+        }
+
+        public async Task<User> FindUserById(int id)
+        {
+            return await _context.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<User> DeleteUserById(int id)
+        {
+            User user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+            if(user != null)
+            {
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+            }
+            return user;
         }
     }
 }

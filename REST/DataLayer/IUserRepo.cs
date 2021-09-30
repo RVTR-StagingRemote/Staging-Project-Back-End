@@ -31,5 +31,9 @@ namespace REST.DataLayer
         /// <returns>Lis tof users</returns>
 
         Task<List<User>> GetUsers();
+
+        Task<User> FindUserById(int id);
+        Task<User> DeleteUserById(int id);
+
     }
 }

@@ -17,7 +17,7 @@ namespace REST.Controllers
         private readonly IUserBL _userBL;
         public UserController(IUserBL userBL)
         {
-            this._userBL = userBL;
+            _userBL = userBL;
 
         }
         // GET: api/<UserController>
@@ -29,9 +29,11 @@ namespace REST.Controllers
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            return null;
+            User user = await _userBL.FindUserById(id);
+            if (user == null) return NotFound();
+            return Ok(user);
         }
 
         // POST api/<UserController>
@@ -42,16 +44,21 @@ namespace REST.Controllers
         }
 
         // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, User u)
+        [HttpPut]
+        public async Task<IActionResult> Put(User u)
         {
-            return Ok(await _userBL.Update(u));
+            User user = await _userBL.Update(u);
+            if (user == null) return BadRequest();
+            return NoContent();
         }
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            User user = await _userBL.DeleteUserById(id);
+            if (user == null) return NotFound();
+            return Ok(user);
         }
     }
 }

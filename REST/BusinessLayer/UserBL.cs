@@ -9,25 +9,39 @@ namespace REST.BusinessLayer
 {
     public class UserBL : IUserBL
     {
-        private readonly IUserRepo userRepo;
-        public Task<User> AddUser(User u)
+        private readonly IUserRepo _userRepo;
+        public UserBL(IUserRepo userrepo)
         {
-           return userRepo.AddUser(u);
+            _userRepo = userrepo;
+        }
+        public async Task<User> AddUser(User u)
+        {
+           return await _userRepo.AddUser(u);
         }
 
-        public Task<User> DoLogin(string email, string pwd)
+        public async Task<User> DoLogin(string email, string pwd)
         {
-            return userRepo.DoLogin(email, pwd);
+            return await _userRepo.DoLogin(email, pwd);
         }
 
-        public Task<List<User>> GetUsers()
+        public async Task<List<User>> GetUsers()
         {
-            return userRepo.GetUsers();
+            return await _userRepo.GetUsers();
         }
 
-        public Task<User> Update(User u)
+        public async Task<User> Update(User u)
         {
-            return userRepo.UpdateUser(u);
+            return await _userRepo.UpdateUser(u);
+        }
+
+        public async Task<User> FindUserById(int id)
+        {
+            return await _userRepo.FindUserById(id);
+        }
+
+        public async Task<User> DeleteUserById(int id)
+        {
+            return await _userRepo.DeleteUserById(id);
         }
     }
 }

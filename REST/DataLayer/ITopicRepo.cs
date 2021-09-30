@@ -33,6 +33,7 @@ namespace REST.DataLayer
         /// <param name="t"></param>
         /// <returns></returns>
         public Task<Topics> UpdateTopics(Topics t);
+        public Task<Topics> DeleteTopicById(int Id);
 
     }
 }
