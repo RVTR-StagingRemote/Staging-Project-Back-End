@@ -54,5 +54,29 @@ namespace REST.DataLayer
             }
             return topic;
         }
+
+        public async Task<CoursesTopicsJoin> AddTopicToCourse(int topicId, int courseId)
+        {
+            CoursesTopicsJoin join = new CoursesTopicsJoin();
+
+            CoursesTopicsJoin alreadyExists = await _context.CoursesTopicsJoins.FirstOrDefaultAsync(a => a.TopicId == topicId && a.CourseId == courseId);
+
+            if (alreadyExists == null)
+            {
+                Topics topic = await _context.Topics.FirstOrDefaultAsync(t => t.TopicId == topicId);
+                Courses course = await _context.Courses.FirstOrDefaultAsync(c => c.CourseId == courseId);
+
+                if (topic != null && course != null)
+                {
+                    join.TopicId = topic.TopicId;
+                    join.CourseId = course.CourseId;
+                    _context.CoursesTopicsJoins.Add(join);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
+            return join;
+
+        }
     }
 }

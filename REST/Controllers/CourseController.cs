@@ -59,6 +59,18 @@ namespace REST.Controllers
 
 
         }
+        /// <summary>
+        /// Returns courses which cover a certain topic
+        /// </summary>
+        /// <param name="topicId"></param>
+        /// <returns></returns>
+        [HttpGet("FindCoursesByTopicId/{TopicId}")]
+        public async Task<IActionResult> FindCoursesByTopicId(int TopicId)
+        {
+            var courses = await _courseBL.GetCoursesByTag(TopicId);
+            if (courses.Count() == 0) return NotFound();
+            return Ok(courses);
+        }
 
         ///<summary>
         ///Creates a new course based on the course object given

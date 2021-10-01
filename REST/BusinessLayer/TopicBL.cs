@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace REST.BusinessLayer
 {
-    public class TopicBL:ITopicBL
+    public class TopicBL : ITopicBL
     {
         private readonly ITopicRepo _topicRepo;
         public TopicBL(ITopicRepo topicRepo)
@@ -25,19 +25,24 @@ namespace REST.BusinessLayer
             return await _topicRepo.GetTopics();
         }
 
-        public  async Task<Topics> GetTopicsById(int Id)
+        public async Task<Topics> GetTopicsById(int Id)
         {
             return await _topicRepo.GetTopicsById(Id);
         }
 
-        public async Task<Topics>UpdateTopic(Topics t)
+        public async Task<Topics> UpdateTopic(Topics t)
         {
             return await _topicRepo.UpdateTopics(t);
         }
 
-        public async Task<Topics>DeleteTopicById(int Id)
+        public async Task<Topics> DeleteTopicById(int Id)
         {
             return await _topicRepo.DeleteTopicById(Id);
+        }
+
+        public async Task<CoursesTopicsJoin> AddTopicToCourse(int topicId, int courseId)
+        {
+            return await _topicRepo.AddTopicToCourse(topicId, courseId);
         }
     }
 }

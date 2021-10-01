@@ -65,9 +65,26 @@ namespace REST.DataLayer
             return course;
         }
 
-        public Task<Courses> getCourseByTag(Topics t)
+        public async Task<List<Courses>> GetCoursesByTag(int topicId)
         {
-            throw new NotImplementedException();
+            //var query = from ctj in _context.CoursesTopicsJoins
+            //            join c in _context.Courses on ctj.CourseId equals c.CourseId
+            //            where ctj.TopicId == topicId
+            //            select _context.Courses;
+
+            //return query;
+
+            var list = await _context.CoursesTopicsJoins.AsNoTracking().Select(c => c).Where(t => t.TopicId == topicId).ToListAsync();
+
+            List<Courses> courses = new List<Courses>();
+            foreach (var x in list)
+            {
+                //var course = await _context.Courses.FirstOrDefaultAsync(c => c.CourseId == x.CourseId);
+                var course = await FindCourseById(x.CourseId);
+                courses.Add(course);
+            }
+
+            return courses;
         }
     }
 }

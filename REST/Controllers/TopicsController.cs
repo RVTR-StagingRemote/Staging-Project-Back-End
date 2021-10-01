@@ -52,5 +52,19 @@ namespace REST.Controllers
             if (topic != null) return Ok(topic);
             else return NotFound();
         }
+        /// <summary>
+        /// Assoicate a topic and course
+        /// </summary>
+        /// <param name="topicId"></param>
+        /// <param name="courseId"></param>
+        /// <returns></returns>
+        [HttpPost("{topicId}/{courseId}")]
+        public async Task<ActionResult> AddTopicToCourse(int topicId, int courseId)
+        {
+            var join = await _topicBl.AddTopicToCourse(topicId, courseId);
+            if (join.TopicId != 0 && join.CourseId != 0) return Created($"api/Topics/{topicId}/{courseId}", join);
+            else return BadRequest();
+        }
+
     }
 }
