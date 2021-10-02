@@ -44,5 +44,11 @@ namespace REST.BusinessLayer
         {
             return await _courserepo.DeleteCourseById(CourseId);
         }
+
+        public async Task<List<Courses>> GetCoursesByTag(int topicId)
+        {
+            return await _courserepo.GetCoursesByTag(topicId);
+        }
+
     }
 }

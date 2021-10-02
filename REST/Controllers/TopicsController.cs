@@ -30,10 +30,11 @@ namespace REST.Controllers
 
         // GET api/<TopicsController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult
-            > GetTopicsById(int id)
+        public async Task<ActionResult> GetTopicsById(int id)
         {
-            return Ok(await _topicBl.GetTopicsById(id));
+            var topic = await _topicBl.GetTopicsById(id);
+            if (topic != null) return Ok(topic);
+            else return NotFound();
         }
 
         // POST api/<TopicsController>
@@ -43,16 +44,27 @@ namespace REST.Controllers
             return Created("api/AddTopics", await _topicBl.AddTopic(t));
         }
 
-        // PUT api/<TopicsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
         // DELETE api/<TopicsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
+            Topics topic = await _topicBl.DeleteTopicById(id);
+            if (topic != null) return Ok(topic);
+            else return NotFound();
         }
+        /// <summary>
+        /// Assoicate a topic and course
+        /// </summary>
+        /// <param name="topicId"></param>
+        /// <param name="courseId"></param>
+        /// <returns></returns>
+        [HttpPost("{topicId}/{courseId}")]
+        public async Task<ActionResult> AddTopicToCourse(int topicId, int courseId)
+        {
+            var join = await _topicBl.AddTopicToCourse(topicId, courseId);
+            if (join.TopicId != 0 && join.CourseId != 0) return Created($"api/Topics/{topicId}/{courseId}", join);
+            else return BadRequest();
+        }
+
     }
 }

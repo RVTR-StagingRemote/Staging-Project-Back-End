@@ -39,9 +39,44 @@ namespace REST.DataLayer
         public async Task<Topics> UpdateTopics(Topics t)
         {
             _context.Topics.Update(t);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return t;
+        }
+
+        public async Task<Topics> DeleteTopicById(int Id)
+        {
+            Topics topic = await _context.Topics.FirstOrDefaultAsync(t => t.TopicId == Id);
+            if (topic != null)
+            {
+                _context.Topics.Remove(topic);
+                await _context.SaveChangesAsync();
+            }
+            return topic;
+        }
+
+        public async Task<CoursesTopicsJoin> AddTopicToCourse(int topicId, int courseId)
+        {
+            CoursesTopicsJoin join = new CoursesTopicsJoin();
+
+            CoursesTopicsJoin alreadyExists = await _context.CoursesTopicsJoins.FirstOrDefaultAsync(a => a.TopicId == topicId && a.CourseId == courseId);
+
+            if (alreadyExists == null)
+            {
+                Topics topic = await _context.Topics.FirstOrDefaultAsync(t => t.TopicId == topicId);
+                Courses course = await _context.Courses.FirstOrDefaultAsync(c => c.CourseId == courseId);
+
+                if (topic != null && course != null)
+                {
+                    join.TopicId = topic.TopicId;
+                    join.CourseId = course.CourseId;
+                    _context.CoursesTopicsJoins.Add(join);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
+            return join;
+
         }
     }
 }
