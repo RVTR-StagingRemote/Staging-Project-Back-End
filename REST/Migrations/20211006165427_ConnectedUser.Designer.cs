@@ -56,32 +56,32 @@ namespace REST.Migrations
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("REST.Models.Occupations", b =>
+            modelBuilder.Entity("REST.Models.Courses", b =>
                 {
-                    b.Property<int>("OccupationId")
+                    b.Property<int>("CourseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("OccupationName")
+                    b.Property<string>("CourseName")
                         .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.HasKey("OccupationId");
+                    b.HasKey("CourseId");
 
-                    b.ToTable("Occupations");
+                    b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("REST.Models.OccupationsTopicsJoin", b =>
+            modelBuilder.Entity("REST.Models.CoursesTopicsJoin", b =>
                 {
                     b.Property<int>("JoinId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("OccupationsId")
+                    b.Property<int>("CoursesId")
                         .HasColumnType("integer");
 
                     b.Property<int>("TopicsId")
@@ -89,11 +89,11 @@ namespace REST.Migrations
 
                     b.HasKey("JoinId");
 
-                    b.HasIndex("OccupationsId");
+                    b.HasIndex("CoursesId");
 
                     b.HasIndex("TopicsId");
 
-                    b.ToTable("OccupationsTopicsJoins");
+                    b.ToTable("CoursesTopicsJoins");
                 });
 
             modelBuilder.Entity("REST.Models.OrderDetails", b =>
@@ -106,10 +106,10 @@ namespace REST.Migrations
                     b.Property<int>("AssociateCount")
                         .HasColumnType("integer");
 
-                    b.Property<int>("OccupationId")
+                    b.Property<int>("CourseId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("OccupationsOccupationId")
+                    b.Property<int?>("CoursesCourseId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("DateNeeded")
@@ -123,7 +123,7 @@ namespace REST.Migrations
 
                     b.HasKey("DetailsId");
 
-                    b.HasIndex("OccupationsOccupationId");
+                    b.HasIndex("CoursesCourseId");
 
                     b.HasIndex("OrdersOrderId");
 
@@ -224,30 +224,30 @@ namespace REST.Migrations
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("REST.Models.OccupationsTopicsJoin", b =>
+            modelBuilder.Entity("REST.Models.CoursesTopicsJoin", b =>
                 {
-                    b.HasOne("REST.Models.Occupations", "Occupations")
-                        .WithMany("OccupationsTopicsJoins")
-                        .HasForeignKey("OccupationsId")
+                    b.HasOne("REST.Models.Courses", "Courses")
+                        .WithMany("CoursesTopicsJoins")
+                        .HasForeignKey("CoursesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("REST.Models.Topics", "Topics")
-                        .WithMany("OccupationsTopicsJoins")
+                        .WithMany("CoursesTopicsJoins")
                         .HasForeignKey("TopicsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Occupations");
+                    b.Navigation("Courses");
 
                     b.Navigation("Topics");
                 });
 
             modelBuilder.Entity("REST.Models.OrderDetails", b =>
                 {
-                    b.HasOne("REST.Models.Occupations", null)
+                    b.HasOne("REST.Models.Courses", null)
                         .WithMany("OrderDetails")
-                        .HasForeignKey("OccupationsOccupationId");
+                        .HasForeignKey("CoursesCourseId");
 
                     b.HasOne("REST.Models.Orders", null)
                         .WithMany("OrderDetails")
@@ -279,9 +279,9 @@ namespace REST.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("REST.Models.Occupations", b =>
+            modelBuilder.Entity("REST.Models.Courses", b =>
                 {
-                    b.Navigation("OccupationsTopicsJoins");
+                    b.Navigation("CoursesTopicsJoins");
 
                     b.Navigation("OrderDetails");
                 });
@@ -293,7 +293,7 @@ namespace REST.Migrations
 
             modelBuilder.Entity("REST.Models.Topics", b =>
                 {
-                    b.Navigation("OccupationsTopicsJoins");
+                    b.Navigation("CoursesTopicsJoins");
                 });
 #pragma warning restore 612, 618
         }

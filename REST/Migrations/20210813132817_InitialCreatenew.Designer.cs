@@ -51,32 +51,32 @@ namespace REST.Migrations
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("REST.Models.Occupations", b =>
+            modelBuilder.Entity("REST.Models.Courses", b =>
                 {
-                    b.Property<int>("OccupationId")
+                    b.Property<int>("CourseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("OccupationName")
+                    b.Property<string>("CourseName")
                         .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.HasKey("OccupationId");
+                    b.HasKey("CourseId");
 
-                    b.ToTable("Occupations");
+                    b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("REST.Models.OccupationsTopicsJoin", b =>
+            modelBuilder.Entity("REST.Models.CoursesTopicsJoin", b =>
                 {
                     b.Property<int>("JoinId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("OccupationId")
+                    b.Property<int>("CourseId")
                         .HasColumnType("integer");
 
                     b.Property<int>("TopicId")
@@ -84,7 +84,7 @@ namespace REST.Migrations
 
                     b.HasKey("JoinId");
 
-                    b.ToTable("OccupationsTopicsJoins");
+                    b.ToTable("CoursesTopicsJoins");
                 });
 
             modelBuilder.Entity("REST.Models.OrderDetails", b =>
@@ -97,7 +97,7 @@ namespace REST.Migrations
                     b.Property<int>("AssociateCount")
                         .HasColumnType("integer");
 
-                    b.Property<int>("OccupationId")
+                    b.Property<int>("CourseId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("DateNeeded")
