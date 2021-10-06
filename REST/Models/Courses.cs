@@ -26,6 +26,10 @@ namespace REST.Models
         /// description of the course entity
         /// </summary>
         public string Description { get; set; }
+
+        public ICollection<CoursesTopicsJoin> CoursesTopicsJoins { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }
+
         public Courses()
         {
 

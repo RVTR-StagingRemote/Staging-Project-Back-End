@@ -21,6 +21,7 @@ namespace REST.Models
         ///Name of topics entity
         ///</summary>
         public string TopicName { get; set; }
+        public ICollection<CoursesTopicsJoin> CoursesTopicsJoins { get; set; }
         public Topics()
         {
         }

@@ -62,7 +62,7 @@ namespace REST.Controllers
         public async Task<ActionResult> AddTopicToCourse(int topicId, int courseId)
         {
             var join = await _topicBl.AddTopicToCourse(topicId, courseId);
-            if (join.TopicId != 0 && join.CourseId != 0) return Created($"api/Topics/{topicId}/{courseId}", join);
+            if (join.TopicsId != 0 && join.CoursesId != 0) return Created($"api/Topics/{topicId}/{courseId}", join);
             else return BadRequest();
         }
 

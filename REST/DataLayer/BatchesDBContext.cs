@@ -12,12 +12,7 @@ namespace REST.DataLayer
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Topics> Topics { get; set; }
-
         public DbSet<User> Users { get; set; }
-
-        public DbSet<Employee> Employees { get; set; }
-
-        public DbSet<EmployeeSkills> EmployeeSkills { get; set; }
 
 
         public BatchesDBContext() { }

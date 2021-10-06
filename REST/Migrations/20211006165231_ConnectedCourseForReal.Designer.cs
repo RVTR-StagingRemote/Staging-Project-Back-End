@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using REST.DataLayer;
@@ -9,9 +10,10 @@ using REST.DataLayer;
 namespace REST.Migrations
 {
     [DbContext(typeof(BatchesDBContext))]
-    partial class BatchesDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211006165231_ConnectedCourseForReal")]
+    partial class ConnectedCourseForReal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,10 +193,7 @@ namespace REST.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("ClientID")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("ClientsClientId")
+                    b.Property<int>("ClientsID")
                         .HasColumnType("integer");
 
                     b.Property<string>("Email")
@@ -210,8 +209,6 @@ namespace REST.Migrations
                         .HasColumnType("boolean");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClientsClientId");
 
                     b.ToTable("Users");
                 });
@@ -264,18 +261,9 @@ namespace REST.Migrations
                     b.Navigation("Clients");
                 });
 
-            modelBuilder.Entity("REST.Models.User", b =>
-                {
-                    b.HasOne("REST.Models.Clients", null)
-                        .WithMany("User")
-                        .HasForeignKey("ClientsClientId");
-                });
-
             modelBuilder.Entity("REST.Models.Clients", b =>
                 {
                     b.Navigation("Orders");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("REST.Models.Courses", b =>
