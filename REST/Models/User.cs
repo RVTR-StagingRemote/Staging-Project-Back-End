@@ -19,5 +19,7 @@ namespace REST.Models
 
         public string Role { get; set; }
 
+        public int ClientsID { get; set; }
+
     }
 }

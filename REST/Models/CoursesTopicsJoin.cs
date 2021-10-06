@@ -17,12 +17,12 @@ namespace REST.Models
     /// <summary>
     /// Id for the course entity
     /// </summary>
-    public int CourseId { get; set; }
+    public int CoursesId { get; set; }
 
     /// <summary>
     /// Id for the Topics entity
     /// </summary>
-    public int TopicId { get; set; }
+    public int TopicsId { get; set; }
     public CoursesTopicsJoin()
     {
     }

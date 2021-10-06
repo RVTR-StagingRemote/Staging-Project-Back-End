@@ -67,12 +67,12 @@ namespace REST.DataLayer
 
         public async Task<List<Courses>> GetCoursesByTag(int topicId)
         {
-            var list = await _context.CoursesTopicsJoins.AsNoTracking().Select(c => c).Where(t => t.TopicId == topicId).ToListAsync();
+            var list = await _context.CoursesTopicsJoins.AsNoTracking().Select(c => c).Where(t => t.TopicsId == topicId).ToListAsync();
 
             List<Courses> courses = new List<Courses>();
             foreach (var x in list)
             {
-                var course = await FindCourseById(x.CourseId);
+                var course = await FindCourseById(x.CoursesId);
                 courses.Add(course);
             }
 

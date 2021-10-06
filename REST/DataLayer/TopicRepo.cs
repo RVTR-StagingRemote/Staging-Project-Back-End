@@ -59,7 +59,7 @@ namespace REST.DataLayer
         {
             CoursesTopicsJoin join = new CoursesTopicsJoin();
 
-            CoursesTopicsJoin alreadyExists = await _context.CoursesTopicsJoins.FirstOrDefaultAsync(a => a.TopicId == topicId && a.CourseId == courseId);
+            CoursesTopicsJoin alreadyExists = await _context.CoursesTopicsJoins.FirstOrDefaultAsync(a => a.TopicsId == topicId && a.CoursesId == courseId);
 
             if (alreadyExists == null)
             {
@@ -68,8 +68,8 @@ namespace REST.DataLayer
 
                 if (topic != null && course != null)
                 {
-                    join.TopicId = topic.TopicId;
-                    join.CourseId = course.CourseId;
+                    join.TopicsId = topic.TopicId;
+                    join.CoursesId = course.CourseId;
                     _context.CoursesTopicsJoins.Add(join);
                     await _context.SaveChangesAsync();
                 }
