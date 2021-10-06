@@ -40,9 +40,9 @@ namespace REST.BusinessLayer
             return await _topicRepo.DeleteTopicById(Id);
         }
 
-        public async Task<CoursesTopicsJoin> AddTopicToCourse(int topicId, int courseId)
+        public async Task<OccupationsTopicsJoin> AddTopicToOccupation(int topicId, int OccupationId)
         {
-            return await _topicRepo.AddTopicToCourse(topicId, courseId);
+            return await _topicRepo.AddTopicToOccupation(topicId, OccupationId);
         }
     }
 }

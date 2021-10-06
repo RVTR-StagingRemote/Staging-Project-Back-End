@@ -10,8 +10,8 @@ using REST.DataLayer;
 namespace REST.Migrations
 {
     [DbContext(typeof(BatchesDBContext))]
-    [Migration("20210818181603_InitialCreatene0067")]
-    partial class InitialCreatene0067
+    [Migration("20211006210016_Changed-Courses-to-Occupations")]
+    partial class ChangedCoursestoOccupations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,10 +43,15 @@ namespace REST.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("text");
 
+                    b.Property<int?>("StateId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("StateProvince")
                         .HasColumnType("text");
 
                     b.HasKey("ClientId");
+
+                    b.HasIndex("StateId");
 
                     b.ToTable("Clients");
                 });
@@ -58,10 +63,10 @@ namespace REST.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("OccupationName")
+                    b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("OccupationName")
                         .HasColumnType("text");
 
                     b.HasKey("OccupationId");
@@ -76,13 +81,17 @@ namespace REST.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("OccupationId")
+                    b.Property<int>("OccupationsId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("TopicId")
+                    b.Property<int>("TopicsId")
                         .HasColumnType("integer");
 
                     b.HasKey("JoinId");
+
+                    b.HasIndex("OccupationsId");
+
+                    b.HasIndex("TopicsId");
 
                     b.ToTable("OccupationsTopicsJoins");
                 });
@@ -97,11 +106,14 @@ namespace REST.Migrations
                     b.Property<int>("AssociateCount")
                         .HasColumnType("integer");
 
+                    b.Property<DateTime>("DateNeeded")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<int>("OccupationId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("DateNeeded")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<int?>("OccupationsOccupationId")
+                        .HasColumnType("integer");
 
                     b.Property<int>("OrderId")
                         .HasColumnType("integer");
@@ -110,6 +122,8 @@ namespace REST.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("DetailsId");
+
+                    b.HasIndex("OccupationsOccupationId");
 
                     b.HasIndex("OrdersOrderId");
 
@@ -139,6 +153,24 @@ namespace REST.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("REST.Models.State", b =>
+                {
+                    b.Property<int>("StateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("StateId");
+
+                    b.ToTable("State");
+                });
+
             modelBuilder.Entity("REST.Models.Topics", b =>
                 {
                     b.Property<int>("TopicId")
@@ -154,8 +186,72 @@ namespace REST.Migrations
                     b.ToTable("Topics");
                 });
 
+            modelBuilder.Entity("REST.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("ClientID")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ClientsClientId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientsClientId");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("REST.Models.Clients", b =>
+                {
+                    b.HasOne("REST.Models.State", "State")
+                        .WithMany()
+                        .HasForeignKey("StateId");
+
+                    b.Navigation("State");
+                });
+
+            modelBuilder.Entity("REST.Models.OccupationsTopicsJoin", b =>
+                {
+                    b.HasOne("REST.Models.Occupations", "Occupations")
+                        .WithMany("OccupationsTopicsJoins")
+                        .HasForeignKey("OccupationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("REST.Models.Topics", "Topics")
+                        .WithMany("OccupationsTopicsJoins")
+                        .HasForeignKey("TopicsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Occupations");
+
+                    b.Navigation("Topics");
+                });
+
             modelBuilder.Entity("REST.Models.OrderDetails", b =>
                 {
+                    b.HasOne("REST.Models.Occupations", null)
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OccupationsOccupationId");
+
                     b.HasOne("REST.Models.Orders", null)
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrdersOrderId");
@@ -170,14 +266,35 @@ namespace REST.Migrations
                     b.Navigation("Clients");
                 });
 
+            modelBuilder.Entity("REST.Models.User", b =>
+                {
+                    b.HasOne("REST.Models.Clients", null)
+                        .WithMany("User")
+                        .HasForeignKey("ClientsClientId");
+                });
+
             modelBuilder.Entity("REST.Models.Clients", b =>
                 {
                     b.Navigation("Orders");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("REST.Models.Occupations", b =>
+                {
+                    b.Navigation("OccupationsTopicsJoins");
+
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("REST.Models.Orders", b =>
                 {
                     b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("REST.Models.Topics", b =>
+                {
+                    b.Navigation("OccupationsTopicsJoins");
                 });
 #pragma warning restore 612, 618
         }

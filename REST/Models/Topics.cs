@@ -7,7 +7,7 @@ using FluentValidation;
 namespace REST.Models
 {
     ///<summary>
-    ///This class handles information about Topics for Courses
+    ///This class handles information about Topics for Occupations
     ///</summary>
     public class Topics
     {
@@ -21,7 +21,7 @@ namespace REST.Models
         ///Name of topics entity
         ///</summary>
         public string TopicName { get; set; }
-        public ICollection<CoursesTopicsJoin> CoursesTopicsJoins { get; set; }
+        public ICollection<OccupationsTopicsJoin> OccupationsTopicsJoins { get; set; }
         public Topics()
         {
         }

@@ -55,22 +55,22 @@ namespace REST.DataLayer
             return topic;
         }
 
-        public async Task<CoursesTopicsJoin> AddTopicToCourse(int topicId, int courseId)
+        public async Task<OccupationsTopicsJoin> AddTopicToOccupation(int topicId, int OccupationId)
         {
-            CoursesTopicsJoin join = new CoursesTopicsJoin();
+            OccupationsTopicsJoin join = new OccupationsTopicsJoin();
 
-            CoursesTopicsJoin alreadyExists = await _context.CoursesTopicsJoins.FirstOrDefaultAsync(a => a.TopicsId == topicId && a.CoursesId == courseId);
+            OccupationsTopicsJoin alreadyExists = await _context.OccupationsTopicsJoins.FirstOrDefaultAsync(a => a.TopicsId == topicId && a.OccupationsId == OccupationId);
 
             if (alreadyExists == null)
             {
                 Topics topic = await _context.Topics.FirstOrDefaultAsync(t => t.TopicId == topicId);
-                Courses course = await _context.Courses.FirstOrDefaultAsync(c => c.CourseId == courseId);
+                Occupations Occupation = await _context.Occupations.FirstOrDefaultAsync(c => c.OccupationId == OccupationId);
 
-                if (topic != null && course != null)
+                if (topic != null && Occupation != null)
                 {
                     join.TopicsId = topic.TopicId;
-                    join.CoursesId = course.CourseId;
-                    _context.CoursesTopicsJoins.Add(join);
+                    join.OccupationsId = Occupation.OccupationId;
+                    _context.OccupationsTopicsJoins.Add(join);
                     await _context.SaveChangesAsync();
                 }
             }

@@ -33,13 +33,13 @@ namespace REST
         {
             services.AddControllers();
             
-            services.AddScoped<ICourseRepo, CourseRepo>();
+            services.AddScoped<IOccupationRepo, OccupationRepo>();
             services.AddScoped<IClientRepo, ClientRepo>();
             services.AddScoped<ITopicRepo, TopicRepo>();
             services.AddScoped<IOrderRepo, OrderRepo>();
             services.AddScoped<IUserRepo, UserRepo>();
 
-            services.AddScoped<ICourseBL, CourseBL>();
+            services.AddScoped<IOccupationBL, OccupationBL>();
             services.AddScoped<IClientBL, ClientBL>();
             services.AddScoped<IOrderBL, OrderBL>();
             services.AddScoped<ITopicBL, TopicBL>();
@@ -53,7 +53,7 @@ namespace REST
 
             services.AddSingleton(_ => Configuration);
 
-            services.AddScoped<ICourseRepo, CourseRepo>();
+            services.AddScoped<IOccupationRepo, OccupationRepo>();
             services.AddScoped<IOrderRepo, OrderRepo>();
 
             services.AddFluentValidation(cfg => 

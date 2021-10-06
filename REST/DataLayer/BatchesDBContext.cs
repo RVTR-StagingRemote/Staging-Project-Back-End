@@ -7,8 +7,8 @@ namespace REST.DataLayer
     public class BatchesDBContext : DbContext
     {
         public DbSet<Clients> Clients { get; set; }
-        public DbSet<Courses> Courses { get; set; }
-        public DbSet<CoursesTopicsJoin> CoursesTopicsJoins { get; set; }
+        public DbSet<Occupations> Occupations { get; set; }
+        public DbSet<OccupationsTopicsJoin> OccupationsTopicsJoins { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Topics> Topics { get; set; }
@@ -28,8 +28,8 @@ namespace REST.DataLayer
             /*   modelBuilder.Entity<Clients>()
                  .HasKey(cl => cl.ClientId);
 
-               modelBuilder.Entity<Courses>()
-                .HasKey(c => c.CourseId);
+               modelBuilder.Entity<Occupations>()
+                .HasKey(c => c.OccupationId);
 
                modelBuilder.Entity<Orders>()
                .HasKey(o=> o.OrderId);
@@ -40,7 +40,7 @@ namespace REST.DataLayer
                modelBuilder.Entity<Topics>()
               .HasKey(t => t.TopicId);
 
-               modelBuilder.Entity<CoursesTopicsJoin>()
+               modelBuilder.Entity<OccupationsTopicsJoin>()
              .HasKey(ctj => ctj.JoinId);*/
 
 

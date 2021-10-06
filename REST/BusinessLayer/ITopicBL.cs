@@ -26,7 +26,7 @@ namespace REST.BusinessLayer
         /// <returns></returns>
         public Task<Topics> GetTopicsById(int Id);
         public Task<Topics> DeleteTopicById(int Id);
-        public Task<CoursesTopicsJoin> AddTopicToCourse(int topicId, int courseId);
+        public Task<OccupationsTopicsJoin> AddTopicToOccupation(int topicId, int OccupationId);
 
     }
 }
