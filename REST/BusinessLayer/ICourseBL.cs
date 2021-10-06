@@ -39,5 +39,8 @@ namespace REST.BusinessLayer
         public Task<Courses> UpdateCourses(Courses course);
 
         public Task<Courses> DeleteCourseById(int CourseId);
+
+        public Task<List<Courses>> GetCoursesByTag(int topicId);
+
     }
 }
