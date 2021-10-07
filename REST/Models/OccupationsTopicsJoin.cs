@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 namespace REST.Models
 {
     ///<summary>
-    ///This class handles the relationship between courses and their topics
+    ///This class handles the relationship between Occupations and their topics
     ///</summary>.
-    public class CoursesTopicsJoin
+    public class OccupationsTopicsJoin
     {
         /// <summary>
         /// Id used to target the join entity
@@ -15,17 +15,17 @@ namespace REST.Models
         public int JoinId { get; set; }
 
         /// <summary>
-        /// Id for the course entity
+        /// Id for the Occupation entity
         /// </summary>
-        public int CoursesId { get; set; }
-        public Courses Courses { get; set; }
+        public int OccupationsId { get; set; }
+        public Occupations Occupations { get; set; }
 
         /// <summary>
         /// Id for the Topics entity
         /// </summary>
         public int TopicsId { get; set; }
         public Topics Topics { get; set; }
-        public CoursesTopicsJoin()
+        public OccupationsTopicsJoin()
         {
         }
     }

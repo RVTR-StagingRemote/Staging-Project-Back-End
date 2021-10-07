@@ -18,9 +18,9 @@ namespace REST.Models
         public int DetailsId { get; set; }
 
         ///<summary>
-        ///Id used for the Course entity
+        ///Id used for the Occupation entity
         ///</summary>
-        public int CourseId { get; set; }
+        public int OccupationId { get; set; }
 
         ///<summary>
         ///Id used for the Order Entity
@@ -45,9 +45,9 @@ namespace REST.Models
     {
         public OrderDetailsValidator()
         {
-            RuleFor(o => o.CourseId)
+            RuleFor(o => o.OccupationId)
                 .NotNull()
-                .WithMessage("Must include a course ID.");
+                .WithMessage("Must include a Occupation ID.");
             RuleFor(o => o.OrderId)
                 .NotNull()
                 .WithMessage("Must include an order ID.");

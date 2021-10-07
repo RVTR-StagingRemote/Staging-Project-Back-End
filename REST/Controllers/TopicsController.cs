@@ -53,16 +53,16 @@ namespace REST.Controllers
             else return NotFound();
         }
         /// <summary>
-        /// Assoicate a topic and course
+        /// Assoicate a topic and Occupation
         /// </summary>
         /// <param name="topicId"></param>
-        /// <param name="courseId"></param>
+        /// <param name="OccupationId"></param>
         /// <returns></returns>
-        [HttpPost("{topicId}/{courseId}")]
-        public async Task<ActionResult> AddTopicToCourse(int topicId, int courseId)
+        [HttpPost("{topicId}/{OccupationId}")]
+        public async Task<ActionResult> AddTopicToOccupation(int topicId, int OccupationId)
         {
-            var join = await _topicBl.AddTopicToCourse(topicId, courseId);
-            if (join.TopicsId != 0 && join.CoursesId != 0) return Created($"api/Topics/{topicId}/{courseId}", join);
+            var join = await _topicBl.AddTopicToOccupation(topicId, OccupationId);
+            if (join.TopicsId != 0 && join.OccupationsId != 0) return Created($"api/Topics/{topicId}/{OccupationId}", join);
             else return BadRequest();
         }
 

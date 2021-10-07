@@ -23,22 +23,22 @@ namespace Testing
         }
 
         [Fact]
-        public void AddCourseShouldSucceed()
+        public void AddOccupationShouldSucceed()
         {
             using (var context = new BatchesDBContext(options))
             {
-                ICourseRepo repo = new CourseRepo(context);
-                Courses c = new Courses();
-                c.CourseName = "Rubby";
+                IOccupationRepo repo = new OccupationRepo(context);
+                Occupations c = new Occupations();
+                c.OccupationName = "Rubby";
                 c.Description = "Intro to Rubby";
-                repo.AddCourse(c);
+                repo.AddOccupation(c);
             }
 
             using (var assertContext = new BatchesDBContext(options))
             {
-                var result = assertContext.Courses.FirstOrDefault(Course => Course.CourseName == "Rubby");
+                var result = assertContext.Occupations.FirstOrDefault(Occupation => Occupation.OccupationName == "Rubby");
                 Assert.NotNull(result);
-                Assert.Equal("Rubby", result.CourseName);
+                Assert.Equal("Rubby", result.OccupationName);
             }
 
         }
@@ -100,17 +100,17 @@ namespace Testing
 
                     );*/
 
-                context.Courses.AddRange(
-                       new Courses
+                context.Occupations.AddRange(
+                       new Occupations
                        {
 
-                           CourseName = "java",
+                           OccupationName = "java",
                            Description = "Intro to java"
                        },
-                        new Courses
+                        new Occupations
                         {
 
-                            CourseName = "Python",
+                            OccupationName = "Python",
                             Description = "Intro to Ptyhon"
                         }
 

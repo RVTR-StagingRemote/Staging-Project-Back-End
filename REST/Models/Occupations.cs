@@ -7,40 +7,40 @@ using FluentValidation;
 namespace REST.Models
 {
     ///<summary>
-    ///This class handles information and functionality for a Course
+    ///This class handles information and functionality for a Occupation
     ///</summary>.
-    public class Courses
+    public class Occupations
     {
         /// <summary>
-        /// Id used to target the course entity
+        /// Id used to target the Occupation entity
         /// </summary>
         [Key]
-        public int CourseId { get; set; }
+        public int OccupationId { get; set; }
 
         /// <summary>
-        /// name for the course entity
+        /// name for the Occupation entity
         /// </summary>
-        public string CourseName { get; set; }
+        public string OccupationName { get; set; }
 
         /// <summary>
-        /// description of the course entity
+        /// description of the Occupation entity
         /// </summary>
         public string Description { get; set; }
 
-        public ICollection<CoursesTopicsJoin> CoursesTopicsJoins { get; set; }
+        public ICollection<OccupationsTopicsJoin> OccupationsTopicsJoins { get; set; }
         public ICollection<OrderDetails> OrderDetails { get; set; }
 
-        public Courses()
+        public Occupations()
         {
 
         }
     }
 
-    public class CoursesValidator : AbstractValidator<Courses>
+    public class OccupationsValidator : AbstractValidator<Occupations>
     {
-        public CoursesValidator()
+        public OccupationsValidator()
         {
-            RuleFor(c => c.CourseName)
+            RuleFor(c => c.OccupationName)
                 .Length(2, 50)
                 .WithMessage("Must be in between 2 and 50 characters");
             RuleFor(c => c.Description)
