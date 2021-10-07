@@ -41,16 +41,15 @@ namespace REST.DataLayer
 
         }
 
-        public async Task<Occupations> UpdateOccupations(Occupations Occupation)
+        public async Task<Occupations> UpdateOccupations(Occupations occupation)
         {
-            Occupations OccupationToUpdate = await _context.Occupations.FirstOrDefaultAsync(c => c.OccupationId == Occupation.OccupationId);
-            if(OccupationToUpdate != null)
+            if (_context.Occupations.Where(o => o.OccupationId == occupation.OccupationId).Select(x => x).Count() == 1) // id exists
             {
-                _context.Occupations.Update(OccupationToUpdate);
+                _context.Occupations.Update(occupation);
                 await _context.SaveChangesAsync();
+                return occupation;
             }
-
-            return OccupationToUpdate;
+            return null;
         }
 
         public async Task<Occupations> DeleteOccupationById(int OccupationId)

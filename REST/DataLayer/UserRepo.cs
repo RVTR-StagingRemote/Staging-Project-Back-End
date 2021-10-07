@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace REST.DataLayer
 {
-    public class UserRepo:IUserRepo
+    public class UserRepo : IUserRepo
     {
         private readonly BatchesDBContext _context;
         public UserRepo(BatchesDBContext context)
@@ -23,9 +23,9 @@ namespace REST.DataLayer
             return u;
         }
 
-        public  async Task<User> DoLogin(string email, string pwd)
+        public async Task<User> DoLogin(string email, string pwd)
         {
-            return await _context.Users.FirstOrDefaultAsync(c =>  c.Email == email&& c.Password == pwd);
+            return await _context.Users.FirstOrDefaultAsync(c => c.Email == email && c.Password == pwd);
         }
 
         public async Task<List<User>> GetUsers()
@@ -33,11 +33,15 @@ namespace REST.DataLayer
             return await _context.Users.AsNoTracking().Select(u => u).ToListAsync();
         }
 
-        public async Task<User> UpdateUser(User u)
+        public async Task<User> UpdateUser(User user)
         {
-             _context.Users.Update(u);
-            await _context.SaveChangesAsync();
-            return u;
+            if (_context.Users.Where(u => u.Id == user.Id).Select(x => x).Count() == 1) // id exists
+            {
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+                return user;
+            }
+            return null;
         }
 
         public async Task<User> FindUserById(int id)
@@ -48,7 +52,7 @@ namespace REST.DataLayer
         public async Task<User> DeleteUserById(int id)
         {
             User user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
-            if(user != null)
+            if (user != null)
             {
                 _context.Users.Remove(user);
                 await _context.SaveChangesAsync();

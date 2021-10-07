@@ -48,7 +48,7 @@ namespace REST.Controllers
 
         // PUT api/<ClientController>/5
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] Clients client)
+        public async Task<IActionResult> Update(Clients client)
         {
             Clients clientToUpdate = await _clientBL.UpdateClients(client);
             if (clientToUpdate == null) return BadRequest();
