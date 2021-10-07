@@ -35,14 +35,13 @@ namespace REST.DataLayer
 
         public async Task<Orders> UpdateOrders(Orders order)
         {
-            Orders orderToUpdate = await _context.Orders.FirstOrDefaultAsync(o => o.OrderId == order.OrderId);
-            if (orderToUpdate != null)
+            if (_context.Orders.Where(o => o.OrderId == order.OrderId).Select(x => x).Count() == 1) // id exists
             {
-                _context.Orders.Update(orderToUpdate);
+                _context.Orders.Update(order);
                 await _context.SaveChangesAsync();
+                return order;
             }
-
-            return orderToUpdate;
+            return null;
         }
 
         public async Task<Orders> DeleteOrderById(int OrderId)

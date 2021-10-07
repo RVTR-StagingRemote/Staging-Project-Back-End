@@ -36,12 +36,15 @@ namespace REST.DataLayer
             return _context.Topics.FirstOrDefaultAsync(c => c.TopicId == Id);
         }
 
-        public async Task<Topics> UpdateTopics(Topics t)
+        public async Task<Topics> UpdateTopics(Topics topic)
         {
-            _context.Topics.Update(t);
-            await _context.SaveChangesAsync();
-
-            return t;
+            if (_context.Topics.Where(t => t.TopicId == topic.TopicId).Select(x => x).Count() == 1) // id exists
+            {
+                _context.Topics.Update(topic);
+                await _context.SaveChangesAsync();
+                return topic;
+            }
+            return null;
         }
 
         public async Task<Topics> DeleteTopicById(int Id)
