@@ -9,38 +9,52 @@ namespace REST.BusinessLayer
     public interface IOccupationBL
     {
         /// <summary>
-        /// 
+        /// add a new new occupation to the database
         /// </summary>
         /// <param name="Occupation"></param>
-        /// <returns></returns>
+        /// <returns>Occupations object</returns>
         Task<Occupations> AddOccupation(Occupations Occupation);
+
         /// <summary>
-        /// 
+        /// get a list of all occupations in the database
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Occupation list</returns>
         Task<List<Occupations>> GetOccupations();
+
         /// <summary>
-        /// 
+        /// find Occupation by OccupationId
         /// </summary>
-        /// <param name="OccupationID"></param>
-        /// <returns></returns>
+        /// <param name="OccupationId"></param>
+        /// <returns>Occupations object</returns>
         Task<Occupations> FindOccupationById(int OccupationID);
+
         /// <summary>
-        /// 
+        /// get Occupation by it's name
         /// </summary>
         /// <param name="OccupationName"></param>
-        /// <returns></returns>
+        /// <returns>Occupations object</returns>
         Task<Occupations> FindOccupationByName(string OccupationName);
+
         /// <summary>
-        /// 
+        /// update an occupation in the database
         /// </summary>
         /// <param name="Occupation"></param>
-        /// <returns></returns>
-        public Task<Occupations> UpdateOccupations(Occupations Occupation);
+        /// <returns>Occupation object or null if no object found</returns>
+        Task<Occupations> UpdateOccupations(Occupations Occupation);
 
-        public Task<Occupations> DeleteOccupationById(int OccupationId);
+        /// <summary>
+        /// delete an occupation from the database by occupation id
+        /// </summary>
+        /// <param name="OccupationId"></param>
+        /// <returns>Occupation object</returns>
+        Task<Occupations> DeleteOccupationById(int OccupationId);
 
-        public Task<List<Occupations>> GetOccupationsByTag(int topicId);
+        /// <summary>
+        /// get all occupations assoicated with a certian topic 
+        /// </summary>
+        /// <param name="topicId"></param>
+        /// <returns>list of occupations</returns>
+        Task<List<Occupations>> GetOccupationsByTag(int topicId);
 
     }
 }

@@ -29,7 +29,7 @@ namespace REST.BusinessLayer
             return await _userRepo.GetUsers();
         }
 
-        public async Task<User> Update(User u)
+        public async Task<User> UpdateUser(User u)
         {
             return await _userRepo.UpdateUser(u);
         }

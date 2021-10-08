@@ -15,16 +15,12 @@ namespace REST.DataLayer
             _context = context;
         }
 
-
-
         public async Task<Topics> AddTopic(Topics topics)
         {
             await _context.Topics.AddAsync(topics);
             await _context.SaveChangesAsync();
             return topics;
         }
-
-
 
         public async Task<List<Topics>> GetTopics()
         {

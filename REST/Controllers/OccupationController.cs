@@ -26,12 +26,10 @@ namespace REST.Controllers
         ///Returns all Occupations as a List
         ///</summary>
         [HttpGet]
-
         public async Task<IActionResult> GetOccupations()
         {
             return Ok(await _OccupationBL.GetOccupations());
         }
-
 
         ///<summary>
         ///Returns a single Occupation based on an ID
@@ -45,6 +43,7 @@ namespace REST.Controllers
             return Ok(Occupation);
 
         }
+
         /// <summary>
         /// Returns a single Occupation by its name
         /// </summary>
@@ -59,6 +58,7 @@ namespace REST.Controllers
 
 
         }
+
         /// <summary>
         /// Returns Occupations which cover a certain topic
         /// </summary>

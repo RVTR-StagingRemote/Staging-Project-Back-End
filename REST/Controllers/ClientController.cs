@@ -45,7 +45,6 @@ namespace REST.Controllers
             return Created("api/AddClient", await _clientBL.AddClient(client));
         }
 
-
         // PUT api/<ClientController>/5
         [HttpPut]
         public async Task<IActionResult> Update(Clients client)

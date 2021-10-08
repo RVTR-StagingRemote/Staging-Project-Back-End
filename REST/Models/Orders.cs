@@ -20,12 +20,12 @@ namespace REST.Models
         ///<summary>
         ///Id used for the Client Entity
         ///</summary>
-        ///
-
         public int ClientId { get; set; }
         public Clients Clients { get; set; }
 
-
+        /// <summary>
+        /// name for the Order Entity (the DateTime equal to when the order was placed)
+        /// </summary>
         public string OrderName { get; set; }
 
         public ICollection<OrderDetails> OrderDetails { get; set; }

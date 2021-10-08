@@ -20,9 +20,10 @@ namespace REST.Controllers
             _topicBl = topicBl;
 
         }
+
         // GET: api/<TopicsController>
         [HttpGet]
-        public async  Task<ActionResult> GetTopics()
+        public async Task<ActionResult> GetTopics()
         {
             return Ok(await _topicBl.GetTopics());
            
@@ -52,6 +53,7 @@ namespace REST.Controllers
             if (topic != null) return Ok(topic);
             else return NotFound();
         }
+
         /// <summary>
         /// Assoicate a topic and Occupation
         /// </summary>
