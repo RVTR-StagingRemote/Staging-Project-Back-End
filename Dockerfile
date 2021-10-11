@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk
 RUN mkdir app
 COPY . /app
-EXPOSE 80
+EXPOSE 5001
 ENTRYPOINT ["dotnet", "run"]
