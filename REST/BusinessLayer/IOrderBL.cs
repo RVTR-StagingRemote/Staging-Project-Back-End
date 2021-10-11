@@ -9,32 +9,44 @@ namespace REST.BusinessLayer
     public interface IOrderBL
     {
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="ClientId"></param>
-        /// <param name="OrderItems"></param>
-        /// <returns></returns>
-        Task<Orders> PlaceOrder(Orders order);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        Task<List<Orders>> GetOrders();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <returns></returns>
-         Task<Orders> GetOrdersById(int Id);
-        /// <summary>
-        /// 
+        /// place an order for a given customer
         /// </summary>
         /// <param name="order"></param>
-        /// <returns></returns>
-        public Task<Orders> UpdateOrders(Orders order);
+        /// <returns> Orders object</returns>
+        Task<Orders> PlaceOrder(Orders order);
 
-        public Task<Orders> DeleteOrderById(int OrderId);
+        /// <summary>
+        /// get a list of all orders in the database
+        /// </summary>
+        /// <returns>list of orders</returns>
+        Task<List<Orders>> GetOrders();
 
-        public Task<List<Orders>> GetOrdersByClientId(int ClientId);
+        /// <summary>
+        /// get an order from the database by order id
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns>Orders object</returns>
+        Task<Orders> GetOrdersById(int Id);
+
+        /// <summary>
+        /// updates an order in the database
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns>updates an order in database or null if no such object exists</returns>
+        Task<Orders> UpdateOrders(Orders order);
+
+        /// <summary>
+        /// deletes an order from the database by order id
+        /// </summary>
+        /// <param name="OrderId"></param>
+        /// <returns>Orders object</returns>
+        Task<Orders> DeleteOrderById(int OrderId);
+
+        /// <summary>
+        /// get all orders place by a specific client by client id
+        /// </summary>
+        /// <param name="ClientId"></param>
+        /// <returns>list of orders</returns>
+        Task<List<Orders>> GetOrdersByClientId(int ClientId);
     }
 }
