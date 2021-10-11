@@ -16,11 +16,11 @@ services:
     #   - NODE_ENV=development
     tty: true
     # ports:
-    #   - '19006:19006'
-    #   - '19001:19001'
+    #   - "5000:3000"
+    #   - "5001:5001"
     #   - '19002:19002'
     volumes:
-      - ./:/app:delegated
+      - ./:/REST:delegated
       # - ./package.json:/app/package.json
       # - ./package-lock.json:/app/package-lock.json
       # - notused:/app/node_modules

@@ -20,5 +20,5 @@ FROM mcr.microsoft.com/dotnet/sdk
 # COPY . /app
 # EXPOSE 5001
 RUN dotnet dev-certs https --trust
-RUN dotnet run --project REST
+# RUN dotnet run --project REST
 # ENTRYPOINT ["dotnet", "run"]
