@@ -20,6 +20,7 @@ namespace REST.Controllers
             _userBL = userBL;
 
         }
+
         // GET: api/<UserController>
         [HttpGet]
         public async Task<IActionResult> GetUsers()
@@ -47,7 +48,7 @@ namespace REST.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(User u)
         {
-            User user = await _userBL.Update(u);
+            User user = await _userBL.UpdateUser(u);
             if (user == null) return BadRequest();
             return NoContent();
         }

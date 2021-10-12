@@ -27,8 +27,7 @@ namespace REST.Models
         /// </summary>
         public string Description { get; set; }
 
-        public ICollection<OccupationsTopicsJoin> OccupationsTopicsJoins { get; set; }
-        public ICollection<OrderDetails> OrderDetails { get; set; }
+
 
         public Occupations()
         {

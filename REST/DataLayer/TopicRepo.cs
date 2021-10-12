@@ -15,8 +15,6 @@ namespace REST.DataLayer
             _context = context;
         }
 
-
-
         public async Task<Topics> AddTopic(Topics topics)
         {
             await _context.Topics.AddAsync(topics);
@@ -24,16 +22,14 @@ namespace REST.DataLayer
             return topics;
         }
 
-
-
         public async Task<List<Topics>> GetTopics()
         {
             return await _context.Topics.AsNoTracking().Select(tp => tp).ToListAsync();
         }
 
-        public Task<Topics> GetTopicsById(int Id)
+        public async Task<Topics> GetTopicsById(int Id)
         {
-            return _context.Topics.FirstOrDefaultAsync(c => c.TopicId == Id);
+            return await _context.Topics.FirstOrDefaultAsync(c => c.TopicId == Id);
         }
 
         public async Task<Topics> UpdateTopics(Topics topic)
@@ -66,14 +62,14 @@ namespace REST.DataLayer
 
             if (alreadyExists == null)
             {
-                Topics topic = await _context.Topics.FirstOrDefaultAsync(t => t.TopicId == topicId);
+                Topics topic = await GetTopicsById(topicId);
                 Occupations Occupation = await _context.Occupations.FirstOrDefaultAsync(c => c.OccupationId == OccupationId);
 
                 if (topic != null && Occupation != null)
                 {
-                    join.TopicsId = topic.TopicId;
-                    join.OccupationsId = Occupation.OccupationId;
-                    _context.OccupationsTopicsJoins.Add(join);
+                    join.Occupations = Occupation;
+                    join.Topics = topic;
+                    await _context.OccupationsTopicsJoins.AddAsync(join);
                     await _context.SaveChangesAsync();
                 }
             }
