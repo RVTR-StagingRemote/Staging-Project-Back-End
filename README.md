@@ -3,6 +3,8 @@
 
 **Overview**
 
+## Postman Link
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/16168422-11f87301-bb0c-4476-989e-28dec5172b68?action=collection%2Ffork&collection-url=entityId%3D16168422-11f87301-bb0c-4476-989e-28dec5172b68%26entityType%3Dcollection%26workspaceId%3D2b515f0a-9ff4-44ff-886c-2977729529db)
 
 **MVP**
   1. As a client, I should be able to View a list of courses including start and end date,
