@@ -49,7 +49,7 @@ namespace REST.Controllers
         {
             User user = await _userBL.Update(u);
             if (user == null) return BadRequest();
-            return NoContent();
+            return Ok(user);
         }
 
         // DELETE api/<UserController>/5

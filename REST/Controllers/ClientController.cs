@@ -52,7 +52,7 @@ namespace REST.Controllers
         {
             Clients clientToUpdate = await _clientBL.UpdateClients(client);
             if (clientToUpdate == null) return BadRequest();
-            return NoContent();
+            return Ok(clientToUpdate);
         }
 
         // DELETE api/<ClientController>/5
