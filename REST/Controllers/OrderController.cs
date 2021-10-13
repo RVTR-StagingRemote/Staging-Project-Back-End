@@ -73,7 +73,7 @@ namespace REST.Controllers
         {
             Orders orderToUpdate = await _orderBL.UpdateOrders(order);
             if (orderToUpdate == null) return BadRequest();
-            return NoContent();
+            return Ok(orderToUpdate);
         }
 
         ///<summary>

@@ -93,7 +93,7 @@ namespace REST.Controllers
         {
             Occupations OccupationToUpdate = await _OccupationBL.UpdateOccupations(Occupation);
             if (OccupationToUpdate == null) return BadRequest();
-            return NoContent();
+            return Ok(OccupationToUpdate);
         }
 
         ///<summary>
