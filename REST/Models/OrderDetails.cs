@@ -21,6 +21,7 @@ namespace REST.Models
         ///Id used for the Occupation entity
         ///</summary>
         public int OccupationId { get; set; }
+        public Occupations Occupations{ get; set; }
 
         ///<summary>
         ///Id used for the Order Entity
