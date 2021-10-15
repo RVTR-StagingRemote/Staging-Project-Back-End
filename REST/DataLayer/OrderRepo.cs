@@ -50,7 +50,8 @@ namespace REST.DataLayer
             OrderDetails orderDetails = _context.OrderDetails.FirstOrDefault(o => o.DetailsId == OrderId);
             if(order != null)
             {
-                _context.OrderDetails.Remove(orderDetails);
+                if (orderDetails != null)
+                    _context.OrderDetails.Remove(orderDetails);
                 _context.Orders.Remove(order);
                 await _context.SaveChangesAsync();
             }
