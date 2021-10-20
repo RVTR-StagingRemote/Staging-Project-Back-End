@@ -32,14 +32,14 @@ namespace REST.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetClient(int id)
         {
-            Clients client = await _clientBL.GetClientsById(id);
+            Client client = await _clientBL.GetClientsById(id);
             if (client == null) return NotFound();
             return Ok(client);
         }
 
         // POST api/<ClientController>
         [HttpPost()]
-        public async Task<IActionResult> Post(Clients client)
+        public async Task<IActionResult> Post(Client client)
         {
 
             return Created("api/AddClient", await _clientBL.AddClient(client));
@@ -47,9 +47,9 @@ namespace REST.Controllers
 
         // PUT api/<ClientController>/5
         [HttpPut]
-        public async Task<IActionResult> Update(Clients client)
+        public async Task<IActionResult> Update(Client client)
         {
-            Clients clientToUpdate = await _clientBL.UpdateClients(client);
+            Client clientToUpdate = await _clientBL.UpdateClients(client);
             if (clientToUpdate == null) return BadRequest();
             return Ok(clientToUpdate);
         }
@@ -58,7 +58,7 @@ namespace REST.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            Clients client = await _clientBL.DeleteClientById(id);
+            Client client = await _clientBL.DeleteClientById(id);
             if(client == null) return NotFound();
             return Ok();
         }

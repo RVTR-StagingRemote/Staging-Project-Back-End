@@ -15,37 +15,37 @@ namespace REST.BusinessLayer
             _Occupationrepo = Occupationrepo;
         }
 
-        public async Task<Occupations> AddOccupation(Occupations c)
+        public async Task<Occupation> AddOccupation(Occupation c)
         {
             return await _Occupationrepo.AddOccupation(c);
         }
 
-        public async Task<Occupations> FindOccupationById(int OccupationID)
+        public async Task<Occupation> FindOccupationById(int OccupationID)
         {
             return await _Occupationrepo.FindOccupationById(OccupationID);
         }
 
-        public async Task<Occupations> FindOccupationByName(string OccupationName)
+        public async Task<Occupation> FindOccupationByName(string OccupationName)
         {
             return await _Occupationrepo.FindOccupationByName(OccupationName);
         }
 
-        public async Task<List<Occupations>> GetOccupations()
+        public async Task<List<Occupation>> GetOccupations()
         {
             return await _Occupationrepo.GetOccupations();
         }
 
-        public async Task<Occupations> UpdateOccupations(Occupations Occupation)
+        public async Task<Occupation> UpdateOccupations(Occupation Occupation)
         {
             return await _Occupationrepo.UpdateOccupations(Occupation);
         }
 
-        public async Task<Occupations> DeleteOccupationById(int OccupationId)
+        public async Task<Occupation> DeleteOccupationById(int OccupationId)
         {
             return await _Occupationrepo.DeleteOccupationById(OccupationId);
         }
 
-        public async Task<List<Occupations>> GetOccupationsByTag(int topicId)
+        public async Task<List<Occupation>> GetOccupationsByTag(int topicId)
         {
             return await _Occupationrepo.GetOccupationsByTag(topicId);
         }

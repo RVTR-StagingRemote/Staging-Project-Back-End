@@ -13,27 +13,27 @@ namespace REST.BusinessLayer
         /// </summary>
         /// <param name="topics"></param>
         /// <returns>Topics object</returns>
-        Task<Topics> AddTopic(Topics t);
+        Task<Topic> AddTopic(Topic t);
 
         /// <summary>
         ///  get a list of all topics in database 
         /// </summary>
         /// <returns>topics list</returns>
-        Task<List<Topics>> GetTopics();
+        Task<List<Topic>> GetTopics();
 
         /// <summary>
         /// get a topic by a specific id
         /// </summary>
         /// <param name="Id"></param>
         /// <returns>Topics object</returns>
-        Task<Topics> GetTopicsById(int Id);
+        Task<Topic> GetTopicsById(int Id);
 
         /// <summary>
         /// deletes a topic from the database by topic id
         /// </summary>
         /// <param name="Id"></param>
         /// <returns>Topics object</returns>
-        Task<Topics> DeleteTopicById(int Id);
+        Task<Topic> DeleteTopicById(int Id);
 
         /// <summary>
         /// associate an occupation with a topic

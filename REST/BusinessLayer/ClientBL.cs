@@ -14,28 +14,28 @@ namespace REST.BusinessLayer
             _clientRepo = clientrepo;
         }
 
-        public async Task<Clients> AddClient(Clients client)
+        public async Task<Client> AddClient(Client client)
         {
             return await _clientRepo.AddClient(client);
         }
 
-        public async Task<List<Clients>> GetClients()
+        public async Task<List<Client>> GetClients()
         {
             return await _clientRepo.GetClients();
         }
 
-        public async Task<Clients> GetClientsById(int Id)
+        public async Task<Client> GetClientsById(int Id)
         {
             return await _clientRepo.GetClientsById(Id);
             
         }
 
-        public async Task<Clients> UpdateClients(Clients client)
+        public async Task<Client> UpdateClients(Client client)
         {
             return await _clientRepo.UpdateClients(client);
         }
 
-        public async Task<Clients> DeleteClientById(int ClientId)
+        public async Task<Client> DeleteClientById(int ClientId)
         {
             return await _clientRepo.DeleteClientById(ClientId);
         }

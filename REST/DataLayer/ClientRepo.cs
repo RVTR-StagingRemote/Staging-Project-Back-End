@@ -14,7 +14,7 @@ namespace REST.DataLayer
         {
             _context = context;
         }
-        public async Task<Clients> AddClient(Clients client)
+        public async Task<Client> AddClient(Client client)
         {
             await _context.Clients.AddAsync(client);
             await _context.SaveChangesAsync();
@@ -23,17 +23,17 @@ namespace REST.DataLayer
         }
 
 
-        public async Task<List<Clients>> GetClients()
+        public async Task<List<Client>> GetClients()
         {
             return await _context.Clients.AsNoTracking().Select(cl => cl).ToListAsync();
         }
 
-        public Task<Clients> GetClientsById(int Id)
+        public Task<Client> GetClientsById(int Id)
         {
             return _context.Clients.FirstOrDefaultAsync(c => c.ClientId == Id);
         }
 
-        public async Task<Clients> UpdateClients(Clients client)
+        public async Task<Client> UpdateClients(Client client)
         {
             if (_context.Clients.Where(c => c.ClientId == client.ClientId).Select(x => x).Count() == 1) // id exists
             {
@@ -44,9 +44,9 @@ namespace REST.DataLayer
             return null;
         }
 
-        public async Task<Clients> DeleteClientById(int ClientId)
+        public async Task<Client> DeleteClientById(int ClientId)
         {
-            Clients client = await _context.Clients.FirstOrDefaultAsync(c => c.ClientId == ClientId);
+            Client client = await _context.Clients.FirstOrDefaultAsync(c => c.ClientId == ClientId);
             if(client != null)
             {
                 _context.Clients.Remove(client);
