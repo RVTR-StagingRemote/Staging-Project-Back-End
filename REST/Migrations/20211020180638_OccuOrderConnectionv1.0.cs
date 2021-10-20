@@ -2,12 +2,12 @@
 
 namespace REST.Migrations
 {
-    public partial class InitialCreatene0067 : Migration
+    public partial class OccuOrderConnectionv10 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "ClientId",
+                name: "OccupationId",
                 table: "Orders",
                 type: "integer",
                 nullable: false,
@@ -17,7 +17,7 @@ namespace REST.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "ClientId",
+                name: "OccupationId",
                 table: "Orders");
         }
     }
