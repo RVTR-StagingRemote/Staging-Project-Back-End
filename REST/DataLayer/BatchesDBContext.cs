@@ -6,21 +6,16 @@ namespace REST.DataLayer
 {
     public class BatchesDBContext : DbContext
     {
-        public DbSet<Clients> Clients { get; set; }
-        public DbSet<Occupations> Occupations { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Occupation> Occupations { get; set; }
         public DbSet<OccupationsTopicsJoin> OccupationsTopicsJoins { get; set; }
-        public DbSet<OrderDetails> OrderDetails { get; set; }
-        public DbSet<Orders> Orders { get; set; }
-        public DbSet<Topics> Topics { get; set; }
-        public DbSet<User> Users { get; set; }
-
-
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Topic> Topics { get; set; }
         public BatchesDBContext() { }
 
 
         public BatchesDBContext(DbContextOptions options) : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
