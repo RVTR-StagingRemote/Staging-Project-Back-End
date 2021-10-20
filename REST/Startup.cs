@@ -37,13 +37,13 @@ namespace REST
             services.AddScoped<IClientRepo, ClientRepo>();
             services.AddScoped<ITopicRepo, TopicRepo>();
             services.AddScoped<IOrderRepo, OrderRepo>();
-            services.AddScoped<IUserRepo, UserRepo>();
+            //services.AddScoped<IUserRepo, UserRepo>();
 
             services.AddScoped<IOccupationBL, OccupationBL>();
             services.AddScoped<IClientBL, ClientBL>();
             services.AddScoped<IOrderBL, OrderBL>();
             services.AddScoped<ITopicBL, TopicBL>();
-            services.AddScoped<IUserBL, UserBL>();
+            //services.AddScoped<IUserBL, UserBL>();
 
 
             //services.AddDbContext<BatchesDBContext>(opt => opt.UseInMemoryDatabase(databaseName: "TestDatabase"));

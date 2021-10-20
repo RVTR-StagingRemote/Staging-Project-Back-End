@@ -22,7 +22,7 @@ namespace Testing
         [Fact]
         public void GetOrdersReturnsOkObjectResult()
         {
-            mockRepo.Setup(x => x.GetOrders()).ReturnsAsync(new List<Orders>());
+            mockRepo.Setup(x => x.GetOrders()).ReturnsAsync(new List<Order>());
             var controller = new OrderController(mockRepo.Object);
 
             var response = controller.GetOrders();
@@ -33,10 +33,10 @@ namespace Testing
         [Fact]
         public void CreateOrderReturnsCreatedResult()
         {
-            mockRepo.Setup(x => x.PlaceOrder(It.IsAny<Orders>())).ReturnsAsync(new Orders());
+            mockRepo.Setup(x => x.PlaceOrder(It.IsAny<Order>())).ReturnsAsync(new Order());
             var controller = new OrderController(mockRepo.Object);
 
-            var response = controller.CreateOrder(new Orders());
+            var response = controller.CreateOrder(new Order());
             var result = response.Result;
 
             Assert.IsType<CreatedResult>(result);

@@ -28,7 +28,7 @@ namespace Testing
             using (var context = new BatchesDBContext(options))
             {
                 IOccupationRepo repo = new OccupationRepo(context);
-                Occupations c = new Occupations();
+                Occupation c = new Occupation();
                 c.OccupationName = "Rubby";
                 c.Description = "Intro to Rubby";
                 repo.AddOccupation(c);
@@ -101,13 +101,13 @@ namespace Testing
                     );*/
 
                 context.Occupations.AddRange(
-                       new Occupations
+                       new Occupation
                        {
 
                            OccupationName = "java",
                            Description = "Intro to java"
                        },
-                        new Occupations
+                        new Occupation
                         {
 
                             OccupationName = "Python",
