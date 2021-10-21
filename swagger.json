@@ -24,17 +24,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Clients"
+                "$ref": "#/components/schemas/Client"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Clients"
+                "$ref": "#/components/schemas/Client"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Clients"
+                "$ref": "#/components/schemas/Client"
               }
             }
           }
@@ -53,17 +53,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Clients"
+                "$ref": "#/components/schemas/Client"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Clients"
+                "$ref": "#/components/schemas/Client"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Clients"
+                "$ref": "#/components/schemas/Client"
               }
             }
           }
@@ -138,17 +138,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Occupations"
+                "$ref": "#/components/schemas/Occupation"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Occupations"
+                "$ref": "#/components/schemas/Occupation"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Occupations"
+                "$ref": "#/components/schemas/Occupation"
               }
             }
           }
@@ -167,17 +167,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Occupations"
+                "$ref": "#/components/schemas/Occupation"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Occupations"
+                "$ref": "#/components/schemas/Occupation"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Occupations"
+                "$ref": "#/components/schemas/Occupation"
               }
             }
           }
@@ -300,17 +300,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Orders"
+                "$ref": "#/components/schemas/Order"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Orders"
+                "$ref": "#/components/schemas/Order"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Orders"
+                "$ref": "#/components/schemas/Order"
               }
             }
           }
@@ -329,17 +329,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Orders"
+                "$ref": "#/components/schemas/Order"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Orders"
+                "$ref": "#/components/schemas/Order"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Orders"
+                "$ref": "#/components/schemas/Order"
               }
             }
           }
@@ -480,17 +480,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Topics"
+                "$ref": "#/components/schemas/Topic"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Topics"
+                "$ref": "#/components/schemas/Topic"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Topics"
+                "$ref": "#/components/schemas/Topic"
               }
             }
           }
@@ -577,128 +577,14 @@
           }
         }
       }
-    },
-    "/api/User": {
-      "get": {
-        "tags": [
-          "User"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "User"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/User/{id}": {
-      "get": {
-        "tags": [
-          "User"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "User"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
     }
   },
   "components": {
     "schemas": {
-      "OrderDetails": {
+      "OrderLine": {
         "type": "object",
         "properties": {
-          "detailsId": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -721,10 +607,10 @@
         },
         "additionalProperties": false
       },
-      "Orders": {
+      "Order": {
         "type": "object",
         "properties": {
-          "orderId": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -732,29 +618,26 @@
             "type": "integer",
             "format": "int32"
           },
-          "clients": {
-            "$ref": "#/components/schemas/Clients"
-          },
-          "orderName": {
-            "type": "string",
-            "nullable": true
-          },
-          "orderDetails": {
+          "orderLines": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/OrderDetails"
+              "$ref": "#/components/schemas/OrderLine"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "User": {
+      "Client": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
           },
           "email": {
             "type": "string",
@@ -764,54 +647,19 @@
             "type": "string",
             "nullable": true
           },
-          "status": {
-            "type": "boolean"
-          },
-          "role": {
+          "street": {
             "type": "string",
             "nullable": true
           },
-          "clientID": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "State": {
-        "type": "object",
-        "properties": {
-          "stateId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "code": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Clients": {
-        "type": "object",
-        "properties": {
-          "clientId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
+          "city": {
             "type": "string",
             "nullable": true
           },
           "stateProvince": {
+            "type": "string",
+            "nullable": true
+          },
+          "zipCode": {
             "type": "string",
             "nullable": true
           },
@@ -823,39 +671,20 @@
             "type": "string",
             "nullable": true
           },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
           "orders": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Orders"
+              "$ref": "#/components/schemas/Order"
             },
             "nullable": true
-          },
-          "user": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/User"
-            },
-            "nullable": true
-          },
-          "stateId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "state": {
-            "$ref": "#/components/schemas/State"
           }
         },
         "additionalProperties": false
       },
-      "Occupations": {
+      "Occupation": {
         "type": "object",
         "properties": {
-          "occupationId": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -865,6 +694,13 @@
           },
           "description": {
             "type": "string",
+            "nullable": true
+          },
+          "orderLines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderLine"
+            },
             "nullable": true
           }
         },
@@ -876,7 +712,7 @@
           "occupationsToBuy": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Occupations"
+              "$ref": "#/components/schemas/Occupation"
             },
             "nullable": true
           },
@@ -887,10 +723,10 @@
         },
         "additionalProperties": false
       },
-      "Topics": {
+      "Topic": {
         "type": "object",
         "properties": {
-          "topicId": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
