@@ -19,11 +19,6 @@ namespace REST.DataLayer
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("Host=ruby.db.elephantsql.com;Port=5432;Database=ywdscjer;Username=ywdscjer;Password=9QX5_UOPIDeP4crsy1wz-8T3bICBV-mC;");
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
              //  modelBuilder.Entity<Clients>()
