@@ -14,6 +14,10 @@ namespace REST.Models
         [Key]
         public int Id { get; set; }
         public int OccupationId { get; set; }
+
+        ///<summary>
+        ///Id used for the Order Entity
+        ///</summary>
         public int OrderId { get; set; }
         public int AssociateCount { get; set; }
         public DateTime DateNeeded { get; set; }

@@ -47,10 +47,11 @@ namespace REST.DataLayer
         public async Task<Order> DeleteOrderById(int OrderId)
         {
             Order order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == OrderId);
-            //OrderDetails orderDetails = _context.OrderDetails.FirstOrDefault(o => o.DetailsId == OrderId);
-            if(order != null)
+            OrderLine orderLines = _context.OrderLines.FirstOrDefault(o => o.Id == OrderId);
+            if (order != null)
             {
-                //_context.OrderDetails.Remove(orderDetails);
+                if (orderLines != null)
+                    _context.OrderLines.Remove(orderLines);
                 _context.Orders.Remove(order);
                 await _context.SaveChangesAsync();
             }

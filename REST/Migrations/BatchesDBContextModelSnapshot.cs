@@ -179,11 +179,9 @@ namespace REST.Migrations
 
             modelBuilder.Entity("REST.Models.Order", b =>
                 {
-                    b.HasOne("REST.Models.Client", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("REST.Models.Orders", null)
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrdersOrderId");
                 });
 
             modelBuilder.Entity("REST.Models.OrderLine", b =>
