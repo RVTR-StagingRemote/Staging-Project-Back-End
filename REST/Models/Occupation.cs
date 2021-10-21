@@ -1,41 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
 using FluentValidation;
 
 namespace REST.Models
 {
-    ///<summary>
-    ///This class handles information and functionality for a Occupation
-    ///</summary>.
-    public class Occupations
+    public class Occupation
     {
-        /// <summary>
-        /// Id used to target the Occupation entity
-        /// </summary>
         [Key]
-        public int OccupationId { get; set; }
-
-        /// <summary>
-        /// name for the Occupation entity
-        /// </summary>
+        public int Id { get; set; }
         public string OccupationName { get; set; }
-
-        /// <summary>
-        /// description of the Occupation entity
-        /// </summary>
         public string Description { get; set; }
-
-
-
-        public Occupations()
+        public ICollection<OrderLine> OrderLines { get; set; }
+        public Occupation()
         {
-
         }
     }
 
-    public class OccupationsValidator : AbstractValidator<Occupations>
+    public class OccupationsValidator : AbstractValidator<Occupation>
     {
         public OccupationsValidator()
         {

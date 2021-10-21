@@ -17,11 +17,11 @@ namespace REST.BusinessLayer
             _clientRepo = clientRepo;
         }
 
-        public async Task<Orders> PlaceOrder(Orders order)
+        public async Task<Order> PlaceOrder(Order order)
         {
             //Clients cl = await _clientRepo.GetClientsById(ClientId);
             //Orders order = new Orders();
-            order.OrderName = buildCode();
+            //order.OrderName = buildCode();
             //order.Clients = cl;
             //order.OrderDetails = OrderItems;
             return await _orderRepo.PlaceOrder(order);
@@ -33,27 +33,27 @@ namespace REST.BusinessLayer
            return temp.Substring(0, 17).Replace("/", "").Replace(":", "").Replace(" ", "");
        }
 
-        public async Task<List<Orders>> GetOrders()
+        public async Task<List<Order>> GetOrders()
         {
             return await _orderRepo.GetOrders();
         }
 
-        public async Task<Orders> GetOrdersById(int Id)
+        public async Task<Order> GetOrdersById(int Id)
         {
             return await _orderRepo.GetOrdersById(Id);
         }
 
-        public async Task<Orders>UpdateOrders(Orders order)
+        public async Task<Order>UpdateOrders(Order order)
         {
             return await _orderRepo.UpdateOrders(order);
         }
 
-        public async Task<Orders> DeleteOrderById(int OrderId)
+        public async Task<Order> DeleteOrderById(int OrderId)
         {
             return await _orderRepo.DeleteOrderById(OrderId);
         }
 
-        public async Task<List<Orders>> GetOrdersByClientId(int ClientId)
+        public async Task<List<Order>> GetOrdersByClientId(int ClientId)
         {
             return await _orderRepo.GetOrdersByClientId(ClientId);
         }

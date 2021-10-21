@@ -15,27 +15,27 @@ namespace REST.BusinessLayer
             _topicRepo = topicRepo;
         }
 
-        public async Task<Topics> AddTopic(Topics t)
+        public async Task<Topic> AddTopic(Topic t)
         {
             return await _topicRepo.AddTopic(t);
         }
 
-        public async Task<List<Topics>> GetTopics()
+        public async Task<List<Topic>> GetTopics()
         {
             return await _topicRepo.GetTopics();
         }
 
-        public async Task<Topics> GetTopicsById(int Id)
+        public async Task<Topic> GetTopicsById(int Id)
         {
             return await _topicRepo.GetTopicsById(Id);
         }
 
-        public async Task<Topics> UpdateTopic(Topics t)
+        public async Task<Topic> UpdateTopic(Topic t)
         {
             return await _topicRepo.UpdateTopics(t);
         }
 
-        public async Task<Topics> DeleteTopicById(int Id)
+        public async Task<Topic> DeleteTopicById(int Id)
         {
             return await _topicRepo.DeleteTopicById(Id);
         }

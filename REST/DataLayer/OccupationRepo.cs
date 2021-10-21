@@ -16,24 +16,24 @@ namespace REST.DataLayer
         }
 
 
-        public async Task<List<Occupations>> GetOccupations()
+        public async Task<List<Occupation>> GetOccupations()
         {
             return await _context.Occupations.AsNoTracking().Select(c => c).ToListAsync();
         }
 
-        public async Task<Occupations> AddOccupation(Occupations Occupation)
+        public async Task<Occupation> AddOccupation(Occupation Occupation)
         {
             await _context.Occupations.AddAsync(Occupation);
             await _context.SaveChangesAsync();
             return Occupation;
         }
 
-        public async Task<Occupations> FindOccupationById(int OccupationId)
+        public async Task<Occupation> FindOccupationById(int OccupationId)
         {
-            return await _context.Occupations.FirstOrDefaultAsync(c => c.OccupationId == OccupationId);
+            return await _context.Occupations.FirstOrDefaultAsync(c => c.Id == OccupationId);
         }
 
-        public async Task<Occupations> FindOccupationByName(string OccupationName)
+        public async Task<Occupation> FindOccupationByName(string OccupationName)
         {
 
 
@@ -41,9 +41,9 @@ namespace REST.DataLayer
 
         }
 
-        public async Task<Occupations> UpdateOccupations(Occupations occupation)
+        public async Task<Occupation> UpdateOccupations(Occupation occupation)
         {
-            if (_context.Occupations.Where(o => o.OccupationId == occupation.OccupationId).Select(x => x).Count() == 1) // id exists
+            if (_context.Occupations.Where(o => o.Id == occupation.Id).Select(x => x).Count() == 1) // id exists
             {
                 _context.Occupations.Update(occupation);
                 await _context.SaveChangesAsync();
@@ -52,9 +52,9 @@ namespace REST.DataLayer
             return null;
         }
 
-        public async Task<Occupations> DeleteOccupationById(int OccupationId)
+        public async Task<Occupation> DeleteOccupationById(int OccupationId)
         {
-            Occupations Occupation = await _context.Occupations.FirstOrDefaultAsync(c => c.OccupationId == OccupationId);
+            Occupation Occupation = await _context.Occupations.FirstOrDefaultAsync(c => c.Id == OccupationId);
             if(Occupation != null)
             {
                 _context.Occupations.Remove(Occupation);
@@ -64,11 +64,11 @@ namespace REST.DataLayer
             return Occupation;
         }
 
-        public async Task<List<Occupations>> GetOccupationsByTag(int topicId)
+        public async Task<List<Occupation>> GetOccupationsByTag(int topicId)
         {
             var list = await _context.OccupationsTopicsJoins.AsNoTracking().Select(c => c).Where(t => t.TopicsId == topicId).ToListAsync();
 
-            List<Occupations> Occupations = new List<Occupations>();
+            List<Occupation> Occupations = new List<Occupation>();
             foreach (var x in list)
             {
                 var Occupation = await FindOccupationById(x.OccupationsId);

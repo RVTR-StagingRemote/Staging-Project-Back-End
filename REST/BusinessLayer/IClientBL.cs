@@ -13,13 +13,13 @@ namespace REST.BusinessLayer
         /// </summary>
         /// <param name="client"></param>
         /// <returns>Client object</returns>
-        Task<Clients> AddClient(Clients client);
+        Task<Client> AddClient(Client client);
 
         /// <summary>
         /// get all the clients in the database
         /// </summary>
         /// <returns>List of clients</returns>
-        Task<List<Clients>> GetClients();
+        Task<List<Client>> GetClients();
 
         /// <summary>
         /// get a client by client id
@@ -27,21 +27,21 @@ namespace REST.BusinessLayer
         /// <param name="id"></param>
         /// <returns>Client object</returns>ram>
         /// <returns></returns>
-        Task<Clients> GetClientsById(int Id);
+        Task<Client> GetClientsById(int Id);
 
         /// <summary>
         /// updates a client's info in the database
         /// </summary>
         /// <param name="client"></param>
         /// <returns>Clients object or null if no object found</returns>
-        Task<Clients> UpdateClients(Clients client);
+        Task<Client> UpdateClients(Client client);
 
         /// <summary>
         /// remove a client from the data base by client id
         /// </summary>
         /// <param name="ClientId"></param>
         /// <returns>Client object</returns>
-        Task<Clients> DeleteClientById(int ClientId);
+        Task<Client> DeleteClientById(int ClientId);
 
     }
 

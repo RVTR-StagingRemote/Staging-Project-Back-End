@@ -9,40 +9,24 @@ namespace REST.Models
     ///<summary>
     ///This class handles the information of an order
     ///</summary>.
-    public class OrderDetails
+    public class OrderLine
     {
-        ///<summary>
-        ///Id used to target the OrderDetails Entity
-        ///</summary>
         [Key]
-        public int DetailsId { get; set; }
-
-        ///<summary>
-        ///Id used for the Occupation entity
-        ///</summary>
+        public int Id { get; set; }
         public int OccupationId { get; set; }
-        public Occupations Occupations{ get; set; }
 
         ///<summary>
         ///Id used for the Order Entity
         ///</summary>
         public int OrderId { get; set; }
-
-        ///<summary>
-        ///Number of associates requested
-        ///</summary>
         public int AssociateCount { get; set; }
-
-        ///<summary>
-        ///Date the request should be filled by
-        ///</summary>
         public DateTime DateNeeded { get; set; }
-        public OrderDetails()
+        public OrderLine()
         {
         }
     }
 
-    public class OrderDetailsValidator : AbstractValidator<OrderDetails>
+    public class OrderDetailsValidator : AbstractValidator<OrderLine>
     {
         public OrderDetailsValidator()
         {

@@ -56,7 +56,7 @@ namespace Rest.Controllers
         }
 
         // TODO: determine how prices are stored in the DB for each Occupation
-        private int CalculateOrderAmount(Occupations[] OccupationsToBuy)
+        private int CalculateOrderAmount(Occupation[] OccupationsToBuy)
         {
             // Replace this constant with a calculation of the order's amount
             // Calculate the order total on the server to prevent

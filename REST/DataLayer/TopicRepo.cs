@@ -15,26 +15,26 @@ namespace REST.DataLayer
             _context = context;
         }
 
-        public async Task<Topics> AddTopic(Topics topics)
+        public async Task<Topic> AddTopic(Topic topics)
         {
             await _context.Topics.AddAsync(topics);
             await _context.SaveChangesAsync();
             return topics;
         }
 
-        public async Task<List<Topics>> GetTopics()
+        public async Task<List<Topic>> GetTopics()
         {
             return await _context.Topics.AsNoTracking().Select(tp => tp).ToListAsync();
         }
 
-        public async Task<Topics> GetTopicsById(int Id)
+        public async Task<Topic> GetTopicsById(int Id)
         {
-            return await _context.Topics.FirstOrDefaultAsync(c => c.TopicId == Id);
+            return await _context.Topics.FirstOrDefaultAsync(c => c.Id == Id);
         }
 
-        public async Task<Topics> UpdateTopics(Topics topic)
+        public async Task<Topic> UpdateTopics(Topic topic)
         {
-            if (_context.Topics.Where(t => t.TopicId == topic.TopicId).Select(x => x).Count() == 1) // id exists
+            if (_context.Topics.Where(t => t.Id == topic.Id).Select(x => x).Count() == 1) // id exists
             {
                 _context.Topics.Update(topic);
                 await _context.SaveChangesAsync();
@@ -43,9 +43,9 @@ namespace REST.DataLayer
             return null;
         }
 
-        public async Task<Topics> DeleteTopicById(int Id)
+        public async Task<Topic> DeleteTopicById(int Id)
         {
-            Topics topic = await _context.Topics.FirstOrDefaultAsync(t => t.TopicId == Id);
+            Topic topic = await _context.Topics.FirstOrDefaultAsync(t => t.Id == Id);
             if (topic != null)
             {
                 _context.Topics.Remove(topic);
@@ -62,8 +62,8 @@ namespace REST.DataLayer
 
             if (alreadyExists == null)
             {
-                Topics topic = await GetTopicsById(topicId);
-                Occupations Occupation = await _context.Occupations.FirstOrDefaultAsync(c => c.OccupationId == OccupationId);
+                Topic topic = await GetTopicsById(topicId);
+                Occupation Occupation = await _context.Occupations.FirstOrDefaultAsync(c => c.Id == OccupationId);
 
                 if (topic != null && Occupation != null)
                 {

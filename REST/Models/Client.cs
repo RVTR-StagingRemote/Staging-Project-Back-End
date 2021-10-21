@@ -9,67 +9,41 @@ namespace REST.Models
     ///<summary>
     ///This class handles information and functionality for a Client
     ///</summary>
-    public class Clients
+    public class Client
     {
-        /// <summary>
-        /// Id used to target the Client entity
-        /// </summary>
         [Key]
-        public int ClientId { get; set; }
-
-        /// <summary>
-        /// Name of the Client entity
-        /// </summary>
+        public int Id { get; set; }
         public string Name { get; set; }
-
-        /// <summary>
-        /// Address of the Client entity
-        /// </summary>
-        public string Address { get; set; }
-
-        /// <summary>
-        /// State/Province of the Client entity
-        /// </summary>
-        public string StateProvince { get; set; }
-
-        /// <summary>
-        /// Country of the Client entity
-        /// </summary>
-        public string Country { get; set; }
-
-        /// <summary>
-        /// Phone number of the Client entity
-        /// </summary>
-        public string Phone { get; set; }
-
-        /// <summary>
-        /// Email of the Client entity
-        /// </summary>
         public string Email { get; set; }
+        public string Password { get; set; }
+        public string Street { get; set; }
+        public string City { get; set; }
+        public string StateProvince { get; set; }
+        public string ZipCode { get; set; }
+        public string Country { get; set; }
+        public string Phone { get; set; }
+        public ICollection<Order> Orders { get; set; }
 
-        public ICollection<Orders>? Orders { get; set; }
-        public ICollection<User>? User { get; set; }
-
-        public int? StateId { get; set; }
-
-        public State State { get; set; }
-        public Clients()
+        public Client()
         {
-
         }
     }
 
-    public class ClientsValidator : AbstractValidator<Clients>
+    public class ClientsValidator : AbstractValidator<Client>
     {
         public ClientsValidator()
         {
             RuleFor(c => c.Name)
+              .NotNull()
               .Length(2, 50)
               .WithMessage("Must be inbetween 2 and 50 characters");
             RuleFor(c => c.Email)
               .EmailAddress()
               .WithMessage("Not a valid email address");
-            RuleFor(c => c.Address)
+            RuleFor(c => c.Street)
+              .Length(2, 50)
+              .WithMessage("Must be inbetween 2 and 50 characters");
+            RuleFor(c => c.City)
               .Length(2, 50)
               .WithMessage("Must be inbetween 2 and 50 characters");
             RuleFor(c => c.StateProvince)

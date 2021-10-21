@@ -40,7 +40,7 @@ namespace REST.Controllers
 
         // POST api/<TopicsController>
         [HttpPost]
-        public async Task<ActionResult> Post(Topics t)
+        public async Task<ActionResult> Post(Topic t)
         {
             return Created("api/AddTopics", await _topicBl.AddTopic(t));
         }
@@ -49,7 +49,7 @@ namespace REST.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            Topics topic = await _topicBl.DeleteTopicById(id);
+            Topic topic = await _topicBl.DeleteTopicById(id);
             if (topic != null) return Ok(topic);
             else return NotFound();
         }

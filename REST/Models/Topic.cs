@@ -9,29 +9,21 @@ namespace REST.Models
     ///<summary>
     ///This class handles information about Topics for Occupations
     ///</summary>
-    public class Topics
+    public class Topic
     {
-        ///<summary>
-        ///Id used to target the Topics Entity
-        ///</summary>
         [Key]
-        public int TopicId { get; set; }
-
-        ///<summary>
-        ///Name of topics entity
-        ///</summary>
+        public int Id { get; set; }
         public string TopicName { get; set; }
-
-        public Topics()
+        public Topic()
         {
         }
     }
     
-    public class TopicsValidator :AbstractValidator<Topics>
+    public class TopicsValidator :AbstractValidator<Topic>
     {
         public TopicsValidator()
         {
-            RuleFor(t => t.TopicId)
+            RuleFor(t => t.Id)
                 .NotNull()
                 .WithMessage("Must include topic ID.");
             RuleFor(t => t.TopicName)

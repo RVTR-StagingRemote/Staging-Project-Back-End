@@ -15,12 +15,12 @@ namespace REST.DataLayer
             _context = context;
         }
 
-        public async Task<List<Orders>> GetOrders()
+        public async Task<List<Order>> GetOrders()
         {
             return await _context.Orders.AsNoTracking().Select(order => order).ToListAsync();
         }
 
-        public async Task<Orders> PlaceOrder(Orders order)
+        public async Task<Order> PlaceOrder(Order order)
         {
             await _context.Orders.AddAsync(order);
             await _context.SaveChangesAsync();
@@ -28,14 +28,14 @@ namespace REST.DataLayer
             return order;
         }
 
-        public async Task<Orders> GetOrdersById(int Id)
+        public async Task<Order> GetOrdersById(int Id)
         {
-            return await _context.Orders.AsNoTracking().Include(o => o.OrderDetails).SingleOrDefaultAsync(o => o.OrderId == Id);
+            return await _context.Orders.AsNoTracking().SingleOrDefaultAsync(o => o.Id == Id);
         }
 
-        public async Task<Orders> UpdateOrders(Orders order)
+        public async Task<Order> UpdateOrders(Order order)
         {
-            if (_context.Orders.Where(o => o.OrderId == order.OrderId).Select(x => x).Count() == 1) // id exists
+            if (_context.Orders.Where(o => o.Id == order.Id).Select(x => x).Count() == 1) // id exists
             {
                 _context.Orders.Update(order);
                 await _context.SaveChangesAsync();
@@ -44,14 +44,14 @@ namespace REST.DataLayer
             return null;
         }
 
-        public async Task<Orders> DeleteOrderById(int OrderId)
+        public async Task<Order> DeleteOrderById(int OrderId)
         {
-            Orders order = await _context.Orders.FirstOrDefaultAsync(o => o.OrderId == OrderId);
-            OrderDetails orderDetails = _context.OrderDetails.FirstOrDefault(o => o.DetailsId == OrderId);
-            if(order != null)
+            Order order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == OrderId);
+            OrderLine orderLines = _context.OrderLines.FirstOrDefault(o => o.Id == OrderId);
+            if (order != null)
             {
-                if (orderDetails != null)
-                    _context.OrderDetails.Remove(orderDetails);
+                if (orderLines != null)
+                    _context.OrderLines.Remove(orderLines);
                 _context.Orders.Remove(order);
                 await _context.SaveChangesAsync();
             }
@@ -59,9 +59,9 @@ namespace REST.DataLayer
             return order;
         }
 
-        public async Task<List<Orders>> GetOrdersByClientId(int ClientId)
+        public async Task<List<Order>> GetOrdersByClientId(int ClientId)
         {
-            return await _context.Orders.AsNoTracking().Include(o => o.OrderDetails).Select(order => order).Where(o => o.ClientId == ClientId).ToListAsync();
+            return await _context.Orders.AsNoTracking().Select(order => order).Where(o => o.ClientId == ClientId).ToListAsync();
         }
 
     }

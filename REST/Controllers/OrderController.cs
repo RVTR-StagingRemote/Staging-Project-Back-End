@@ -36,7 +36,7 @@ namespace REST.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrdersById(int id)
         {
-            Orders order = await _orderBL.GetOrdersById(id);
+            Order order = await _orderBL.GetOrdersById(id);
             if(order == null) return NotFound();
             return Ok(order);
         }
@@ -48,7 +48,7 @@ namespace REST.Controllers
         [HttpGet("GetOrdersByClientId/{ClientId}")]
         public async Task<IActionResult> GetOrdersByClientId(int ClientId)
         {
-            List<Orders> order = await _orderBL.GetOrdersByClientId(ClientId);
+            List<Order> order = await _orderBL.GetOrdersByClientId(ClientId);
             if (order.Count() == 0) return NotFound();
             return Ok(order);
         }
@@ -59,7 +59,7 @@ namespace REST.Controllers
         ///<param name="clients"></param>
         ///<param name="orderDetails"></param>
         [HttpPost]
-        public async Task<IActionResult> CreateOrder(Orders order)
+        public async Task<IActionResult> CreateOrder(Order order)
         {
             return Created("api", await _orderBL.PlaceOrder(order));
         }
@@ -69,9 +69,9 @@ namespace REST.Controllers
         ///</summary>
         ///<param name="order"></param>
         [HttpPut]
-        public async Task<IActionResult> UpdateOrder(Orders order)
+        public async Task<IActionResult> UpdateOrder(Order order)
         {
-            Orders orderToUpdate = await _orderBL.UpdateOrders(order);
+            Order orderToUpdate = await _orderBL.UpdateOrders(order);
             if (orderToUpdate == null) return BadRequest();
             return Ok(orderToUpdate);
         }
@@ -83,7 +83,7 @@ namespace REST.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
-            Orders order = await _orderBL.DeleteOrderById(id);
+            Order order = await _orderBL.DeleteOrderById(id);
             if(order == null) return NotFound();
             return Ok(order);
         }

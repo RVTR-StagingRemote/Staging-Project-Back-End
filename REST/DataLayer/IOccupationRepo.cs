@@ -13,48 +13,48 @@ namespace REST.DataLayer
         /// </summary>
         /// <param name="Occupation"></param>
         /// <returns>Occupations object</returns>
-        public Task<Occupations> AddOccupation(Occupations Occupation);
+        public Task<Occupation> AddOccupation(Occupation Occupation);
 
         /// <summary>
         /// get a list of all occupations in the database
         /// </summary>
         /// <returns>Occupation list</returns>
-        public Task<List<Occupations>> GetOccupations();
+        public Task<List<Occupation>> GetOccupations();
 
         /// <summary>
         /// find Occupation by OccupationId
         /// </summary>
         /// <param name="OccupationId"></param>
         /// <returns>Occupations object</returns>
-        public Task<Occupations> FindOccupationById(int OccupationId);
+        public Task<Occupation> FindOccupationById(int OccupationId);
 
         /// <summary>
         /// get Occupation by it's name
         /// </summary>
         /// <param name="OccupationName"></param>
         /// <returns>Occupations object</returns>
-        public Task<Occupations> FindOccupationByName(string OccupationName);
+        public Task<Occupation> FindOccupationByName(string OccupationName);
 
        /// <summary>
        /// update an occupation in the database
        /// </summary>
        /// <param name="Occupation"></param>
        /// <returns>Occupation object or null if no object found</returns>
-        public Task<Occupations> UpdateOccupations(Occupations Occupation);
+        public Task<Occupation> UpdateOccupations(Occupation Occupation);
 
         /// <summary>
         /// delete an occupation from the database by occupation id
         /// </summary>
         /// <param name="OccupationId"></param>
         /// <returns>Occupation object</returns>
-        public Task<Occupations> DeleteOccupationById(int OccupationId);
+        public Task<Occupation> DeleteOccupationById(int OccupationId);
 
         /// <summary>
         /// get all occupations assoicated with a certian topic 
         /// </summary>
         /// <param name="topicId"></param>
         /// <returns>list of occupations</returns>
-        public Task<List<Occupations>> GetOccupationsByTag(int topicId);
+        public Task<List<Occupation>> GetOccupationsByTag(int topicId);
 
     }
 }
