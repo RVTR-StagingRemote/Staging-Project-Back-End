@@ -10,6 +10,7 @@ namespace REST.DataLayer
         public DbSet<Occupation> Occupations { get; set; }
         public DbSet<OccupationsTopicsJoin> OccupationsTopicsJoins { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public BatchesDBContext() { }
 
@@ -18,25 +19,30 @@ namespace REST.DataLayer
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql("Host=ruby.db.elephantsql.com;Port=5432;Database=ywdscjer;Username=ywdscjer;Password=9QX5_UOPIDeP4crsy1wz-8T3bICBV-mC;");
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /*   modelBuilder.Entity<Clients>()
-                 .HasKey(cl => cl.ClientId);
+             //  modelBuilder.Entity<Clients>()
+             //    .HasKey(cl => cl.ClientId);
 
-               modelBuilder.Entity<Occupations>()
-                .HasKey(c => c.OccupationId);
+             //  modelBuilder.Entity<Occupations>()
+             //   .HasKey(c => c.OccupationId);
 
-               modelBuilder.Entity<Orders>()
-               .HasKey(o=> o.OrderId);
+             //  modelBuilder.Entity<Orders>()
+             //  .HasKey(o=> o.OrderId);
 
-               modelBuilder.Entity<OrderDetails>()
-              .HasKey(od => od.DetailsId);
+             //  modelBuilder.Entity<OrderDetails>()
+             // .HasKey(od => od.DetailsId);
 
-               modelBuilder.Entity<Topics>()
-              .HasKey(t => t.TopicId);
+             //  modelBuilder.Entity<Topics>()
+             // .HasKey(t => t.TopicId);
 
-               modelBuilder.Entity<OccupationsTopicsJoin>()
-             .HasKey(ctj => ctj.JoinId);*/
+             //  modelBuilder.Entity<OccupationsTopicsJoin>()
+             //.HasKey(ctj => ctj.JoinId);
 
 
         }

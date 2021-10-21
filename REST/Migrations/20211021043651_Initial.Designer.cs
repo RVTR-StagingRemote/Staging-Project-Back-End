@@ -10,8 +10,8 @@ using REST.DataLayer;
 namespace REST.Migrations
 {
     [DbContext(typeof(BatchesDBContext))]
-    [Migration("20211020180638_OccuOrderConnectionv1.0")]
-    partial class OccuOrderConnectionv10
+    [Migration("20211021043651_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,13 +23,10 @@ namespace REST.Migrations
 
             modelBuilder.Entity("REST.Models.Client", b =>
                 {
-                    b.Property<int>("ClientId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Address")
-                        .HasColumnType("text");
 
                     b.Property<string>("City")
                         .HasColumnType("text");
@@ -58,15 +55,17 @@ namespace REST.Migrations
                     b.Property<string>("ZipCode")
                         .HasColumnType("text");
 
-                    b.HasKey("ClientId");
+                    b.HasKey("Id");
 
                     b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("REST.Models.Occupation", b =>
                 {
-                    b.Property<int>("OccupationId")
-                        .HasColumnType("integer");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -74,7 +73,7 @@ namespace REST.Migrations
                     b.Property<string>("OccupationName")
                         .HasColumnType("text");
 
-                    b.HasKey("OccupationId");
+                    b.HasKey("Id");
 
                     b.ToTable("Occupations");
                 });
@@ -103,15 +102,29 @@ namespace REST.Migrations
 
             modelBuilder.Entity("REST.Models.Order", b =>
                 {
-                    b.Property<int>("OrderId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("REST.Models.OrderLine", b =>
+                {
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("AssociateCount")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ClientId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("DateNeeded")
@@ -120,16 +133,21 @@ namespace REST.Migrations
                     b.Property<int>("OccupationId")
                         .HasColumnType("integer");
 
-                    b.HasKey("OrderId");
+                    b.Property<int>("OrderId")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("ClientId");
+                    b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.HasIndex("OccupationId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderLines");
                 });
 
             modelBuilder.Entity("REST.Models.Topic", b =>
                 {
-                    b.Property<int>("TopicId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -137,20 +155,9 @@ namespace REST.Migrations
                     b.Property<string>("TopicName")
                         .HasColumnType("text");
 
-                    b.HasKey("TopicId");
+                    b.HasKey("Id");
 
                     b.ToTable("Topics");
-                });
-
-            modelBuilder.Entity("REST.Models.Occupation", b =>
-                {
-                    b.HasOne("REST.Models.Order", "Order")
-                        .WithOne("Occupation")
-                        .HasForeignKey("REST.Models.Occupation", "OccupationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("REST.Models.OccupationsTopicsJoin", b =>
@@ -181,14 +188,34 @@ namespace REST.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("REST.Models.OrderLine", b =>
+                {
+                    b.HasOne("REST.Models.Occupation", null)
+                        .WithMany("OrderLines")
+                        .HasForeignKey("OccupationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("REST.Models.Order", null)
+                        .WithMany("OrderLines")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("REST.Models.Client", b =>
                 {
                     b.Navigation("Orders");
                 });
 
+            modelBuilder.Entity("REST.Models.Occupation", b =>
+                {
+                    b.Navigation("OrderLines");
+                });
+
             modelBuilder.Entity("REST.Models.Order", b =>
                 {
-                    b.Navigation("Occupation");
+                    b.Navigation("OrderLines");
                 });
 #pragma warning restore 612, 618
         }

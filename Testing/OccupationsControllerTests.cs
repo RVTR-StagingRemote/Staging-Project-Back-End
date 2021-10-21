@@ -34,7 +34,7 @@ namespace Testing
         [Fact]
         public void FindOccupationByIdReturnsOk()
         {
-            mockRepo.Setup(x => x.FindOccupationById(It.IsAny<int>())).ReturnsAsync(new Occupation() { OccupationId = 1, Description = "Test Occupation", OccupationName = "Test" });
+            mockRepo.Setup(x => x.FindOccupationById(It.IsAny<int>())).ReturnsAsync(new Occupation() { Id = 1, Description = "Test Occupation", OccupationName = "Test" });
             var controller = new OccupationController(mockRepo.Object);
 
             var response = controller.FindOccupationById(1);
@@ -46,7 +46,7 @@ namespace Testing
         [Fact]
         public void FindOccupationByNameReturnsOk()
         {
-            mockRepo.Setup(x => x.FindOccupationByName(It.IsAny<string>())).ReturnsAsync(new Occupation() { OccupationId = 1, Description = "Test Occupation", OccupationName = "Test" });
+            mockRepo.Setup(x => x.FindOccupationByName(It.IsAny<string>())).ReturnsAsync(new Occupation() { Id = 1, Description = "Test Occupation", OccupationName = "Test" });
             var controller = new OccupationController(mockRepo.Object);
 
             var response = controller.FindOccupationByName("Test");
@@ -58,7 +58,7 @@ namespace Testing
         [Fact]
         public void AddOccupationReturnsCreated()
         {
-            Occupation Occupation = new Occupation() { OccupationId = 1, OccupationName = "Test", Description = "Test Occupation" };
+            Occupation Occupation = new Occupation() { Id = 1, OccupationName = "Test", Description = "Test Occupation" };
             mockRepo.Setup(x => x.AddOccupation(It.IsAny<Occupation>()));
             var controller = new OccupationController(mockRepo.Object);
 

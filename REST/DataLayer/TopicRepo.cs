@@ -29,12 +29,12 @@ namespace REST.DataLayer
 
         public async Task<Topic> GetTopicsById(int Id)
         {
-            return await _context.Topics.FirstOrDefaultAsync(c => c.TopicId == Id);
+            return await _context.Topics.FirstOrDefaultAsync(c => c.Id == Id);
         }
 
         public async Task<Topic> UpdateTopics(Topic topic)
         {
-            if (_context.Topics.Where(t => t.TopicId == topic.TopicId).Select(x => x).Count() == 1) // id exists
+            if (_context.Topics.Where(t => t.Id == topic.Id).Select(x => x).Count() == 1) // id exists
             {
                 _context.Topics.Update(topic);
                 await _context.SaveChangesAsync();
@@ -45,7 +45,7 @@ namespace REST.DataLayer
 
         public async Task<Topic> DeleteTopicById(int Id)
         {
-            Topic topic = await _context.Topics.FirstOrDefaultAsync(t => t.TopicId == Id);
+            Topic topic = await _context.Topics.FirstOrDefaultAsync(t => t.Id == Id);
             if (topic != null)
             {
                 _context.Topics.Remove(topic);
@@ -63,7 +63,7 @@ namespace REST.DataLayer
             if (alreadyExists == null)
             {
                 Topic topic = await GetTopicsById(topicId);
-                Occupation Occupation = await _context.Occupations.FirstOrDefaultAsync(c => c.OccupationId == OccupationId);
+                Occupation Occupation = await _context.Occupations.FirstOrDefaultAsync(c => c.Id == OccupationId);
 
                 if (topic != null && Occupation != null)
                 {

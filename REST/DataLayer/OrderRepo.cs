@@ -30,12 +30,12 @@ namespace REST.DataLayer
 
         public async Task<Order> GetOrdersById(int Id)
         {
-            return await _context.Orders.AsNoTracking().SingleOrDefaultAsync(o => o.OrderId == Id);
+            return await _context.Orders.AsNoTracking().SingleOrDefaultAsync(o => o.Id == Id);
         }
 
         public async Task<Order> UpdateOrders(Order order)
         {
-            if (_context.Orders.Where(o => o.OrderId == order.OrderId).Select(x => x).Count() == 1) // id exists
+            if (_context.Orders.Where(o => o.Id == order.Id).Select(x => x).Count() == 1) // id exists
             {
                 _context.Orders.Update(order);
                 await _context.SaveChangesAsync();
@@ -46,7 +46,7 @@ namespace REST.DataLayer
 
         public async Task<Order> DeleteOrderById(int OrderId)
         {
-            Order order = await _context.Orders.FirstOrDefaultAsync(o => o.OrderId == OrderId);
+            Order order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == OrderId);
             //OrderDetails orderDetails = _context.OrderDetails.FirstOrDefault(o => o.DetailsId == OrderId);
             if(order != null)
             {

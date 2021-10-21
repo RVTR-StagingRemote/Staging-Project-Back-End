@@ -12,7 +12,7 @@ namespace REST.Models
     public class Topic
     {
         [Key]
-        public int TopicId { get; set; }
+        public int Id { get; set; }
         public string TopicName { get; set; }
         public Topic()
         {
@@ -23,7 +23,7 @@ namespace REST.Models
     {
         public TopicsValidator()
         {
-            RuleFor(t => t.TopicId)
+            RuleFor(t => t.Id)
                 .NotNull()
                 .WithMessage("Must include topic ID.");
             RuleFor(t => t.TopicName)

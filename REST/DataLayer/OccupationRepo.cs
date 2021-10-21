@@ -30,7 +30,7 @@ namespace REST.DataLayer
 
         public async Task<Occupation> FindOccupationById(int OccupationId)
         {
-            return await _context.Occupations.FirstOrDefaultAsync(c => c.OccupationId == OccupationId);
+            return await _context.Occupations.FirstOrDefaultAsync(c => c.Id == OccupationId);
         }
 
         public async Task<Occupation> FindOccupationByName(string OccupationName)
@@ -43,7 +43,7 @@ namespace REST.DataLayer
 
         public async Task<Occupation> UpdateOccupations(Occupation occupation)
         {
-            if (_context.Occupations.Where(o => o.OccupationId == occupation.OccupationId).Select(x => x).Count() == 1) // id exists
+            if (_context.Occupations.Where(o => o.Id == occupation.Id).Select(x => x).Count() == 1) // id exists
             {
                 _context.Occupations.Update(occupation);
                 await _context.SaveChangesAsync();
@@ -54,7 +54,7 @@ namespace REST.DataLayer
 
         public async Task<Occupation> DeleteOccupationById(int OccupationId)
         {
-            Occupation Occupation = await _context.Occupations.FirstOrDefaultAsync(c => c.OccupationId == OccupationId);
+            Occupation Occupation = await _context.Occupations.FirstOrDefaultAsync(c => c.Id == OccupationId);
             if(Occupation != null)
             {
                 _context.Occupations.Remove(Occupation);

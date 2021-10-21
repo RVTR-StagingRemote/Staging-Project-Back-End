@@ -10,12 +10,10 @@ namespace REST.Models
     public class Occupation
     {
         [Key]
-        [ForeignKey("Order")]
-        public int OccupationId { get; set; }
+        public int Id { get; set; }
         public string OccupationName { get; set; }
         public string Description { get; set; }
-        // this for 1 to 1 relationship between occupations table and orders table
-        public virtual Order Order { get; set; }
+        public ICollection<OrderLine> OrderLines { get; set; }
         public Occupation()
         {
         }
