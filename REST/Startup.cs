@@ -83,7 +83,9 @@ namespace REST
             // TODO: for security, make sure this is more defined later on
             app.UseCors(opts => opts.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
-            app.UseHttpsRedirection();
+            if (env.IsDevelopment()){
+                app.UseHttpsRedirection();
+            }
 
             app.UseRouting();
 
