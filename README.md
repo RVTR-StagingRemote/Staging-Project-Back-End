@@ -69,7 +69,6 @@ The Backend of the Employee Hiring tool should be able to handle the following t
 12. As a developer, I should be able to Reset my login credentials,
 13. As Admin, I should be able to add new course/topic
 <br />
-<br />
 
 ## Getting Started
 
