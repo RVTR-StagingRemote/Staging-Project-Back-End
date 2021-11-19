@@ -8,7 +8,7 @@ using FluentValidation;
 namespace REST.Models
 {
     ///<summary>
-    ///This class handles information and functionality for a Client
+    ///This class handles information and functionality for scheduling and recording interviews
     ///</summary>
     public class Interview
     {
@@ -21,6 +21,14 @@ namespace REST.Models
 
         public Interview()
         {
+        }
+    }
+
+    public class InterviewValidator : AbstractValidator<Interview>
+    {
+        public InterviewValidator()
+        {
+
         }
     }
 }

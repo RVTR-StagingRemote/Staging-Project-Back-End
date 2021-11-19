@@ -8,7 +8,7 @@ using FluentValidation;
 namespace REST.Models
 {
     ///<summary>
-    ///This class handles information and functionality for a Client
+    ///This class handles information and functionality for the job role history of an applicant and their willingness to be marketed on that job role
     ///</summary>
     public class ApplicantOccupation
     {
@@ -24,6 +24,20 @@ namespace REST.Models
 
         public ApplicantOccupation()
         {
+        }
+    }
+
+    public class ApplicantOccupationValidator : AbstractValidator<ApplicantOccupation>
+    {
+        public ApplicantOccupationValidator()
+        {
+            RuleFor(a => a.JobTitle)
+              .NotNull()
+              .Length(2, 50)
+              .WithMessage("Must be inbetween 2 and 50 characters");
+            RuleFor(a => a.YearsExperience)
+              .InclusiveBetween(0,80)
+              .WithMessage("Must be between 0 and 80");
         }
     }
 }

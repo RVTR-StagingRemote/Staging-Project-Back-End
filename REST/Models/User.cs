@@ -20,4 +20,15 @@ namespace REST.Models
         {
         }
     }
+
+    public class UserValidator : AbstractValidator<User>
+    {
+        public UserValidator()
+        {
+            RuleFor(u => u.Password)
+              .NotNull()
+              .Length(6, 50)
+              .WithMessage("Must be inbetween 6 and 50 characters");
+        }
+    }
 }

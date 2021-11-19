@@ -8,7 +8,7 @@ using FluentValidation;
 namespace REST.Models
 {
     ///<summary>
-    ///This class handles information and functionality for a Client
+    ///This class handles information and functionality for the application of an applicant to a Client's needs
     ///</summary>
     public class Application
     {
@@ -31,6 +31,14 @@ namespace REST.Models
 
         public Application()
         {
+        }
+    }
+
+    public class ApplicationValidator : AbstractValidator<Application>
+    {
+        public ApplicationValidator()
+        {
+
         }
     }
 }
