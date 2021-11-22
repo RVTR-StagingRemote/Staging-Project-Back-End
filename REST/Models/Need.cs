@@ -7,31 +7,24 @@ using FluentValidation;
 namespace REST.Models
 {
     ///<summary>
-    ///This class handles information and functionality for a Company
+    ///This class handles information and functionality for a Client
     ///</summary>
-    public class Client
+    public class Need
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string StateProvince { get; set; }
-        public string ZipCode { get; set; }
-        public string Country { get; set; }
-        public string Phone { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        public Company Company {get; set; }
+        public Occupation Role {get; set; }
+        public Order OrderMet {get; set; }
 
-        public Client()
+        public Need()
         {
         }
     }
 
-    public class CompanyValidator : AbstractValidator<Client>
+    public class NeedValidator : AbstractValidator<Need>
     {
-        public CompanyValidator()
+        public NeedValidator()
         {
             RuleFor(c => c.Name)
               .NotNull()

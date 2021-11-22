@@ -16,6 +16,7 @@ namespace REST.Models
         public Order()
         {
         }
+        public Client clientObj {get; set; }
 
     }
     public class OrdersValidator : AbstractValidator<Order>
