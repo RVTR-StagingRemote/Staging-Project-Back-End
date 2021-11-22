@@ -28,6 +28,7 @@ namespace REST.Models
         public Need Need { get; set; }
         public DateTime DateOfApplication { get; set; }
         public int Status { get; set; }
+        public List<Interview> Interviews { get; set; }
 
         public Application()
         {

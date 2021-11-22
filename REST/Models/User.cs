@@ -15,6 +15,9 @@ namespace REST.Models
         public int UserId { get; set; }
         public string Password { get; set; }
         public bool Approved { get; set; }
+        public Owner Owner { get; set; }
+        public Applicant Applicant { get; set; }
+        public Client Client { get; set; }
 
         public User()
         {

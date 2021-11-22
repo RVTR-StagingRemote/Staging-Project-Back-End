@@ -10,6 +10,13 @@ namespace REST.DataLayer
         public DbSet<ApplicantOccupation> ApplicantOccupations { get; set; }
         public DbSet<Application> Applications { get; set; }
         public DbSet<Interview> Interviews { get; set; }
+        public DbSet<Applicant> Applicants { get; set; }
+        public DbSet<ApplicantSkill> ApplicantSkills { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Need> Needs { get; set; }
+        public DbSet<Owner> Owners { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<SkillNeed> SkillNeeds { get; set; }
         public BatchesDBContext() { }
 
 
@@ -34,6 +41,35 @@ namespace REST.DataLayer
               modelBuilder.Entity<Interview>()
               .Property(i=>i.InterviewId)
               .ValueGeneratedOnAdd();
+
+              modelBuilder.Entity<Applicant>()
+              .Property(a=>a.ApplicantId)
+              .ValueGeneratedOnAdd();
+
+              modelBuilder.Entity<ApplicantSkill>()
+              .Property(a=>a.ApplicantSkillId)
+              .ValueGeneratedOnAdd();
+
+              modelBuilder.Entity<Client>()
+              .Property(c=>c.ClientId)
+              .ValueGeneratedOnAdd();
+
+              modelBuilder.Entity<Need>()
+              .Property(n=>n.NeedId)
+              .ValueGeneratedOnAdd();
+
+              modelBuilder.Entity<Owner>()
+              .Property(o=>o.OwnerId)
+              .ValueGeneratedOnAdd();
+
+              modelBuilder.Entity<Skill>()
+              .Property(s=>s.SkillId)
+              .ValueGeneratedOnAdd();
+
+              modelBuilder.Entity<SkillNeed>()
+              .Property(s=>s.SkillNeedId)
+              .ValueGeneratedOnAdd();
+
         }
 
 
