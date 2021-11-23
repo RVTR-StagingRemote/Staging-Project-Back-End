@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+// Revisit, ensure the service applies to our entity model, refactor if needed
 namespace REST.BusinessLayer
 {
     public class ClientBL:IClientBL
