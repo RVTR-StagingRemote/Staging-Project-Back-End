@@ -1,4 +1,6 @@
-﻿using REST.Models;
+﻿// Depreciated, to be refactored for IApplicationOccupationBL ***
+
+/* using REST.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,4 +59,4 @@ namespace REST.BusinessLayer
         Task<List<Occupation>> GetOccupationsByTag(int topicId);
 
     }
-}
+} */

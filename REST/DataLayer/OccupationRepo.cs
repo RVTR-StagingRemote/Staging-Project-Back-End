@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// Depreciated, to be refactored for ApplicationOccupationRepo ***
+
+/* using Microsoft.EntityFrameworkCore;
 using REST.Models;
 using System;
 using System.Collections.Generic;
@@ -78,4 +80,4 @@ namespace REST.DataLayer
             return Occupations;
         }
     }
-}
+} */

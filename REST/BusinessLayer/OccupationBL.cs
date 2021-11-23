@@ -1,4 +1,6 @@
-﻿using REST.DataLayer;
+﻿// Depreciated, to be refactored for ApplicationOccupationBL ***
+
+/* using REST.DataLayer;
 using REST.Models;
 using System;
 using System.Collections.Generic;
@@ -51,4 +53,4 @@ namespace REST.BusinessLayer
         }
 
     }
-}
+} */

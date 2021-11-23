@@ -1,4 +1,6 @@
-﻿using REST.Models;
+﻿// Depreciated, to be refactored for INeedBL ***
+
+/* using REST.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,4 +51,4 @@ namespace REST.BusinessLayer
         /// <returns>list of orders</returns>
         Task<List<Order>> GetOrdersByClientId(int ClientId);
     }
-}
+} */
