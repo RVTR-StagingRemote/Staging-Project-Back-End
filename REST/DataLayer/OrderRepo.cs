@@ -1,9 +1,11 @@
-﻿// using Microsoft.EntityFrameworkCore;
-// using REST.Models;
-// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Threading.Tasks;
+﻿﻿// Depreciated, to be refactored as NeedRepo ***
+
+/* using Microsoft.EntityFrameworkCore;
+using REST.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 // namespace REST.DataLayer
 // {
@@ -64,5 +66,5 @@
 //             return await _context.Orders.AsNoTracking().Select(order => order).Where(o => o.ClientId == ClientId).ToListAsync();
 //         }
 
-//     }
-// }
+    }
+} */

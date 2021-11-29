@@ -1,9 +1,11 @@
-﻿// using Microsoft.EntityFrameworkCore;
-// using REST.Models;
-// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Threading.Tasks;
+﻿﻿// Depreciated, to be refactored for ApplicationOccupationRepo ***
+
+/* using Microsoft.EntityFrameworkCore;
+using REST.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 // namespace REST.DataLayer
 // {
@@ -75,7 +77,7 @@
 //                 Occupations.Add(Occupation);
 //             }
 
-//             return Occupations;
-//         }
-//     }
-// }
+            return Occupations;
+        }
+    }
+} */

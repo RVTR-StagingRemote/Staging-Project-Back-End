@@ -1,9 +1,11 @@
-// using System;
-// using System.Collections.Generic;
-// using System.Threading.Tasks;
-// using Microsoft.AspNetCore.Mvc;
-// using REST.Models;
-// using Stripe;
+// Depreciated technology; maybe reintroduced in the next iteration
+
+/* using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using REST.Models;
+using Stripe;
 
 // namespace Rest.Controllers
 // {
@@ -55,14 +57,14 @@
 //             throw new NotImplementedException();
 //         }
 
-//         // TODO: determine how prices are stored in the DB for each Occupation
-//         private int CalculateOrderAmount(Occupation[] OccupationsToBuy)
-//         {
-//             // Replace this constant with a calculation of the order's amount
-//             // Calculate the order total on the server to prevent
-//             // people from directly manipulating the amount on the client
-//             int pricePerOccupation = 2000; // Placeholder cost per Occupation, 2000 is equal to $20 usd
-//             return pricePerOccupation * OccupationsToBuy.Length;
-//         }
-//     }
-// }
+        // TODO: determine how prices are stored in the DB for each Occupation
+        private int CalculateOrderAmount(Occupation[] OccupationsToBuy)
+        {
+            // Replace this constant with a calculation of the order's amount
+            // Calculate the order total on the server to prevent
+            // people from directly manipulating the amount on the client
+            int pricePerOccupation = 2000; // Placeholder cost per Occupation, 2000 is equal to $20 usd
+            return pricePerOccupation * OccupationsToBuy.Length;
+        }
+    }
+} */

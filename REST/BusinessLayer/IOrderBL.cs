@@ -1,8 +1,10 @@
-﻿// using REST.Models;
-// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Threading.Tasks;
+﻿﻿// Depreciated, to be refactored for INeedBL ***
+
+/* using REST.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 // namespace REST.BusinessLayer
 // {
@@ -42,11 +44,11 @@
 //         /// <returns>Orders object</returns>
 //         Task<Order> DeleteOrderById(int OrderId);
 
-//         /// <summary>
-//         /// get all orders place by a specific client by client id
-//         /// </summary>
-//         /// <param name="ClientId"></param>
-//         /// <returns>list of orders</returns>
-//         Task<List<Order>> GetOrdersByClientId(int ClientId);
-//     }
-// }
+        /// <summary>
+        /// get all orders place by a specific client by client id
+        /// </summary>
+        /// <param name="ClientId"></param>
+        /// <returns>list of orders</returns>
+        Task<List<Order>> GetOrdersByClientId(int ClientId);
+    }
+} */
