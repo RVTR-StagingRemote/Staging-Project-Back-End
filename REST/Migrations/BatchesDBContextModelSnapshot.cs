@@ -283,6 +283,9 @@ namespace REST.Migrations
                     b.Property<bool>("Approved")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
