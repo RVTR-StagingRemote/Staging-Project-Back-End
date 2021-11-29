@@ -13,6 +13,7 @@ namespace REST.Models
     {
         [Key]
         public int UserId { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
         public bool Approved { get; set; }
         public Owner Owner { get; set; }
@@ -32,6 +33,10 @@ namespace REST.Models
               .NotNull()
               .Length(6, 50)
               .WithMessage("Must be inbetween 6 and 50 characters");
+
+            RuleFor(u => u.Email)
+              .EmailAddress()
+              .WithMessage("Not a valid email address");
         }
     }
 }
