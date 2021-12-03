@@ -15,6 +15,20 @@ namespace REST.DataLayer
         {
             _context = context;
         }
+        /// <summary>
+        /// Get Clients
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Client>> GetClients()
+        {
+            return await _context.Clients.AsNoTracking().Select(cl => cl).ToListAsync();
+        }
+
+        /// <summary>
+        /// Add Clients
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
         public async Task<Client> AddClient(Client client)
         {
             await _context.Clients.AddAsync(client);
@@ -22,21 +36,24 @@ namespace REST.DataLayer
 
             return client;
         }
-
-
-        public async Task<List<Client>> GetClients()
-        {
-            return await _context.Clients.AsNoTracking().Select(cl => cl).ToListAsync();
-        }
-
+        /// <summary>
+        /// Get specific client by their Id
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public Task<Client> GetClientsById(int Id)
         {
-            return _context.Clients.FirstOrDefaultAsync(c => c.Id == Id);
+            return _context.Clients.FirstOrDefaultAsync(c => c.ClientId == Id);
         }
 
+        /// <summary>
+        /// Update a client
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
         public async Task<Client> UpdateClients(Client client)
         {
-            if (_context.Clients.Where(c => c.Id == client.Id).Select(x => x).Count() == 1) // id exists
+            if (_context.Clients.Where(c => c.ClientId == client.ClientId).Select(x => x).Count() == 1) // id exists
             {
                 _context.Clients.Update(client);
                 await _context.SaveChangesAsync();
@@ -45,9 +62,14 @@ namespace REST.DataLayer
             return null;
         }
 
+        /// <summary>
+        /// Remove a Client
+        /// </summary>
+        /// <param name="ClientId"></param>
+        /// <returns></returns>
         public async Task<Client> DeleteClientById(int ClientId)
         {
-            Client client = await _context.Clients.FirstOrDefaultAsync(c => c.Id == ClientId);
+            Client client = await _context.Clients.FirstOrDefaultAsync(c => c.ClientId == ClientId);
             if(client != null)
             {
                 _context.Clients.Remove(client);

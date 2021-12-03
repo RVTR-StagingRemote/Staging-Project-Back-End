@@ -34,13 +34,13 @@ namespace REST
             services.AddControllers();
             
             services.AddScoped<IOccupationRepo, OccupationRepo>();
-            services.AddScoped<IClientRepo, ClientRepo>();
+            services.AddScoped<DataLayer.IClientRepo, ClientRepo>();
             services.AddScoped<ITopicRepo, TopicRepo>();
             services.AddScoped<IOrderRepo, OrderRepo>();
             //services.AddScoped<IUserRepo, UserRepo>();
 
             services.AddScoped<IOccupationBL, OccupationBL>();
-            services.AddScoped<IClientBL, ClientBL>();
+            services.AddScoped<IClientBL, BusinessLayer.IClientRepo>();
             services.AddScoped<IOrderBL, OrderBL>();
             services.AddScoped<ITopicBL, TopicBL>();
             //services.AddScoped<IUserBL, UserBL>();
