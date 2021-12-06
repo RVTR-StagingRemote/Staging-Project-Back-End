@@ -81,7 +81,7 @@ namespace REST.Controllers
         }
 
         // <summary>
-        /// Delete Comment 
+        /// Delete Client 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
