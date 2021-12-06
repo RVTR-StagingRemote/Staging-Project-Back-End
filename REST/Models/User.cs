@@ -18,7 +18,9 @@ namespace REST.Models
         public bool Approved { get; set; }
         public Owner Owner { get; set; }
         public Applicant Applicant { get; set; }
-        public Client Client { get; set; }
+        public ClientUser ClientUser { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
         public User()
         {
@@ -37,6 +39,16 @@ namespace REST.Models
             RuleFor(u => u.Email)
               .EmailAddress()
               .WithMessage("Not a valid email address");
+
+            RuleFor(u => u.FirstName)
+              .NotNull()
+              .Length(2, 50)
+              .WithMessage("Must be inbetween 2 and 50 characters");
+
+            RuleFor(u => u.LastName)
+              .NotNull()
+              .Length(2, 50)
+              .WithMessage("Must be inbetween 2 and 50 characters");
         }
     }
 }
