@@ -1,4 +1,6 @@
-﻿using REST.DataLayer;
+﻿// Depreciated, to be refactored for NeedBL ***
+
+/* using REST.DataLayer;
 using REST.Models;
 using System;
 using System.Collections.Generic;
@@ -58,4 +60,4 @@ namespace REST.BusinessLayer
             return await _orderRepo.GetOrdersByClientId(ClientId);
         }
     }
-}
+} */

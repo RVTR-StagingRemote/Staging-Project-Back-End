@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using REST.DataLayer;
@@ -9,9 +10,10 @@ using REST.DataLayer;
 namespace REST.Migrations
 {
     [DbContext(typeof(BatchesDBContext))]
-    partial class BatchesDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211122223725_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -282,9 +284,6 @@ namespace REST.Migrations
 
                     b.Property<bool>("Approved")
                         .HasColumnType("boolean");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
 
                     b.Property<string>("Password")
                         .HasColumnType("text");

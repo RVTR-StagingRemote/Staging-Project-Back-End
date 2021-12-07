@@ -1,4 +1,6 @@
-﻿using REST.Models;
+﻿// Depreciated, to be refactored for IApplicationOccupationRepo ***
+
+/* using REST.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,4 +59,4 @@ namespace REST.DataLayer
         public Task<List<Occupation>> GetOccupationsByTag(int topicId);
 
     }
-}
+} */

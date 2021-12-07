@@ -1,4 +1,6 @@
-using System;
+// Depreciated technology; maybe reintroduced in the next iteration
+
+/* using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -65,4 +67,4 @@ namespace Rest.Controllers
             return pricePerOccupation * OccupationsToBuy.Length;
         }
     }
-}
+} */

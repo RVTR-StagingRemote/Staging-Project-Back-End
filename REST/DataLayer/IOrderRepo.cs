@@ -1,4 +1,6 @@
-﻿using REST.Models;
+﻿// Depreciated, to be refactored as INeedRepo ***
+
+/* using REST.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,4 +51,4 @@ namespace REST.DataLayer
         /// <returns>list of orders</returns>
         public Task<List<Order>> GetOrdersByClientId(int ClientId);
     }
-}
+} */
