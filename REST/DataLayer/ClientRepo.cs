@@ -67,9 +67,9 @@ namespace REST.DataLayer
         /// </summary>
         /// <param name="ClientId"></param>
         /// <returns></returns>
-        public async Task<Client> DeleteClientById(int ClientId)
+        public async Task<Client> DeleteClientById(int clientId)
         {
-            Client client = await _context.Clients.FirstOrDefaultAsync(c => c.ClientId == ClientId);
+            Client client = await _context.Clients.FirstOrDefaultAsync(c => c.ClientId == clientId);
             if(client != null)
             {
                 _context.Clients.Remove(client);

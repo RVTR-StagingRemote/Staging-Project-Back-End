@@ -1,4 +1,5 @@
-﻿using REST.BusinessLayer;
+﻿using Microsoft.EntityFrameworkCore;
+using REST.BusinessLayer;
 using REST.Models;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,10 @@ namespace REST.DataLayer
         /// <returns>Need object</returns>
         public async Task<Need> AddNeed(Need need)
         {
+            await _context.Needs.AddAsync(need);
+            await _context.SaveChangesAsync();
 
+            return need;
         }
 
         /// <summary>
@@ -31,7 +35,7 @@ namespace REST.DataLayer
         /// <returns>List of needs</returns>
         public async Task<List<Need>> GetNeeds()
         {
-
+            return await _context.Needs.AsNoTracking().Select(n => n).ToListAsync();
         }
 
         /// <summary>
@@ -40,9 +44,9 @@ namespace REST.DataLayer
         /// <param name="id"></param>
         /// <returns>Need object</returns>ram>
         /// <returns></returns>
-        public async Task<Need> GetNeedsById(int Id)
+        public Task<Need> GetNeedsById(int Id)
         {
-
+            return _context.Needs.FirstOrDefaultAsync(n => n.NeedId == Id);
         }
 
         /// <summary>
@@ -52,7 +56,13 @@ namespace REST.DataLayer
         /// <returns>Needs object or null if no object found</returns>
         public async Task<Need> UpdateNeeds(Need need)
         {
-
+            if (_context.Needs.Where(c => c.NeedId == need.NeedId).Select(x => x).Count() == 1) // id exists
+            {
+                _context.Needs.Update(need);
+                await _context.SaveChangesAsync();
+                return need;
+            }
+            return null;
         }
 
         /// <summary>
@@ -62,7 +72,14 @@ namespace REST.DataLayer
         /// <returns>Needs object</returns>
         public async Task<Need> DeleteNeedById(int needId)
         {
+            Need need = await _context.Needs.FirstOrDefaultAsync(n => n.NeedId == needId);
+            if (need != null)
+            {
+                _context.Needs.Remove(need);
+                await _context.SaveChangesAsync();
+            }
 
+            return need;
         }
     }
 }
