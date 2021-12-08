@@ -16,8 +16,7 @@ namespace REST.Models
         public int ApplicantId { get; set; }
         public byte[] Resume { get; set; }
         public string AboutMe { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+
         public string EducationLevel { get; set; }
         public string EducationField { get; set; }
         public string EmploymentStatus { get; set; }
@@ -39,14 +38,7 @@ namespace REST.Models
               .NotNull()
               .Length(2, 50)
               .WithMessage("Must be inbetween 2 and 50 characters");
-            RuleFor(c => c.FirstName)
-              .NotNull()
-              .Length(2, 50)
-              .WithMessage("Must be inbetween 2 and 50 characters");
-            RuleFor(c => c.LastName)
-              .NotNull()
-              .Length(2, 50)
-              .WithMessage("Must be inbetween 2 and 50 characters");
+
             RuleFor(c => c.EducationLevel)
               .NotNull()
               .Length(2, 50)

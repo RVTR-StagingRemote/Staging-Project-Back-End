@@ -15,10 +15,8 @@ namespace REST.Models
         [Key]
         public int ClientId { get; set; }
         public string CompanyName { get; set; }
-        [ForeignKey("User")]
-        public int UserId { get; set; }
-        public User User { get; set; }
         public List<Need> Needs{ get; set; }
+        public List<ClientUser> ClientUsers { get; set; }
 
         public Client()
         {

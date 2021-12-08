@@ -17,6 +17,7 @@ namespace REST.DataLayer
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<SkillNeed> SkillNeeds { get; set; }
+        public DbSet<ClientUser> ClientUsers { get; set; }
         public BatchesDBContext() { }
 
 
@@ -68,6 +69,10 @@ namespace REST.DataLayer
 
               modelBuilder.Entity<SkillNeed>()
               .Property(s=>s.SkillNeedId)
+              .ValueGeneratedOnAdd();
+
+              modelBuilder.Entity<ClientUser>()
+              .Property(cu=>cu.ClientUserId)
               .ValueGeneratedOnAdd();
 
         }
