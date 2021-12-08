@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 // Revisit, ensure the Repo applies to our entity model, refactor if needed
 namespace REST.DataLayer
 {
-   public interface IClientRepo
+    public interface IClientRepo
     {
+        /// <summary>
+        /// get all the clients in the database
+        /// </summary>
+        /// <returns>List of clients</returns>
+        public Task<List<Client>> GetClients();
+
+
         /// <summary>
         /// add new client in the Database
         /// </summary>
@@ -17,16 +24,10 @@ namespace REST.DataLayer
         public Task<Client> AddClient(Client client);
 
         /// <summary>
-        /// get all the clients in the database
+        /// updates a client's info in the database
         /// </summary>
-        /// <returns>List of clients</returns>
-        public Task<List<Client>> GetClients();
-
-         /// <summary>
-         /// updates a client's info in the database
-         /// </summary>
-         /// <param name="client"></param>
-         /// <returns>Clients object or null if no object found</returns>
+        /// <param name="client"></param>
+        /// <returns>Clients object or null if no object found</returns>
         public Task<Client> UpdateClients(Client client);
 
         /// <summary>
