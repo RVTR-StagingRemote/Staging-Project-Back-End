@@ -32,6 +32,11 @@ namespace REST
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddScoped<IApplicantBL, ApplicantBL>();
+            services.AddScoped<IApplicantRepo, ApplicantRepo>();
+            services.AddScoped<IApplicantOccupationRepo, ApplicantOccupationRepo>();
+            services.AddScoped<IApplicantSkillRepo, ApplicantSkillRepo>();
             
             // services.AddScoped<IOccupationRepo, OccupationRepo>();
             // services.AddScoped<IClientRepo, ClientRepo>();
