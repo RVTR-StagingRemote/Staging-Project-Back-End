@@ -29,14 +29,14 @@ namespace REST.DataLayer
             return await _context.ApplicantOccupations.AsNoTracking().Select(ao => ao).ToListAsync();
         }
 
-        public async Task<ApplicantOccupation> GetApplicantOccupationById(int Id)
+        public async Task<ApplicantOccupation> GetApplicantOccupationById(int id)
         {
-            return await _context.ApplicantOccupations.FirstOrDefaultAsync(ao => ao.ApplicantOccupationId == Id);
+            return await _context.ApplicantOccupations.FirstOrDefaultAsync(ao => ao.ApplicantOccupationId == id);
         }
 
-        public async Task<List<ApplicantOccupation>> GetApplicantOccupationByApplicantId(int Id)
+        public async Task<List<ApplicantOccupation>> GetApplicantOccupationByApplicantId(int id)
         {
-            return await _context.ApplicantOccupations.AsNoTracking().Select(ao=>ao).Where(ao => ao.ApplicantId == Id).ToListAsync();
+            return await _context.ApplicantOccupations.AsNoTracking().Select(ao=>ao).Where(ao => ao.ApplicantId == id).ToListAsync();
         }
 
         public async Task<ApplicantOccupation> UpdateApplicantOccupation(ApplicantOccupation applicantOccupation)
