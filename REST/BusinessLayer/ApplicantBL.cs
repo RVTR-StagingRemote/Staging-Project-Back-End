@@ -78,9 +78,9 @@ namespace REST.BusinessLayer
         {
             return await _applicantSkillRepo.GetApplicantSkillsByApplicantId(applicantId);
         }
-        public async Task<List<ApplicantSkill>> GetApplicantSkillsBySkillId(int SkillId)
+        public async Task<List<ApplicantSkill>> GetApplicantSkillsBySkillId(int skillId)
         {
-            return await _applicantSkillRepo.GetApplicantSkillsBySkillId(SkillId);
+            return await _applicantSkillRepo.GetApplicantSkillsBySkillId(skillId);
         }
         public async Task<ApplicantSkill> DeleteApplicantSkill(int applicantSkillId)
         {
