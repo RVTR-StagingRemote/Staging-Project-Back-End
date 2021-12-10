@@ -29,9 +29,9 @@ namespace REST.DataLayer
             return await _context.Applicants.AsNoTracking().Select(ap => ap).ToListAsync();
         }
 
-        public async Task<Applicant> GetApplicantById(int Id)
+        public async Task<Applicant> GetApplicantById(int id)
         {
-            return await _context.Applicants.FirstOrDefaultAsync(ap => ap.ApplicantId == Id);
+            return await _context.Applicants.FirstOrDefaultAsync(ap => ap.ApplicantId == id);
         }
 
         public async Task<Applicant> UpdateApplicant(Applicant applicant)
