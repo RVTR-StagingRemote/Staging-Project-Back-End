@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -10,29 +11,41 @@ namespace REST.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class OwnersController : ControllerBase{
-        private readonly IOwnerBL _ownerBL;
-        public OwnersController(IOwnerBL ownerBL)
+        private readonly IOwnerRepo _ownerRepo;
+        public OwnersController(IOwnerRepo ownerRepo)
         {
-            _ownerBL = ownerBL;
+            _ownerRepo = ownerRepo;
         }
 
-        // get Owners
-        [HttpGet]
-        public async Task<IActionResult> GetOwnersAsync(){
-            List<Owner> owners = await _ownerBL.GetOwnersAsync();
-            if(owners == null)
+        // post Owner
+        [HttpPost]
+        public async Task<IActionResult> PostOwnerAsync(Owner owner)
+        {
+            Console.WriteLine(owner);
+            if (owner == null)
             {
-                return NotFound();
-            }else{
-                return Ok(owners);
+                throw new System.ArgumentNullException(nameof(owner));
             }
-            
+            Owner newOwner = await _ownerRepo.CreateOwnerAsync(owner);
+            return CreatedAtAction(nameof(GetOwnerByIdAsync), new { id = newOwner.OwnerId }, newOwner);
+        }
+
+        // delete Owner
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteOwnerByIdAsync(int id)
+        {
+            string result = await _ownerRepo.DeleteOwnerByIdAsync(id);
+            if (result == "Owner deleted")
+            {
+                return Ok(result);
+            }
+            return NotFound($"No user with id {id} found");
         }
 
         // get Owner{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOwnerByIdAsync(int id){
-            Owner owner = await _ownerBL.GetOwnerByIdAsync(id);
+            Owner owner = await _ownerRepo.GetOwnerByIdAsync(id);
             if(owner == null)
             {
                 return NotFound();
@@ -41,41 +54,36 @@ namespace REST.Controllers
             }
         }
 
-        // post Owner
-        [HttpPost]
-        public async Task<IActionResult> PostOwnerAsync([FromBody] Owner owner){
-            if(owner == null)
+        // get Owners
+        [HttpGet]
+        public async Task<IActionResult> GetOwnersAsync()
+        {
+            List<Owner> owners = await _ownerRepo.GetOwnersAsync();
+            if (owners == null)
             {
-                throw new System.ArgumentNullException(nameof(owner));
+                return NotFound();
             }
-            Owner newOwner = await _ownerBL.AddOwnerAsync(owner);
-            return CreatedAtAction(nameof(GetOwnerByIdAsync), new { id = newOwner.OwnerId }, newOwner);
+            else
+            {
+                return Ok(owners);
+            }
+
         }
 
         // put Owner
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOwnerAsync(int id, [FromBody] Owner owner){
-            if(owner == null)
+        public async Task<IActionResult> PutOwnerAsync(int id, [FromBody] Owner owner)
+        {
+            if (owner == null)
             {
                 throw new System.ArgumentNullException(nameof(owner));
             }
-            Owner updatedOwner = await _ownerBL.UpdateOwnerAsync(owner);
-            if(updatedOwner == null)
+            Owner updatedOwner = await _ownerRepo.UpdateOwnerAsync(owner);
+            if (updatedOwner == null)
             {
                 return NotFound();
             }
             return Ok(updatedOwner);
-        }
-
-        // delete Owner
-        [HttpDelete("{id}")]
-        public  async Task<IActionResult> DeleteOwnerByIdAsync(int id){
-            string result = await _ownerBL.DeleteOwnerByIdAsync(id);
-            if(result == "Owner deleted")
-            {
-                return Ok(result);
-            }
-            return NotFound($"No user with id {id} found");
         }
         
 

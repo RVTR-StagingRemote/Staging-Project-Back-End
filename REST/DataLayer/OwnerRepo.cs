@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using REST.Models;
+using REST.BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,20 +19,22 @@ namespace REST.DataLayer
 
 /// <summary>
 /// Creates an owner. Currently having issues making an owner because of applicant resume
-/// causing convering error form JSON to byte[].
+/// causing convering error form JSON to byte[]. **Temp workaround set Appplicant{resume} to null in API test**
 /// </summary>
 /// <param name="owner"></param>
 /// <returns>Owner owner</returns>
         public async Task<Owner> CreateOwnerAsync(Owner owner)
         {
-            if(owner == null)
-            {
-                throw new ArgumentNullException(nameof(owner));
-            }else{
-                _context.Owners.Add(owner);
-                await _context.SaveChangesAsync();
-                return owner;
-            }
+            Console.WriteLine(owner);
+            _context.Owners.Add(owner);
+            await _context.SaveChangesAsync();
+            return owner;
+            //if (owner == null)
+            //{
+            //    throw new ArgumentNullException(nameof(owner));
+            //}else{
+
+            //}
         }
 
 /// <summary>
