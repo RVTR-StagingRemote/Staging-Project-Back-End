@@ -41,6 +41,7 @@ namespace REST
             //services.AddScoped<IOccupationRepo, OccupationRepo>();
             services.AddScoped<IClientRepo, ClientRepo>();
             services.AddScoped<INeedRepo, NeedRepo>();
+            services.AddScoped<IOwnerRepo, OwnerRepo>();
             //services.AddScoped<ITopicRepo, TopicRepo>();
             //services.AddScoped<IOrderRepo, OrderRepo>();
             //services.AddScoped<IUserRepo, UserRepo>();
@@ -54,7 +55,10 @@ namespace REST
             //services.AddDbContext<BatchesDBContext>(opt => opt.UseInMemoryDatabase(databaseName: "TestDatabase"));
 
             // TODO use when psql database is good to use
-            services.AddDbContext<BatchesDBContext>(opts => opts.UseNpgsql(Configuration.GetConnectionString("batchesDB")));
+
+              services.AddDbContext<BatchesDBContext>(opts => opts.UseNpgsql(Configuration.GetConnectionString("batchesDB")));
+
+            
 
             services.AddSingleton(_ => Configuration);
 
