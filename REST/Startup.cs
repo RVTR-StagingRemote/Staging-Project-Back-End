@@ -33,6 +33,13 @@ namespace REST
         {
             services.AddControllers();
 
+            services.AddScoped<IApplicantBL, ApplicantBL>();
+            services.AddScoped<IApplicantRepo, ApplicantRepo>();
+            services.AddScoped<IApplicantOccupationRepo, ApplicantOccupationRepo>();
+            services.AddScoped<IApplicantSkillRepo, ApplicantSkillRepo>();
+            
+            //services.AddScoped<IOccupationRepo, OccupationRepo>();
+
             services.AddScoped<IClientRepo, ClientRepo>();
             services.AddScoped<INeedRepo, NeedRepo>();
             services.AddScoped<IUserBL, UserBL>();
