@@ -1,0 +1,109 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace REST.Migrations
+{
+    public partial class updateusermodel3 : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Users_Applicants_ApplicantId",
+                table: "Users");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Users_ClientUsers_ClientUserId",
+                table: "Users");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Users_Owners_OwnerId",
+                table: "Users");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Users_ApplicantId",
+                table: "Users");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Users_ClientUserId",
+                table: "Users");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Users_OwnerId",
+                table: "Users");
+
+            migrationBuilder.DropColumn(
+                name: "ApplicantId",
+                table: "Users");
+
+            migrationBuilder.DropColumn(
+                name: "ClientUserId",
+                table: "Users");
+
+            migrationBuilder.DropColumn(
+                name: "OwnerId",
+                table: "Users");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AddColumn<int>(
+                name: "ApplicantId",
+                table: "Users",
+                type: "integer",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<int>(
+                name: "ClientUserId",
+                table: "Users",
+                type: "integer",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<int>(
+                name: "OwnerId",
+                table: "Users",
+                type: "integer",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_ApplicantId",
+                table: "Users",
+                column: "ApplicantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_ClientUserId",
+                table: "Users",
+                column: "ClientUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_OwnerId",
+                table: "Users",
+                column: "OwnerId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Users_Applicants_ApplicantId",
+                table: "Users",
+                column: "ApplicantId",
+                principalTable: "Applicants",
+                principalColumn: "ApplicantId",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Users_ClientUsers_ClientUserId",
+                table: "Users",
+                column: "ClientUserId",
+                principalTable: "ClientUsers",
+                principalColumn: "ClientUserId",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Users_Owners_OwnerId",
+                table: "Users",
+                column: "OwnerId",
+                principalTable: "Owners",
+                principalColumn: "OwnerId",
+                onDelete: ReferentialAction.Cascade);
+        }
+    }
+}

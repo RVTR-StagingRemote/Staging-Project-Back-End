@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using REST.DataLayer;
@@ -9,9 +10,10 @@ using REST.DataLayer;
 namespace REST.Migrations
 {
     [DbContext(typeof(BatchesDBContext))]
-    partial class BatchesDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220103212220_revertusermodel")]
+    partial class revertusermodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +48,8 @@ namespace REST.Migrations
 
                     b.HasKey("ApplicantId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Applicants");
                 });
@@ -164,7 +167,8 @@ namespace REST.Migrations
 
                     b.HasIndex("ClientID");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("UserID")
+                        .IsUnique();
 
                     b.ToTable("ClientUsers");
                 });
@@ -239,7 +243,8 @@ namespace REST.Migrations
 
                     b.HasKey("OwnerId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Owners");
                 });
@@ -311,8 +316,8 @@ namespace REST.Migrations
             modelBuilder.Entity("REST.Models.Applicant", b =>
                 {
                     b.HasOne("REST.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("Applicant")
+                        .HasForeignKey("REST.Models.Applicant", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -385,8 +390,8 @@ namespace REST.Migrations
                         .IsRequired();
 
                     b.HasOne("REST.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserID")
+                        .WithOne("ClientUser")
+                        .HasForeignKey("REST.Models.ClientUser", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -420,8 +425,8 @@ namespace REST.Migrations
             modelBuilder.Entity("REST.Models.Owner", b =>
                 {
                     b.HasOne("REST.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("Owner")
+                        .HasForeignKey("REST.Models.Owner", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -488,6 +493,15 @@ namespace REST.Migrations
                     b.Navigation("ApplicantSkills");
 
                     b.Navigation("SkillNeeds");
+                });
+
+            modelBuilder.Entity("REST.Models.User", b =>
+                {
+                    b.Navigation("Applicant");
+
+                    b.Navigation("ClientUser");
+
+                    b.Navigation("Owner");
                 });
 #pragma warning restore 612, 618
         }

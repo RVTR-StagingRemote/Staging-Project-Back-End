@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
 using FluentValidation;
 
@@ -16,9 +17,6 @@ namespace REST.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public bool Approved { get; set; }
-        public Owner Owner { get; set; }
-        public Applicant Applicant { get; set; }
-        public ClientUser ClientUser { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 

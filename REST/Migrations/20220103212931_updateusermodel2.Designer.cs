@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using REST.DataLayer;
@@ -9,9 +10,10 @@ using REST.DataLayer;
 namespace REST.Migrations
 {
     [DbContext(typeof(BatchesDBContext))]
-    partial class BatchesDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220103212931_updateusermodel2")]
+    partial class updateusermodel2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -288,8 +290,14 @@ namespace REST.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("ApplicantId")
+                        .HasColumnType("integer");
+
                     b.Property<bool>("Approved")
                         .HasColumnType("boolean");
+
+                    b.Property<int>("ClientUserId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
                         .HasColumnType("text");
@@ -300,10 +308,19 @@ namespace REST.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("text");
 
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
                     b.HasKey("UserId");
+
+                    b.HasIndex("ApplicantId");
+
+                    b.HasIndex("ClientUserId");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Users");
                 });
@@ -445,6 +462,33 @@ namespace REST.Migrations
                     b.Navigation("Need");
 
                     b.Navigation("Skill");
+                });
+
+            modelBuilder.Entity("REST.Models.User", b =>
+                {
+                    b.HasOne("REST.Models.Applicant", "Applicant")
+                        .WithMany()
+                        .HasForeignKey("ApplicantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("REST.Models.ClientUser", "ClientUser")
+                        .WithMany()
+                        .HasForeignKey("ClientUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("REST.Models.Owner", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Applicant");
+
+                    b.Navigation("ClientUser");
+
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("REST.Models.Applicant", b =>
